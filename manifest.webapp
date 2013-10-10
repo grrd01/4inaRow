@@ -1,0 +1,39 @@
+{
+  "name": "grrd's 4 in a Row",
+  "description": "grrd’s 4 in a Row is a HTML5 connect-4 game for one or two players.",
+  "launch_path": "/index.html",
+  "icons": {
+    "16": "/Images/icon_16.png",
+    "32": "/Images/icon_32.png",
+    "48": "/Images/icon_48.png",
+    "60": "/Images/icon_60.png",
+    "64": "/Images/icon_64.png",
+    "128": "/Images/icon_128.png",
+    "256": "/Images/icon_256.png"
+  },
+  "developer": {
+    "name": "grrd's Games",
+    "url": "http://homepage.hispeed.ch/grrds_games/"
+  },
+  "default_locale": "en",
+  "fullscreen": "true",
+ 
+  "locales": {
+    "en": {
+      "description": "grrd’s 4 in a Row is a HTML5 connect-4 game for one or two players."
+    },
+    "de": {
+      "description": "grrd’s 4 in a Row ist ein HTML5 4 Gewinnt-Spiel für 1 oder 2 Spieler."
+    },
+    "fr": {
+      "description": "grrd’s 4 in a Row est un jeu 4 gagne en HTML5 pour 1 ou 2 joueurs."
+    },
+    "es": {
+      "description": "grrd’s 4 in a Row es un Conecta Cuatro juego HTML5 para uno o dos jugadores."
+    },
+    "it": {
+      "description": "grrd’s 4 in a Row è un gioco Quattro Vince per uno o due giocatori."
+    }
+  }
+ 
+}
