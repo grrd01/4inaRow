@@ -1,15 +1,15 @@
 {
   "name": "grrd's 4 in a Row",
   "description": "grrd’s 4 in a Row is a HTML5 connect-4 game for one or two players.",
-  "launch_path": "/index.html",
+  "launch_path": "/4inaRow/index.html",
   "icons": {
-    "16": "/Images/icon_16.png",
-    "32": "/Images/icon_32.png",
-    "48": "/Images/icon_48.png",
-    "60": "/Images/icon_60.png",
-    "64": "/Images/icon_64.png",
-    "128": "/Images/icon_128.png",
-    "256": "/Images/icon_256.png"
+    "16": "/4inaRow/Images/icon_16.png",
+    "32": "/4inaRow/Images/icon_32.png",
+    "48": "/4inaRow/Images/icon_48.png",
+    "60": "/4inaRow/Images/icon_60.png",
+    "64": "/4inaRow/Images/icon_64.png",
+    "128": "/4inaRow/Images/icon_128.png",
+    "256": "/4inaRow/Images/icon_256.png"
   },
   "developer": {
     "name": "grrd's Games",
@@ -17,6 +17,7 @@
   },
   "default_locale": "en",
   "fullscreen": "true",
+  "appcache_path": "/4inaRow/4inaRow.manifest",
  
   "locales": {
     "en": {
