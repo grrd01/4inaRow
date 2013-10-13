@@ -3,6 +3,7 @@
   "version": "4.1",
   "manifest_version": 2,
   "description": "grrd’s 4 in a Row is a connect-4 game for one or two players",
+  "short_name": "4 in a Row",
   "icons": {
     "256": "Images/icon_256.png",
     "128": "Images/icon_128.png",
