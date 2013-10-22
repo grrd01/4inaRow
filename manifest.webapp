@@ -23,25 +23,25 @@
  
   "locales": {
     "en": {
-      "description": "grrd’s 4 in a Row is a connect-4 game for one or two players."
+      "description": "grrd’s 4 in a Row is a connect-4 game for one or two players. Who is the first to put 4 stones horizontally, vertically or diagonally in a line? grrd's 4 in a Row is free, no ads, no in-app purchases."
     },
     "de": {
-      "description": "grrd’s 4 in a Row ist ein 4 Gewinnt-Spiel für 1 oder 2 Spieler."
+      "description": "grrd’s 4 in a Row ist ein 4 Gewinnt-Spiel für 1 oder 2 Spieler. Wer plaziert zuerst 4 Steine horizontal, vertikal oder diagonal nebeneinander? grrd’s 4 in a Row ist gratis, keine Werbung, keine In-App Käufe."
     },
     "fr": {
-      "description": "grrd’s 4 in a Row est un jeu puissance 4 en pour 1 ou 2 joueurs."
+      "description": "grrd’s 4 in a Row est un jeu puissance 4 pour 1 ou 2 joueurs. Qui est le premier à mettre 4 pierres horizontalement, verticalement ou en diagonale en ligne? grrd's 4 in a Row est gratuit, ni publicité, ni achats in-app."
     },
     "es": {
-      "description": "grrd’s 4 in a Row es un juego conecta 4 para uno o dos jugadores."
+      "description": "grrd’s 4 in a Row es un juego conecta 4 para uno o dos jugadores. ¿Quién es el primero en poner 4 piedras en línea horizontal, vertical o diagonal? grrd's 4 in a Row es gratis, sin anuncios, sin compras in-app."
     },
     "it": {
-      "description": "grrd’s 4 in a Row è un gioco forza quattro per uno o due giocatori."
+      "description": "grrd’s 4 in a Row è un gioco forza quattro per uno o due giocatori. Chi è il primo a mettere 4 pietre in una linea orizzontale, verticale o diagonale? grrd's 4 in a Row è gratuito, senza pubblicità, senza in-app acquisti."
     },
     "pt": {
-      "description": "grrd’s 4 in a Row é um jogo 4 em linha para um ou dois jogadores."
+      "description": "grrd’s 4 in a Row é um jogo 4 em linha para um ou dois jogadores. Quem é o primeiro a colocar 4 pedras na horizontal, vertical ou diagonal em uma linha? grrd's 4 in a Row é livre, sem anúncios, sem compras in-app."
     },
     "pl": {
-      "description": "grrd’s 4 in a Row jest to gra 4 w linii dla jednego lub dwóch graczy."
+      "description": "grrd’s 4 in a Row jest to gra 4 w linii dla jednego lub dwóch graczy. Kto jest pierwszym umieścić 4 kamienie poziomo, pionowo lub ukośnie w linii? grrd's 4 in a Row jest wolny, bez reklam, bez in-app zakupów."
     }
   }
  
