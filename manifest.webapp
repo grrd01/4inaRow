@@ -1,6 +1,6 @@
 {
   "name": "grrd's 4 in a Row",
-  "description": "grrd’s 4 in a Row is a connect-4 game for one or two players.",
+  "description": "grrd’s 4 in a Row is a connect-4 game for one or two players. Who is the first to put 4 stones horizontally, vertically or diagonally in a line? grrd's 4 in a Row is free, no ads, no in-app purchases.",
   "launch_path": "/4inaRow/index.html",
   "icons": {
     "16": "/4inaRow/Images/icon_16.png",
