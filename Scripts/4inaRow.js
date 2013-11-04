@@ -4,6 +4,7 @@
 * Licensed under the MPL License
 */
 
+//navigator.mozL10n.language.code = "fr";
 
 window.requestAnimFrame = (function (callback) {
   return window.requestAnimationFrame ||
@@ -130,13 +131,13 @@ function spielzug_animate(lastTime, topakt, spaltenr) {
         siege[player] = siege[player] + 1;
         document.getElementById('ding_sound').play();
         if (modus != "2player" && player == 1) {
-          meldung("Computer wins!",new Date().getTime());
+          meldung(navigator.mozL10n.get("lbcomputer") + " " + navigator.mozL10n.get("lbwin"),new Date().getTime());
         } else {
-          meldung("Player " + (player + 1) + " wins!",new Date().getTime());
+          meldung(navigator.mozL10n.get("lbplayer") + " " + (player + 1) + " " + navigator.mozL10n.get("lbwin"),new Date().getTime());
         }
       } else {
         if (!plaz) {
-          meldung("This ended in a draw.",new Date().getTime());
+          meldung(navigator.mozL10n.get("lbdraw"),new Date().getTime());
         } else {
           player = 1 - player;
           set_lights();
@@ -216,22 +217,22 @@ function kontrolle_det(zeile, spaltenr, zeilenfaktor, spaltenfaktor,player,zeige
     zeigenflag=false;
     // **************************************************************
     // wertung: xyyzz
-    // - x: maximal vorhanden
-    // - yy: möglichkeiten, 4 zu machen
-    // - zz: total vorhanden
+    //  - x: maximal vorhanden
+    //  - yy: möglichkeiten, 4 zu machen
+    //  - zz: total vorhanden
     //
-    // - 0: spalte nicht spielbar (schon voll)
-    // - 1: spalte spielbar, lässt aber gegner gewinnen
-    // - 2: spalte spielbar
-    // - 50000: viergewinnt verhindern
-    // - 60000: viergewinnt
+    //  - 0: spalte nicht spielbar (schon voll)
+    //  - 1: spalte spielbar, lässt aber gegner gewinnen
+    //  - 2: spalte spielbar
+    //  - 50000: viergewinnt verhindern
+    //  - 60000: viergewinnt
     //
     // **************************************************************
-    // punktewertung pro spalte:
-    // - wieviele möglichkeiten, 4 zu machen (alle richtungen, positionen) gibt es hier
-    // (felder noch leer oder meine)
-    // - wieviele steine sind dazu schon vorhanden (gesamthaft alle varianten, höchste variante)
-    // - wieviele steine sind dazu noch nötig (auffüllen)?
+    //  punktewertung pro spalte:
+    //  - wieviele möglichkeiten, 4 zu machen (alle richtungen, positionen) gibt es hier
+    //    (felder noch leer oder meine)
+    //  - wieviele steine sind dazu schon vorhanden (gesamthaft alle varianten, höchste variante)
+    //  - wieviele steine sind dazu noch nötig (auffüllen)?
     // **************************************************************
     for (compispalte = 0; compispalte < feld[0].length; ++compispalte) {
       wertung[compispalte] =0;
@@ -247,8 +248,8 @@ function kontrolle_det(zeile, spaltenr, zeilenfaktor, spaltenfaktor,player,zeige
     }
 
     // **************************************************************
-    // wert der spalte für gegner ermitteln
-    // dort spielen, falls höher als bester eigener wert
+    //  wert der spalte für gegner ermitteln
+    //  dort spielen, falls höher als bester eigener wert
     // **************************************************************
     bestwertung[0]=0;
     for (var a = 0; a < wertung.length; ++a) {
@@ -275,7 +276,7 @@ function kontrolle_det(zeile, spaltenr, zeilenfaktor, spaltenfaktor,player,zeige
 
 
     // **************************************************************
-    // kann gegner über mir 4 machen? diese spalte tabu setzen
+    //  kann gegner über mir 4 machen? diese spalte tabu setzen
     // **************************************************************
     player = 1 - player;
     for (compispalte = 0; compispalte < feld[0].length; ++compispalte) {
@@ -296,7 +297,7 @@ function kontrolle_det(zeile, spaltenr, zeilenfaktor, spaltenfaktor,player,zeige
     player = 1 - player;
 
     // **************************************************************
-    // kann gegner 4 machen? dort spielen
+    //  kann gegner 4 machen? dort spielen
     // **************************************************************
     player = 1 - player;
     for (compispalte = 0; compispalte < feld[0].length; ++compispalte) {
@@ -317,7 +318,7 @@ function kontrolle_det(zeile, spaltenr, zeilenfaktor, spaltenfaktor,player,zeige
     player = 1 - player;
 
     // **************************************************************
-    // kann ich 4 machen? dort spielen
+    //  kann ich 4 machen? dort spielen
     // **************************************************************
     for (compispalte = 0; compispalte < feld[0].length; ++compispalte) {
       for (compizeile = 0; compizeile < feld.length; ++compizeile) {
@@ -336,7 +337,7 @@ function kontrolle_det(zeile, spaltenr, zeilenfaktor, spaltenfaktor,player,zeige
     }
 
     // **************************************************************
-    // beste spalte wählen, dort spielen
+    //  beste spalte wählen, dort spielen
     // **************************************************************
     bestwertung = wertung.slice();
     bestwertung.sort(Numsort);
@@ -350,12 +351,12 @@ function kontrolle_det(zeile, spaltenr, zeilenfaktor, spaltenfaktor,player,zeige
       }
     }
     if (modus == "medium") {
-      while (wertung[spaltenr] < bestwertung[1] || wertung[spaltenr] === 0) {
+      while (wertung[spaltenr] <  bestwertung[1] || wertung[spaltenr] === 0) {
         spaltenr = Math.round(Math.random() * 6); //Zufallszahl im Bereich von 0 bis 6
       }
     }
     if (modus == "easy") {
-      while (wertung[spaltenr] < bestwertung[2] || wertung[spaltenr] === 0) {
+      while (wertung[spaltenr] <  bestwertung[2] || wertung[spaltenr] === 0) {
         spaltenr = Math.round(Math.random() * 6); //Zufallszahl im Bereich von 0 bis 6
       }
     }
@@ -379,7 +380,7 @@ function kontrolle_det(zeile, spaltenr, zeilenfaktor, spaltenfaktor,player,zeige
         steinecount = 0;
         for (var b = 0; b <= 3; ++b) {
           if (feld[compizeile][a + b] !== undefined) {
-            if (feld[compizeile][a + b] == player) {
+            if (feld[compizeile][a + b] ==  player) {
               //eins von meinen
               steinecount = steinecount + 1;
             } else {
@@ -406,7 +407,7 @@ function kontrolle_det(zeile, spaltenr, zeilenfaktor, spaltenfaktor,player,zeige
         steinecount = 0;
         for (b = 0; b <= 3; ++b) {
           if (feld[a - b][compispalte] !== undefined){
-            if (feld[a - b][compispalte] == player) {
+            if (feld[a - b][compispalte] ==  player) {
               //eins von meinen
               steinecount = steinecount + 1;
             } else {
@@ -520,19 +521,19 @@ function kontrolle_det(zeile, spaltenr, zeilenfaktor, spaltenfaktor,player,zeige
       spiele = spiele + 1;
       $('#printMessage').html(meldungtext);
       if (spiele == 1) {
-        $('#printSpiele').html(spiele + " game played.");
+        $('#printSpiele').html(spiele + " " + navigator.mozL10n.get("lbgame"));
       } else {
-        $('#printSpiele').html(spiele + " games played.");
+        $('#printSpiele').html(spiele + " " + navigator.mozL10n.get("lbgames"));
       }
       if (modus != "2player") {
-        $('#printScore1a').html("Player");
-        $('#printScore2a').html("Computer");
+        $('#printScore1a').html(navigator.mozL10n.get("lbplayer"));
+        $('#printScore2a').html(navigator.mozL10n.get("lbcomputer"));
         $('#printScore1b').html(siege[0]);
         $('#printScore2b').html(siege[1]);
 
       } else {
-        $('#printScore1a').html( "Player 1");
-        $('#printScore2a').html( "Player 2");
+        $('#printScore1a').html( navigator.mozL10n.get("lbplayer1"));
+        $('#printScore2a').html( navigator.mozL10n.get("lbplayer2"));
         $('#printScore1b').html(siege[0]);
         $('#printScore2b').html(siege[1]);
       }
@@ -651,7 +652,7 @@ function kontrolle_det(zeile, spaltenr, zeilenfaktor, spaltenfaktor,player,zeige
   }
 
   window.onload = function() {
-    $("#description").attr("style","display:none;");
+
     // add click listener to canvas
     for (var i = 0; i < spalte.length; ++i) {
       //document.getElementById(spalte[i]).addEventListener("click", function() {spielzug(i)});

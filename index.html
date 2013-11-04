@@ -21,18 +21,19 @@
     <link rel="apple-touch-startup-image" href="Images/apple-touch-startup-image-320x460.png" >
     <link rel="apple-touch-startup-image" sizes="768x1004" href="Images/apple-touch-startup-image-768x1004.png" >
     <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" >
+    <link rel="resource" type="application/l10n" href="Locales/locales.ini" />
     <title>grrd's 4 in a Row</title>
   </head>
 
   <body>
 
     <audio id="click_sound" preload="auto" autobuffer="autobuffer">
-            <source src="Sounds/click.mp3" type="audio/mp3" />
+      <source src="Sounds/click.mp3" type="audio/mp3" />
       <source src="Sounds/click.mp3" type="audio/mpeg" />
       <source src="Sounds/click.ogg" type="audio/ogg" />
     </audio>
     <audio id="ding_sound" preload="auto" autobuffer="autobuffer">
-            <source src="Sounds/ding.mp3" type="audio/mp3" />
+      <source src="Sounds/ding.mp3" type="audio/mp3" />
       <source src="Sounds/ding.mp3" type="audio/mpeg" />
       <source src="Sounds/ding.ogg" type="audio/ogg" />
     </audio>
@@ -41,23 +42,23 @@
 
       <div data-role="content">
         <a href="#popupInfo" data-rel="dialog" data-transition="pop"><img id="img_title" src="Images/title1.png" alt="grrd's 4 in a Row" style="width:100%;" /></a>
-        <div id="description"> is a connect-4 game for one or two players with a decent AI, selectable difficulty from Kid to Pro that works well on your smartphone.</div>
+        <noscript> is a connect-4 game for one or two players with a decent AI, selectable difficulty from Kid to Pro that works well on your smartphone.</noscript>
         <div id="page_portrait" style="display:inline;">
           <ul data-role="listview" data-inset="true" data-filter="false">
-            <li><a href="#" onclick="player_click(); return false;"><img src="Images/2player.png" alt="2 Player" style="padding:10px;"/> 2 Player</a></li>
-            <li><a href="#" onclick="easy_click(); return false;"><img src="Images/easy.png" alt="Easy" style="padding:10px;"/>Easy</a></li>
-            <li><a href="#" onclick="medium_click(); return false;"><img src="Images/medium.png" alt="Medium" style="padding:10px;"/>Medium</a></li>
-            <li><a href="#" onclick="hard_click(); return false;"><img src="Images/hard.png" alt="Hard" style="padding:10px;"/>Hard</a></li>
+            <li><a href="#" onclick="player_click(); return false;"><img src="Images/2player.png" alt="2 Player" style="padding:10px;"/><div data-l10n-id="btplay"></div></a></li>
+            <li><a href="#" onclick="easy_click(); return false;"><img src="Images/easy.png" alt="Easy" style="padding:10px;"/><div data-l10n-id="bteasy"></div></a></li>
+            <li><a href="#" onclick="medium_click(); return false;"><img src="Images/medium.png" alt="Medium" style="padding:10px;"/><div data-l10n-id="btmed"></div></a></li>
+            <li><a href="#" onclick="hard_click(); return false;"><img src="Images/hard.png" alt="Hard" style="padding:10px;"/><div data-l10n-id="bthard"></div></a></li>
           </ul>
         </div>
     
         <div id="page_landscape" style="display:none;">
           
           <div data-role="controlgroup" data-type="horizontal" style="width:100%;">
-            <a id="btplay" style="width:25%;" href="#" onclick="player_click(); return false;" data-role="button"><img src="Images/2player.png" alt="2Player" style="padding:1px;height: 40px;"/><br/>2 Player</a>
-            <a id="bteasy" style="width:24%;" href="#" onclick="easy_click(); return false;" data-role="button"><img src="Images/easy.png" alt="Easy" style="padding:1px;height: 40px;"/><br/>Easy</a>
-            <a id="btmed" style="width:25%;" href="#" onclick="medium_click(); return false;" data-role="button"><img src="Images/medium.png" alt="Medium" style="padding:1px;height: 40px;"/><br/>Medium</a>
-            <a id="bthard" style="width:24%;" href="#" onclick="hard_click(); return false;" data-role="button"><img src="Images/hard.png" alt="Hard" style="padding:1px;height: 40px;"/><br/>Hard</a>
+            <a id="btplay" style="width:25%;" href="#" onclick="player_click(); return false;" data-role="button"><img src="Images/2player.png" alt="2Player" style="padding:1px;height: 40px;"/><br><div data-l10n-id="btplay"></div></a>
+            <a id="bteasy" style="width:24%;" href="#" onclick="easy_click(); return false;" data-role="button"><img src="Images/easy.png" alt="Easy" style="padding:1px;height: 40px;"/><br><div data-l10n-id="bteasy"></div></a>
+            <a id="btmed" style="width:25%;" href="#" onclick="medium_click(); return false;" data-role="button"><img src="Images/medium.png" alt="Medium" style="padding:1px;height: 40px;"/><br><div data-l10n-id="btmed"></div></a>
+            <a id="bthard" style="width:24%;" href="#" onclick="hard_click(); return false;" data-role="button"><img src="Images/hard.png" alt="Hard" style="padding:1px;height: 40px;"/><br><div data-l10n-id="bthard"></div></a>
           </div>
         </div>
       </div><!-- /content -->
@@ -97,7 +98,7 @@
             <img id="P2icon" src="Images/computer.png" alt="P2"/><img id="P2light" src="Images/lightblueoff.png" alt="P2" />
           </div>
         </fieldset>
-        <a href="#" onclick="back(); return false;" data-direction="reverse" data-role="button" data-theme="b">Back</a>
+        <a href="#" data-l10n-id="btback" onclick="back(); return false;" data-direction="reverse" data-role="button" data-theme="b">Back</a>
       </div><!-- /content -->
     </div><!-- /page -->
 
@@ -126,23 +127,23 @@
         </fieldset>
         
         <fieldset id="popupDialog_portrait" class="ui-grid-a">
-          <p>Play again?</p>
+          <p data-l10n-id="lbagain">Play again?</p>
           <div class="ui-block-a">
-            <a href="#" onclick="playagain(); return false;" data-role="button" data-theme="c">Yes</a>
+            <a href="#" data-l10n-id="lbyes" onclick="playagain(); return false;" data-role="button" data-theme="c">Yes</a>
           </div>
           <div class="ui-block-b">
-            <a href="#" onclick="back(); return false;" data-role="button" data-theme="b">No</a>
+            <a href="#" data-l10n-id="lbno" onclick="back(); return false;" data-role="button" data-theme="b">No</a>
           </div>
         </fieldset>
         <fieldset id="popupDialog_landscape" class="ui-grid-b">
           <div class="ui-block-a">
-            <p>Play again?</p>
+            <p data-l10n-id="lbagain">Play again?</p>
           </div>
           <div class="ui-block-b">
-            <a href="#" onclick="playagain(); return false;" data-role="button" data-theme="c">Yes</a>
+            <a href="#" data-l10n-id="lbyes" onclick="playagain(); return false;" data-role="button" data-theme="c">Yes</a>
           </div>
           <div class="ui-block-c">
-            <a href="#" onclick="back(); return false;" data-role="button" data-theme="b">No</a>
+            <a href="#" data-l10n-id="lbno" onclick="back(); return false;" data-role="button" data-theme="b">No</a>
           </div>
         </fieldset>
       </div>
@@ -156,16 +157,17 @@
         <img src="Images/title2eng.png" alt="4 in a row" style="width:40%; margin-top:8px; margin-bottom:6px" data-inline="true"/>
       </div>
       <div data-role="content" data-theme="d">
-                        <span>Thanks for playing grrd's 4 in a Row. If you like it, share the link! <br> </span>
-        <span>Developed by Gérard Tyedmers with <a href="http://jquerymobile.com/" target="_blank">jQuery mobile</a>. </span>
-        <p>E-mail me: <a href="mailto:grrd@gmx.net">grrd@gmx.net </a></p>
-        <span>Try my other game: <a href="http://homepage.hispeed.ch/grrds_games/Puzzle" target="_blank">grrd's Puzzle</a></span>
-        <a href="#" data-rel="back" data-role="button" data-theme="c" data-icon="delete" class="ui-btn-right" style="float:right;">Close</a>
+                        <span data-l10n-id="lbthanks">Thanks for playing grrd's 4 in a Row!</span> <br>
+        <span data-l10n-id="lbdev">Developed by Gérard Tyedmers with <a href="http://jquerymobile.com/" target="_blank">jQuery mobile</a>. </span>
+        <p>E-mail: <a href="mailto:grrd@gmx.net">grrd@gmx.net </a></p>
+        <span data-l10n-id="lbpuzzle">Try my other game: <a href="http://homepage.hispeed.ch/grrds_games/Puzzle" target="_blank">grrd's Puzzle</a></span>
+        <a href="#" data-l10n-id="btclose" data-rel="back" data-role="button" data-theme="c" data-icon="delete" class="ui-btn-right" style="float:right;">Close</a>
       </div>
     </div><!-- /page popup -->
 
     <script type="text/javascript" src="Scripts/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="Scripts/jquery.mobile-1.2.0.min.js"></script>
+    <script type="text/javascript" src="Scripts/l10n.js"></script>
     <script type="text/javascript" src="Scripts/4inaRow.js"></script>
 
   </body>
