@@ -682,7 +682,7 @@ function kontrolle_det(zeile, spaltenr, zeilenfaktor, spaltenfaktor,player,zeige
       spielzug(6);
     });
 
-    jQuery.preLoadImages("Images/lightredon.png","Images/lightredoff.png","Images/lightblueon.png","Images/lightblueoff.png","Images/title2eng.png<");
+    jQuery.preLoadImages("Images/lightredon.png","Images/lightredoff.png","Images/lightblueon.png","Images/lightblueoff.png","Images/title2eng.png");
 
     content_formatting();
 

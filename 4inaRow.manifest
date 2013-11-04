@@ -2,8 +2,11 @@ CACHE MANIFEST
 Scripts/jquery.mobile-1.2.0.min.css
 Scripts/jquery.mobile-1.2.0.min.js
 Scripts/jquery-1.7.2.min.js
+Scripts/l10n.js
 Scripts/4inaRow.js
+Scripts/4inaRow_loc.js
 Scripts/images/ajax-loader.png
+Scripts/images/ajax-loader.gif
 Scripts/images/icons-18-black.png
 Scripts/images/icons-18-white.png
 Scripts/images/icons-36-black.png
@@ -30,3 +33,12 @@ Sounds/click.mp3
 Sounds/click.ogg
 Sounds/ding.mp3
 Sounds/ding.ogg
+_locales\de\4inaow.properties
+_locales\en\4inaow.properties
+_locales\es\4inaow.properties
+_locales\fr\4inaow.properties
+_locales\it\4inaow.properties
+_locales\pl\4inaow.properties
+_locales\pt_BR\4inaow.properties
+_locales\pt_PT\4inaow.properties
+_locales\locales.ini
