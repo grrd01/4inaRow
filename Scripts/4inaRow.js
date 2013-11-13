@@ -86,7 +86,8 @@ function p_computer() {
 }
 
 function back() {
-  window.location = "#title";
+  //window.location = "#title";
+  $.mobile.changePage('#title', {transition: 'slide', reverse: true});
   animate = false;
   leeren();
   spiele = 0;
