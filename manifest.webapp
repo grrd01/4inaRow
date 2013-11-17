@@ -19,7 +19,6 @@
   },
   "default_locale": "en",
   "fullscreen": "true",
-  "appcache_path": "/4inaRow/4inaRow.manifest",
  
   "locales": {
     "en": {
