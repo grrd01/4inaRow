@@ -4,7 +4,7 @@
 * Licensed under the MPL License
 */
 
-//navigator.mozL10n.language.code = "fr";
+//navigator.mozL10n.language.code = "ta";
 
 window.requestAnimFrame = (function (callback) {
   return window.requestAnimationFrame ||
