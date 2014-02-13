@@ -40,13 +40,16 @@
       "description": "grrd’s 4 in a Row é um jogo 4 em linha para um ou dois jogadores. Quem é o primeiro a colocar 4 pedras na horizontal, vertical ou diagonal em uma linha? grrd's 4 in a Row é livre, sem anúncios, sem compras in-app."
     },
     "pl": {
-      "description": "grrd’s 4 in a Row jest to gra 4 w linii dla jednego lub dwóch graczy. Kto jest pierwszym umieścić 4 kamienie poziomo, pionowo lub ukośnie w linii? grrd's 4 in a Row jest wolny, bez reklam, bez in-app zakupów."
+      "description": "grrd’s 4 in a Row to gra 4 w rzędzie dla jednego lub dwóch graczy. Kto pierwszy umieści 4 kamienie w rzędzie poziomo, pionowo lub ukośnie? grrd's 4 in a Row nie kosztuje nic, jest bez reklam i  bez offert na zakupy."
     },
     "ta": {
       "description": "grrd’s 4 in a Row ஒன்று அல்லது இரண்டு வீரர்கள் ஒரு கனெக்ட் 4 விளையாட்டு. ஒரு வரியில் கிடைமட்டமாக, செங்குத்தாக அல்லது குறுக்காக 4 கற்களை வைத்து முதல் யார்? grrd's 4 in a Row இலவசம், எந்த விளம்பரங்கள், பயன்பாட்டு கொள்முதல் இல்லை. "
     },
     "tr": {
       "description": "grrd's 4 in a Row bir yada iki oyuncu için bir -4ünü birleştirme oyunudur. İlk kim 4 taşı yatay, dikey ya da çapraz olarak çizgi haline getirecek? grrd's 4 in a Row ücretsizdir, reklam ve oyun içi ödeme yoktur."
+    },
+    "ru": {
+      "description": "grrd’s 4 in a Row игра Четыре в ряд для одного или двух игроков. Кто первым поставить 4 камня по горизонтали, вертикали или диагонали подряд? grrd's 4 in a Row бесплатно, без рекламы, без в приложение покупки."
     }
   }
  
