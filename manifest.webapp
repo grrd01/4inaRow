@@ -25,7 +25,7 @@
       "description": "grrd’s 4 in a Row is a connect-4 game for one or two players. Who is the first to put 4 stones horizontally, vertically or diagonally in a line? grrd's 4 in a Row is free, no ads, no in-app purchases."
     },
     "de": {
-      "description": "grrd’s 4 in a Row ist ein 4 Gewinnt-Spiel für 1 oder 2 Spieler. Wer plaziert zuerst 4 Steine horizontal, vertikal oder diagonal nebeneinander? grrd’s 4 in a Row ist gratis, keine Werbung, keine In-App Käufe."
+      "description": "grrd’s 4 in a Row ist ein 4 Gewinnt-Spiel für 1 oder 2 Spieler. Wer platziert zuerst 4 Steine horizontal, vertikal oder diagonal nebeneinander? grrd’s 4 in a Row ist gratis, keine Werbung, keine In-App Käufe."
     },
     "fr": {
       "description": "grrd’s 4 in a Row est un jeu puissance 4 pour 1 ou 2 joueurs. Qui est le premier à mettre 4 pierres horizontalement, verticalement ou en diagonale en ligne? grrd's 4 in a Row est gratuit, ni publicité, ni achats in-app."
@@ -50,6 +50,9 @@
     },
     "ru": {
       "description": "grrd’s 4 in a Row игра Четыре в ряд для одного или двух игроков. Кто первым поставить 4 камня по горизонтали, вертикали или диагонали подряд? grrd's 4 in a Row бесплатно, без рекламы, без в приложение покупки."
+    },
+    "sv": {
+      "description": "grrd's 4 in a row är ett 4 i rad spel för en eller två spelare. Vem är den första att sätta 4 stenar horisontellt, vertikalt eller diagonalt i rad? grrd's 4 in a Row är fri, inga annonser, ingen i-app inköp."
     }
   }
  
