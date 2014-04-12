@@ -95,6 +95,10 @@ function back() {
   siege = [0,0];
 }
 
+function closepop() {
+  $.mobile.changePage('#title', {transition: 'pop', reverse: true});
+}
+
 function set_lights() {
   $("#P1light").attr("src",P1lightimg[player]);
   $("#P2light").attr("src",P2lightimg[1-player]);
@@ -544,7 +548,8 @@ function kontrolle_det(zeile, spaltenr, zeilenfaktor, spaltenfaktor,player,zeige
   }
 
   function playagain() {
-    $('#popupDialog').dialog('close');
+    //ios7-bug: $('#popupDialog').dialog('close');
+    $.mobile.changePage('#game', {transition: 'pop', reverse: true});
     leeren();
     if(spiele % 2 !== 0) {
       player = 1;
