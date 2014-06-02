@@ -1,0 +1,17 @@
+{
+    "name": "grrds4inarow",
+    "version": "0.1.0-1",
+    "description": "grrd's 4 in a Row - Online version",
+    "subdomain": "grrds4inarow",
+    "engines": {
+        "node": "0.10.26"
+    },
+    "scripts": {
+        "start": "./4inaRowServer.js"
+    },
+    "dependencies": {
+        "socket.io": "0.9.16",
+        "moniker": "0.1.2"
+    },
+    "author": "Gerard Tyedmers"
+}
