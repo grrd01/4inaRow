@@ -51,6 +51,7 @@ var connection = false;
 var lastconnect;
 var laststart;
 var lastquit;
+var lastround = null;
 var countround = 0;
 
 
@@ -116,7 +117,8 @@ function online_click() {
   });
   
   socket.on('playget', function (data) {
-    if (countround == data.round) {
+    if (countround == data.round && lastround != data.round) {
+      lastround = data.round;
       spielzug(data.col);
     }
   });
@@ -654,6 +656,7 @@ function playagain() {
 
 function leeren() {
   countround = 0;
+  lastround = null;
   for (var i = 0; i < feld.length; ++i) {
     for (var j = 0; j < feld[i].length; ++j) {
       feld[i][j] = undefined;
