@@ -53,6 +53,8 @@ var laststart;
 var lastquit;
 var lastround = null;
 var countround = 0;
+var onexit = false;
+var fromonline = false;
 
 
 function drawCircle(topakt,spaltenr,color,bcolor) {
@@ -72,6 +74,7 @@ function player_click() {
   $("#P2icon").attr("src","Images/player.png");
   $("#P2icon2").attr("src","Images/player.png");
   set_lights();
+  onexit = false;
   $.mobile.changePage('#game', {transition: 'slide'});
 }
 
@@ -94,6 +97,7 @@ function online_click() {
     if (user.id != laststart) {
       laststart = user.id;
       set_lights();
+      onexit = false;
       if (modus !== null) {$.mobile.changePage('#title', {transition: 'slide', reverse: true});}
       animate = false;
       leeren();
@@ -119,6 +123,7 @@ function online_click() {
   socket.on('playget', function (data) {
     if (countround == data.round && lastround != data.round) {
       lastround = data.round;
+      fromonline = true;
       spielzug(data.col);
     }
   });
@@ -126,6 +131,7 @@ function online_click() {
   socket.on('quit', function (data) {
   	if (user.id != lastquit) {
   		lastquit = user.id;
+  		onexit = true;
   		$.mobile.changePage('#popupLeft', {transition: 'pop', role: 'dialog'});
     }
   });
@@ -152,6 +158,7 @@ function p_computer() {
   $("#P2icon").attr("src","Images/computer.png");
   $("#P2icon2").attr("src","Images/computer.png");
   set_lights();
+  onexit = false;
   $.mobile.changePage('#game', {transition: 'slide'});
 }
 
@@ -163,6 +170,7 @@ function back() {
     $('#btonline2').removeClass('ui-disabled');
 
   }
+  onexit = true;
   $.mobile.changePage('#title', {transition: 'slide', reverse: true});
   animate = false;
   leeren();
@@ -245,8 +253,15 @@ function spielzug_check(spaltenr) {
   }
 }
 
-
 function spielzug(spaltenr) {
+  if (fromonline) {
+    fromonline = false;
+    if (modus == "online") {
+      if ((player == 0 && user.role == 0) || (player == 1 && user.role == 1)) {
+        return;
+      }
+    }
+  }
   if (!animate) {
     countround = countround +1;
     zeile = 0;
@@ -589,6 +604,7 @@ function zeigen() {
 }
 
 function zeigen_animate(mywinrow,mywincol,myzeigencount,zwait) {
+  if (onexit) {return;}
   if (myzeigencount < 6 && zwait + 250 < new Date().getTime() && animate) {
     ++myzeigencount;
     zwait = new Date().getTime();
@@ -610,6 +626,7 @@ function zeigen_animate(mywinrow,mywincol,myzeigencount,zwait) {
 }
 
 function meldung(meldungtext,wait) {
+  if (onexit) {return;}
   if (wait + 2000 > new Date().getTime() && animate) {
     requestAnimFrame(function() {
       meldung(meldungtext,wait);
