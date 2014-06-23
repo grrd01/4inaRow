@@ -96,7 +96,6 @@ function online_click() {
     user = data;
     if (user.id != laststart) {
       laststart = user.id;
-      set_lights();
       onexit = false;
       if (modus !== null) {$.mobile.changePage('#title', {transition: 'slide', reverse: true});}
       animate = false;
@@ -104,6 +103,7 @@ function online_click() {
       spiele = 0;
       player = 0;
       siege = [0,0];
+      set_lights();
       modus="online";
       if (user.role == 0) {
         $("#P1icon").attr("src","Images/player.png");
