@@ -13,7 +13,7 @@
     "128": "/Images/icon_128.png",
     "256": "/Images/icon_256.png"
   },
-  "version": "2.2",
+  "version": "2.0",
   "developer": {
     "name": "grrd's Games",
     "url": "http://homepage.hispeed.ch/grrds_games/"
@@ -28,6 +28,9 @@
     "en": {
       "description": "grrd’s 4 in a Row is a connect-4 game for one or two players. Who is the first to put 4 stones horizontally, vertically or diagonally in a line? grrd's 4 in a Row is free, no ads, no in-app purchases."
     },
+    "eo": {
+      "description": "grrd’s 4 in a Row estas ludo Kunligu 4 por unu aŭ du ludantoj. Kiu estas la unua por meti 4 ŝtonoj horizontale, vertikale aŭ diagonale en linio? Vi povas ludi kontraŭ komputilon, kune kun amiko en sama aparato aŭ eĉ enrete kontraŭ aliaj uzantoj de Kunligu 4 de grrd. grrd's 4 in a Row estas senpaga, sen reklamoj, neniu en-app aĉetoj."
+    },
     "es": {
       "description": "grrd’s 4 in a Row es un juego conecta 4 para uno o dos jugadores. ¿Quién es el primero en poner 4 piedras en línea horizontal, vertical o diagonal? grrd's 4 in a Row es gratis, sin anuncios, sin compras in-app."
     },
@@ -38,7 +41,7 @@
       "description": "grrd’s 4 in a Row je igra 4 u nizu za jednog ili dva igrača. Tko je prvi stavio 4 kamenje horizontalno, vertikalno ili dijagonalno u nizu? grrd's 4 in a Row je besplatna aplikacija, bez reklama, bez in-app kupnje."
     },
     "it": {
-      "description": "grrd’s 4 in a Row è un gioco forza quattro per uno o due giocatori. Chi è il primo a mettere 4 pietre in una linea orizzontale, verticale o diagonale? grrd's 4 in a Row è gratuito, senza pubblicità, senza in-app acquisti."
+      "description": "grrd’s 4 in a Row è un gioco stile Forza 4 per uno o due giocatori. Chi sarà il primo a mettere 4 sfere orizzontalmente, verticalmente o diagonamente in una linea? Puoi giocare contro il computer, assieme con un amico sullo stesso dispositivo o persino online contro altri utenti di grrd's 4 in a Row. grrd's 4 in a Row è un gioco gratuito privo di pubblicità e di acquisti in-app."
     },
     "nl": {
       "description": "grrd’s 4 in a Row is een 4 op een rij spel voor een of twee spelers. Wie is de eerste om 4 stenen horizontaal, verticaal of diagonaal op een rij te zetten? grrd's 4 in a Row is gratis, zonder advertenties en zonder in-app aanbiedingen."
