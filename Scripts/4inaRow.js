@@ -17,8 +17,6 @@ window.requestAnimFrame = (function (callback) {
 	};
 })();
 
-var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
-var firefoxOS = (navigator.userAgent.search("Mobile") != -1 && navigator.userAgent.search("Firefox") != -1 && navigator.userAgent.search("Android") == -1);
 var animate = false;
 var spalte = new Array("spalte0", "spalte1", "spalte2", "spalte3", "spalte4", "spalte5", "spalte6");
 var spalte_canvas = new Array(6);
@@ -278,8 +276,8 @@ function back() {
 function closepop() {
 	if ($('#b_sound').val()==="on") {g_sound=true;} else {g_sound=false;}
 	localStorage.setItem('s_sound', $('#b_sound').val());
-	$.mobile.changePage('#title', {transition: 'pop', reverse: true});
 	content_formatting();
+	$.mobile.changePage('#title', {transition: 'pop', reverse: true});
 }
 
 function set_lights() {
@@ -943,7 +941,6 @@ window.onload = function() {
 };
 
 $(window).resize( function() {
-	if (firefoxOS && ($.mobile.activePage.attr('id') = "popupSettings")){alert("nönö");return;}
 	content_formatting();
 });
 

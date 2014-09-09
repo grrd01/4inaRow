@@ -22,6 +22,9 @@
   "fullscreen": "true",
  
   "locales": {
+    "cs": {
+      "description": "grrd’s 4 in a Row = Čtyřka vyhrává je hra pro jednoho nebo dva hráče. Kdo umístí nejdříve 4 kameny vodoroně, příčně nebo diagonálně vedle sebe? grrd’s 4 in a Row je gratis-hra, bez reklamy a nákupu In-App."
+    },
     "de": {
       "description": "grrd’s 4 in a Row ist ein 4 Gewinnt-Spiel für 1 oder 2 Spieler. Wer platziert zuerst 4 Steine horizontal, vertikal oder diagonal nebeneinander? grrd’s 4 in a Row ist gratis, keine Werbung, keine In-App Käufe."
     },
