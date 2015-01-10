@@ -826,12 +826,19 @@ function content_formatting() {
 		$("#printMessage").attr("style","display:inline;");
 	}
 
-	$("#btplay").attr("style","width:" + (width/5-8) + "px;");
-	$("#btonline").attr("style","width:" + (width/5-8) + "px;");
-	$("#bteasy").attr("style","width:" + (width/5-8) + "px;");
-	$("#btmed").attr("style","width:" + (width/5-8) + "px;");
-	$("#bthard").attr("style","width:" + (width/5-8) + "px;");
+	var imgpadd = Math.max((height - width/3)/7,0)
 
+	$("#btplay").attr("style","width:" + (width/5-8) + "px;padding-bottom:" + imgpadd/2 + "px;");
+	$("#btonline").attr("style","width:" + (width/5-8) + "px;padding-bottom:" + imgpadd/2 + "px;");
+	$("#bteasy").attr("style","width:" + (width/5-8) + "px;padding-bottom:" + imgpadd/2 + "px;");
+	$("#btmed").attr("style","width:" + (width/5-8) + "px;padding-bottom:" + imgpadd/2 + "px;");
+	$("#bthard").attr("style","width:" + (width/5-8) + "px;padding-bottom:" + imgpadd/2 + "px;");
+
+	$("#imgplay").attr("style","padding-top:" + imgpadd + "px;padding-bottom:" + imgpadd/2 + "px;width: 100%;min-width: 40px;max-width: 108px;");
+	$("#imgonline").attr("style","padding-top:" + imgpadd + "px;padding-bottom:" + imgpadd/2 + "px;width: 100%;min-width: 40px;max-width: 108px;");
+	$("#imgeasy").attr("style","padding-top:" + imgpadd + "px;padding-bottom:" + imgpadd/2 + "px;width: 100%;min-width: 40px;max-width: 108px;");
+	$("#imgmed").attr("style","padding-top:" + imgpadd + "px;padding-bottom:" + imgpadd/2 + "px;width: 100%;min-width: 40px;max-width: 108px;");
+	$("#imghard").attr("style","padding-top:" + imgpadd + "px;padding-bottom:" + imgpadd/2 + "px;width: 100%;min-width: 40px;max-width: 108px;");
 
 	for (var i = 0; i < spalte.length; ++i) {
 		document.getElementById(spalte[i]).width = colwidth;
@@ -897,6 +904,20 @@ window.onload = function() {
 		if (localStorage.getItem('s_name').replace(/\s+/g,"") !== "") {g_ownname = true;}
 	}
 
+	url_param = url_query('theme');
+	if ( url_param ) {
+		if (url_param == 'mi') {
+			$('#img_title').attr("src","Images/title1_mi.png");
+			$('#popupDialog_t1').attr("src","Images/title1_mi.png");
+			$('#popupDialog_t2').attr("src","Images/title2_mi.png");
+			$('#popupInfo_t1').attr("src","Images/title1_mi.png");
+			$('#popupInfo_t2').attr("src","Images/title2_mi.png");
+			$('#popupSettings_t1').attr("src","Images/title1_mi.png");
+			$('#popupSettings_t2').attr("src","Images/title2_mi.png");
+		}
+	}
+
+
 	// add click listener to canvas
 	for (var i = 0; i < spalte.length; ++i) {
 		//document.getElementById(spalte[i]).addEventListener("click", function() {spielzug(i)});
@@ -934,7 +955,12 @@ window.onload = function() {
 	$('#img_title').delay(1500);
 	$('#img_title').fadeOut(1000);
 	$('#img_title').queue( function() {
-		$(this).attr("src","Images/title2eng.png");
+		url_param = url_query('theme');
+		if ( url_param && url_param == 'mi') {
+			$('#img_title').attr("src","Images/title2_mi.png"); 
+		} else {
+			$('#img_title').attr("src","Images/title2eng.png");
+		}
 		$(this).fadeIn(1000);
 		$(this).dequeue();
 	} );

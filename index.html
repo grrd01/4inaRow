@@ -21,8 +21,32 @@
 		<link rel="apple-touch-icon" sizes="72x72" href="Images/apple-touch-icon-72x72.png" >
 		<link rel="apple-touch-icon" sizes="114x114" href="Images/apple-touch-icon-114x114.png" >
 		<link rel="apple-touch-icon" sizes="144x144" href="Images/apple-touch-icon-144x144.png" >
-		<link rel="apple-touch-startup-image" href="Images/apple-touch-startup-image-320x460.png" >
+		<link rel="apple-touch-startup-image" href="Images/apple-touch-startup-image-320x480.png" >
 		<link rel="apple-touch-startup-image" sizes="768x1004" href="Images/apple-touch-startup-image-768x1004.png" >
+		<!-- iPhone >
+		<link rel="apple-touch-startup-image"
+			media="(device-width: 320px)"
+			href="Images/apple-touch-startup-image-320x480.png">
+		<!-- iPhone (Retina) >
+		<link rel="apple-touch-startup-image"
+			media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)"
+			href="Images/apple-touch-startup-image-640x960.png">
+		<!-- iPad (portrait) >
+		<link rel="apple-touch-startup-image"
+			media="(device-width: 768px) and (orientation: portrait)"
+			href="Images/apple-touch-startup-image-768x1004.png">
+		<!-- iPad (landscape) >
+		<link rel="apple-touch-startup-image"
+			media="(device-width: 768px) and (orientation: landscape)"
+			href="Images/apple-touch-startup-image-1024x768.png">
+		<!-- iPad (Retina, portrait) >
+		<link rel="apple-touch-startup-image"
+			media="(device-width: 768px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)"
+			href="Images/apple-touch-startup-image-768x1004.png">
+		<!-- iPad (Retina, landscape) >
+		<link rel="apple-touch-startup-image"
+			media="(device-width: 768px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)"
+			href="Images/apple-touch-startup-image-2048x1536.png"-->
 		<link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" >
 		<link rel="resource" type="application/l10n" href="Locales/locales.ini" />
 		<title>grrd's 4 in a Row</title>
@@ -65,11 +89,11 @@
 				<div id="page_landscape" style="display:none;">
 					<div id="blankspace" style="height:100px;"></div>
 					<div data-role="controlgroup" data-type="horizontal" style="width:100%;">
-						<a id="btplay" style="width:19%;" href="#" onclick="player_click(); return false;" data-role="button"><img src="Images/2player.png" alt="2Player" style="padding:1px;height: 40px;"/><br><div data-l10n-id="btplay"></div></a>
-						<a id="btonline" style="width:19%;" href="#" onclick="online_click(); return false;" data-role="button"><img src="Images/2online.png" alt="2Player" style="padding:1px;height: 40px;"/><br><div data-l10n-id="btonline"></div></a>
-						<a id="bteasy" style="width:19%;" href="#" onclick="easy_click(); return false;" data-role="button"><img src="Images/easy.png" alt="Easy" style="padding:1px;height: 40px;"/><br><div data-l10n-id="bteasy"></div></a>
-						<a id="btmed" style="width:19%;" href="#" onclick="medium_click(); return false;" data-role="button"><img src="Images/medium.png" alt="Medium" style="padding:1px;height: 40px;"/><br><div data-l10n-id="btmed"></div></a>
-						<a id="bthard" style="width:19%;" href="#" onclick="hard_click(); return false;" data-role="button"><img src="Images/hard.png" alt="Hard" style="padding:1px;height: 40px;"/><br><div data-l10n-id="bthard"></div></a>
+						<a id="btplay" style="width:19%;" href="#" onclick="player_click(); return false;" data-role="button"><img id="imgplay" src="Images/2player.png" alt="2Player" style="padding-top:20%;padding-bottom:20%;width: 100%;min-width: 40px;max-width: 108px;"/><br><div data-l10n-id="btplay"></div></a>
+						<a id="btonline" style="width:19%;" href="#" onclick="online_click(); return false;" data-role="button"><img id="imgonline" src="Images/2online.png" alt="2Player" style="width: 100%;min-width: 40px;max-width: 108px;"/><br><div data-l10n-id="btonline"></div></a>
+						<a id="bteasy" style="width:19%;" href="#" onclick="easy_click(); return false;" data-role="button"><img id="imgeasy" src="Images/easy.png" alt="Easy" style="width: 100%;min-width: 40px;max-width: 108px;"/><br><div data-l10n-id="bteasy"></div></a>
+						<a id="btmed" style="width:19%;" href="#" onclick="medium_click(); return false;" data-role="button"><img id="imgmed" src="Images/medium.png" alt="Medium" style="width: 100%;min-width: 40px;max-width: 108px;"/><br><div data-l10n-id="btmed"></div></a>
+						<a id="bthard" style="width:19%;" href="#" onclick="hard_click(); return false;" data-role="button"><img id="imghard" src="Images/hard.png" alt="Hard" style="padding-top:50px;width: 100%;min-width: 40px;max-width: 108px;"/><br><div data-l10n-id="bthard"></div></a>
 					</div>
 				</div>
 			</div><!-- /content -->
@@ -121,8 +145,8 @@
 		<!-- Start of third page: #popup -->
 		<div data-role="page" id="popupDialog">
 			<div data-role="header" data-theme="a" style="text-align:center;">
-				<img src="Images/title1.png" alt="4 in a row" style="width:40%;margin-top:8px; margin-bottom:6px" data-inline="true"/>
-				<img src="Images/title2eng.png" alt="4 in a row" style="width:40%; margin-top:8px; margin-bottom:6px" data-inline="true"/>
+				<img id="popupDialog_t1" src="Images/title1.png" alt="4 in a row" style="width:40%;margin-top:8px; margin-bottom:6px" data-inline="true"/>
+				<img id="popupDialog_t2" src="Images/title2eng.png" alt="4 in a row" style="width:40%; margin-top:8px; margin-bottom:6px" data-inline="true"/>
 			</div>
 			<div data-role="content" data-theme="d">
 				<h3 id="printMessage" class="ui-title"></h3>
@@ -169,15 +193,33 @@
 		<div data-role="page" id="popupInfo">
 			
 			<div data-role="header" data-theme="a" style="text-align:center;">
-				<img src="Images/title1.png" alt="4 in a row" style="width:40%;margin-top:8px; margin-bottom:6px" data-inline="true"/>
-				<img src="Images/title2eng.png" alt="4 in a row" style="width:40%; margin-top:8px; margin-bottom:6px" data-inline="true"/>
+				<img id="popupInfo_t1" src="Images/title1.png" alt="4 in a row" style="width:40%;margin-top:8px; margin-bottom:6px" data-inline="true"/>
+				<img id="popupInfo_t2" src="Images/title2eng.png" alt="4 in a row" style="width:40%; margin-top:8px; margin-bottom:6px" data-inline="true"/>
 			</div>
 			<div data-role="content" data-theme="d">
-				<span data-l10n-id="lbthanks">Thanks for playing grrd's 4 in a Row!</span> <br>
+				<span data-l10n-id="lbinstr">Who is the first to put 4 stones horizontally, vertically or diagonally in a line?</span> <br><br>
+				<img src="Images/41.png" alt="horizontal" style="width: 20%;margin-right:4%;"/>
+				<img src="Images/42.png" alt="vertical" style="width: 20%;margin-right:4%;"/>
+				<img src="Images/43.png" alt="diagonal" style="width: 20%;margin-right:4%;"/>
+				<img src="Images/44.png" alt="diagonal" style="width: 20%;"/>
+				<!--span data-l10n-id="lbthanks">Thanks for playing grrd's 4 in a Row!</span--> <br><br>
 				<span data-l10n-id="lbdev">Developed by Gérard Tyedmers with <a href="http://jquerymobile.com/" target="_blank">jQuery mobile</a><span>, </span><a href="http://nodejs.org/" target="_blank">node.js</a> <span data-l10n-id="lband"> and </span> <a href="http://socket.io/" target="_blank">socket.io</a><span>. </span></span>
-				<br><span data-l10n-id="lbnode"></span><br><a href="https://www.nodejitsu.com/" target="_blank"><img src="Images/node.png" alt="nodejitsu.com" style="width:30%;margin-top:8px; margin-bottom:6px" /></a>
-				<p>E-mail: <a href="mailto:grrd@gmx.net">grrd@gmx.net </a></p>
-				<span data-l10n-id="lbpuzzle">Try my other game: <a href="http://homepage.hispeed.ch/grrds_games/Puzzle" target="_blank">grrd's Puzzle</a></span>
+				<br><br>
+
+				<table>
+					<tr>
+						<td width="20%"><a href="https://www.nodejitsu.com/" target="_blank"><img src="Images/node.png" alt="nodejitsu.com" style="width: 100%;"/></a></td>
+						<td width="80%" style="padding-left:10px;"><p data-l10n-id="lbnode" id="lbnode"><a href="https://www.nodejitsu.com/" target="_blank">nodejitsu.com</a></p></td>
+					</tr>
+					<tr>
+						<td width="20%" style="text-align: center;"><a href="mailto:grrd@gmx.net"><img src="Images/mail.png" alt="mail" style="width: 80%;"/></a></td>
+						<td width="80%" style="padding-left:10px;">E-mail: <a href="mailto:grrd@gmx.net">grrd@gmx.net </a></td>
+					</tr>
+					<tr>
+						<td width="20%" style="text-align: center;"><a href="http://homepage.hispeed.ch/grrds_games/Puzzle" target="_blank"><img src="Images/puzzle.png" alt="puzzle" style="width: 80%;"/></a></td>
+						<td width="80%" style="padding-left:10px;"><span data-l10n-id="lbpuzzle">Try my other game: <a href="http://homepage.hispeed.ch/grrds_games/Puzzle" target="_blank">grrd's Puzzle</a></span></td>
+					</tr>
+				</table>
 				<a href="#" data-l10n-id="btclose" onclick="closepop(); return false;" data-role="button" data-theme="c" data-icon="delete" class="ui-btn-right" style="float:right;">Close</a>
 			</div>
 		</div><!-- /page popup -->
@@ -185,8 +227,8 @@
 		<!-- Start of 5th page: #Settings -->
 		<div data-role="page" id="popupSettings">
 			<div data-role="header" data-theme="a" style="text-align:center;">
-				<img src="Images/title1.png" alt="4 in a row" style="width:40%;margin-top:8px; margin-bottom:6px" data-inline="true"/>
-				<img src="Images/title2eng.png" alt="4 in a row" style="width:40%; margin-top:8px; margin-bottom:6px" data-inline="true"/>
+				<img id="popupSettings_t1" src="Images/title1.png" alt="4 in a row" style="width:40%;margin-top:8px; margin-bottom:6px" data-inline="true"/>
+				<img id="popupSettings_t2" src="Images/title2eng.png" alt="4 in a row" style="width:40%; margin-top:8px; margin-bottom:6px" data-inline="true"/>
 			</div>
 			<div style="display:none;"><input type="file" id="b_imageinput" accept="image/*"></div>
 			<div data-role="content" data-theme="d">

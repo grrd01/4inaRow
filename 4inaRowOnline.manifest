@@ -17,8 +17,11 @@ Images/apple-touch-icon-57x57.png
 Images/apple-touch-icon-72x72.png
 Images/apple-touch-icon-114x114.png
 Images/apple-touch-icon-144x144.png
-Images/apple-touch-startup-image-320x460.png
+Images/apple-touch-startup-image-320x480.png
+Images/apple-touch-startup-image-640x960.png
 Images/apple-touch-startup-image-768x1004.png
+Images/apple-touch-startup-image-1024x768.png
+Images/apple-touch-startup-image-2048x1536.png
 Images/title1.png
 Images/title2eng.png
 Images/2player.png
@@ -36,6 +39,14 @@ Images/lightblueoff.png
 Images/node.png
 Images/settings.png
 Images/info.png
+Images/41.png
+Images/42.png
+Images/43.png
+Images/44.png
+Images/mail.png
+Images/puzzle.png
+Images/title1_mi.png
+Images/title2_mi.png
 Sounds/click.mp3
 Sounds/click.ogg
 Sounds/ding.mp3
@@ -44,7 +55,9 @@ Locales/bn/4inaow.properties
 Locales/cs/4inaow.properties
 Locales/de/4inaow.properties
 Locales/en/4inaow.properties
+Locales/eo/4inaow.properties
 Locales/es/4inaow.properties
+Locales/fa/4inaow.properties
 Locales/fr/4inaow.properties
 Locales/hr/4inaow.properties
 Locales/it/4inaow.properties
