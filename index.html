@@ -13,7 +13,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" >
 		<link rel="stylesheet" href="Scripts/jquery.mobile-1.3.2.min.css" />
 		<link rel="stylesheet" href="Scripts/flags32.css" />
-		<style>canvas {border: 0px;margin:0;padding:0;};</style>
+		<style>canvas {border: 0;margin:0;padding:0;}</style>
 		<style>.ui-dialog .ui-header .ui-btn-icon-notext { display:none;}</style>
 		<style> div.ui-slider-switch {position: absolute; right: 0; width: 20%;} </style>
 		<link rel="apple-touch-icon" type="image/x-icon" href="Images/apple-touch-icon-57x57.png" >
@@ -25,39 +25,39 @@
 		<link rel="apple-touch-startup-image"
 			media="(device-width: 320px)"
 			href="Images/apple-touch-startup-image-320x480.png">
-		<!-- iPhone (Retina) >
+		<!- - iPhone (Retina) >
 		<link rel="apple-touch-startup-image"
 			media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)"
 			href="Images/apple-touch-startup-image-640x960.png">
-		<!-- iPad (portrait) >
+		<!- - iPad (portrait) >
 		<link rel="apple-touch-startup-image"
 			media="(device-width: 768px) and (orientation: portrait)"
 			href="Images/apple-touch-startup-image-768x1004.png">
-		<!-- iPad (landscape) >
+		<!- - iPad (landscape) >
 		<link rel="apple-touch-startup-image"
 			media="(device-width: 768px) and (orientation: landscape)"
 			href="Images/apple-touch-startup-image-1024x768.png">
-		<!-- iPad (Retina, portrait) >
+		<!- - iPad (Retina, portrait) >
 		<link rel="apple-touch-startup-image"
 			media="(device-width: 768px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)"
 			href="Images/apple-touch-startup-image-768x1004.png">
-		<!-- iPad (Retina, landscape) >
+		<!- - iPad (Retina, landscape) >
 		<link rel="apple-touch-startup-image"
 			media="(device-width: 768px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)"
 			href="Images/apple-touch-startup-image-2048x1536.png"-->
 		<link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" >
-		<link rel="resource" type="application/l10n" href="Locales/locales.ini" />
+		<link rel="prefetch" type="application/l10n" href="Locales/locales.ini" />
 		<title>grrd's 4 in a Row</title>
 	</head>
 
 	<body>
 
-		<audio id="click_sound" preload="auto" autobuffer="autobuffer">
+		<audio id="click_sound" preload="auto">
 			<source src="Sounds/click.mp3" type="audio/mp3" />
 			<source src="Sounds/click.mp3" type="audio/mpeg" />
 			<source src="Sounds/click.ogg" type="audio/ogg" />
 		</audio>
-		<audio id="ding_sound" preload="auto" autobuffer="autobuffer">
+		<audio id="ding_sound" preload="auto">
 			<source src="Sounds/ding.mp3" type="audio/mp3" />
 			<source src="Sounds/ding.mp3" type="audio/mpeg" />
 			<source src="Sounds/ding.ogg" type="audio/ogg" />
@@ -75,15 +75,15 @@
 				<div style="clear:right">
 					<div id="page_portrait" style="display:inline;">
 						<ul data-role="listview" data-inset="true" data-filter="false">
-							<li><a href="#" onclick="player_click(); return false;"><div id="listheight1" style="height:40px;"><img src="Images/2player.png" alt="2 Player" style="padding:0px;padding-right:20px;height:100%;float:left"/><div id="listpadd1" data-l10n-id="btplay" style="padding-top:10px"></div></div></a></li>
-							<li><a href="#" onclick="online_click(); return false;" id="btonline2"><div id="listheight2" style="height:40px;"><img src="Images/2online.png" alt="2 Player" style="padding:0px;padding-right:20px;height:100%;float:left"/><div id="listpadd2" data-l10n-id="btonline" style="padding-top:10px"></div></div></a></li>
-							<li><a href="#" onclick="easy_click(); return false;"><div id="listheight3" style="height:40px;"><img src="Images/easy.png" alt="Easy" style="padding:0px;padding-right:20px;height:100%;float:left"/><div id="listpadd3" data-l10n-id="bteasy" style="padding-top:10px"></div></div></a></li>
-							<li><a href="#" onclick="medium_click(); return false;"><div id="listheight4" style="height:40px;"><img src="Images/medium.png" alt="Medium" style="padding:0px;padding-right:20px;height:100%;float:left"/><div id="listpadd4" data-l10n-id="btmed" style="padding-top:10px"></div></div></a></li>
-							<li><a href="#" onclick="hard_click(); return false;"><div id="listheight5" style="height:40px;"><img src="Images/hard.png" alt="Hard" style="padding:0px;padding-right:20px;height:100%;float:left"/><div id="listpadd5" data-l10n-id="bthard" style="padding-top:10px"></div></div></a></li>
+							<li><a href="#" onclick="player_click(); return false;"><div id="listheight1" style="height:40px;"><img src="Images/2player.png" alt="2 Player" style="padding:0;padding-right:20px;height:100%;float:left"/><div id="listpadd1" data-l10n-id="btplay" style="padding-top:10px"></div></div></a></li>
+							<li><a href="#" onclick="online_click(); return false;" id="btonline2"><div id="listheight2" style="height:40px;"><img src="Images/2online.png" alt="2 Player" style="padding:0;padding-right:20px;height:100%;float:left"/><div id="listpadd2" data-l10n-id="btonline" style="padding-top:10px"></div></div></a></li>
+							<li><a href="#" onclick="easy_click(); return false;"><div id="listheight3" style="height:40px;"><img src="Images/easy.png" alt="Easy" style="padding:0;padding-right:20px;height:100%;float:left"/><div id="listpadd3" data-l10n-id="bteasy" style="padding-top:10px"></div></div></a></li>
+							<li><a href="#" onclick="medium_click(); return false;"><div id="listheight4" style="height:40px;"><img src="Images/medium.png" alt="Medium" style="padding:0;padding-right:20px;height:100%;float:left"/><div id="listpadd4" data-l10n-id="btmed" style="padding-top:10px"></div></div></a></li>
+							<li><a href="#" onclick="hard_click(); return false;"><div id="listheight5" style="height:40px;"><img src="Images/hard.png" alt="Hard" style="padding:0;padding-right:20px;height:100%;float:left"/><div id="listpadd5" data-l10n-id="bthard" style="padding-top:10px"></div></div></a></li>
 						</ul>
 					</div>
 				</div>
-		
+
 				<div id="page_landscape" style="display:none;">
 					<div id="blankspace" style="height:100px;"></div>
 					<div data-role="controlgroup" data-type="horizontal" style="width:100%;">
@@ -101,11 +101,11 @@
 
 			<div data-role="content" data-theme="a">
 				<div style="text-align:center;">
-					<table style="border-width: 0px;border-spacing: 0px;">
+					<table style="border-width: 0;border-spacing: 0;">
 						<tr>
 							<td id="indicator_landscape_l" style="display:none;width:70px;vertical-align:bottom;text-align:center;">
 								<img id="P1icon2" src="Images/player.png" alt="P1" />
-								<div id="P1name2" style="margin-top: 0px; width:70px; white-space: nowrap;overflow: hidden;"></div>
+								<div id="P1name2" style="margin-top: 0; width:70px; white-space: nowrap;overflow: hidden;"></div>
 								<img id="P1light2" src="Images/lightredon.png" alt="P1" />
 							</td>
 							<td id="tmitte" style="text-align:center;width:100%; white-space: nowrap;">
@@ -117,23 +117,23 @@
 								<canvas id="spalte5"></canvas>
 								<canvas id="spalte6"></canvas>
 							</td>
-							<td id="indicator_landscape_r" style="display:none;width:70;vertical-align:bottom;text-align:center;">
+							<td id="indicator_landscape_r" style="display:none;width:70px;vertical-align:bottom;text-align:center;">
 								<img id="P2icon2" src="Images/computer.png" alt="P2"/>
-								<div id="P2name2" style="margin-top: 0px; width:70px; white-space: nowrap;overflow: hidden;"></div>
+								<div id="P2name2" style="margin-top: 0; width:70px; white-space: nowrap;overflow: hidden;"></div>
 								<img id="P2light2" src="Images/lightblueoff.png" alt="P2" />
 							</td>
 						</tr>
 					</table>
-					
+
 				</div>
 				<fieldset id="indicator_portrait" class="ui-grid-a" style="display:block;">
 					<div class="ui-block-a" style="text-align:left;">
 						<img id="P1icon" src="Images/player.png" alt="P1" /><img id="P1light" src="Images/lightredon.png" alt="P1" />
-						<div id="P1name" style="margin-top: 0px; white-space: nowrap;overflow: hidden;"></div>
+						<div id="P1name" style="margin-top: 0; white-space: nowrap;overflow: hidden;"></div>
 					</div>
 					<div class="ui-block-b" style="text-align:right;">
 						<img id="P2light" src="Images/lightblueoff.png" alt="P2" /><img id="P2icon" src="Images/computer.png" alt="P2"/>
-						<div id="P2name" style="margin-top: 0px; white-space: nowrap;overflow: hidden;"></div>
+						<div id="P2name" style="margin-top: 0; white-space: nowrap;overflow: hidden;"></div>
 					</div>
 				</fieldset>
 				<a href="#" data-l10n-id="btback" onclick="back(); return false;" data-direction="reverse" data-role="button" data-theme="b">Back</a>
@@ -163,7 +163,7 @@
 						<h3 id="printScore2b" class="ui-title" style="text-align:center;"></h3>
 					</div>
 				</fieldset>
-				
+
 				<fieldset id="popupDialog_portrait" class="ui-grid-a">
 					<p data-l10n-id="lbagain">Play again?</p>
 					<div class="ui-block-a">
@@ -189,7 +189,7 @@
 
 		<!-- Start of 4th page: #popupInfo -->
 		<div data-role="page" id="popupInfo">
-			
+
 			<div data-role="header" data-theme="a" style="text-align:center;">
 				<img id="popupInfo_t1" src="Images/title1.png" alt="4 in a row" style="width:40%;margin-top:8px; margin-bottom:6px" data-inline="true"/>
 				<img id="popupInfo_t2" src="Images/title2eng.png" alt="4 in a row" style="width:40%; margin-top:8px; margin-bottom:6px" data-inline="true"/>
@@ -206,16 +206,20 @@
 
 				<table>
 					<tr>
-						<td width="20%"><a href="https://www.nodejitsu.com/" target="_blank"><img src="Images/node.png" alt="nodejitsu.com" style="width: 100%;"/></a></td>
-						<td width="80%" style="padding-left:10px;"><p data-l10n-id="lbnode" id="lbnode"><a href="https://www.nodejitsu.com/" target="_blank">nodejitsu.com</a></p></td>
+						<td style="width:20%;"><a href="https://www.nodejitsu.com/" target="_blank"><img src="Images/node.png" alt="nodejitsu.com" style="width: 100%;"/></a></td>
+						<td style="width:80%;padding-left:10px;"><p data-l10n-id="lbnode" id="lbnode"><a href="https://www.nodejitsu.com/" target="_blank">nodejitsu.com</a></p></td>
 					</tr>
 					<tr>
-						<td width="20%" style="text-align: center;"><a href="mailto:grrd@gmx.net"><img src="Images/mail.png" alt="mail" style="width: 80%;"/></a></td>
-						<td width="80%" style="padding-left:10px;">E-mail: <a href="mailto:grrd@gmx.net">grrd@gmx.net </a></td>
+						<td style="width:20%;text-align: center;"><a href="http://homepage.hispeed.ch/grrds_games/Puzzle" target="_blank"><img src="Images/puzzle.png" alt="puzzle" style="width: 80%;"/></a></td>
+						<td style="width:80%;padding-left:10px;"><span data-l10n-id="lbpuzzle">Try my other game: <a href="http://homepage.hispeed.ch/grrds_games/Puzzle" target="_blank">grrd's Puzzle</a></span></td>
 					</tr>
 					<tr>
-						<td width="20%" style="text-align: center;"><a href="http://homepage.hispeed.ch/grrds_games/Puzzle" target="_blank"><img src="Images/puzzle.png" alt="puzzle" style="width: 80%;"/></a></td>
-						<td width="80%" style="padding-left:10px;"><span data-l10n-id="lbpuzzle">Try my other game: <a href="http://homepage.hispeed.ch/grrds_games/Puzzle" target="_blank">grrd's Puzzle</a></span></td>
+						<td style="width:20%;text-align: center;"><a href="http://homepage.hispeed.ch/grrds_games/Dice" target="_blank"><img src="Images/dice.png" alt="puzzle" style="width: 65%;"/></a></td>
+						<td style="width:80%;padding-left:10px;vertical-align:middle;"><span data-l10n-id="lband">... and </span> <a href="http://homepage.hispeed.ch/grrds_games/Dice" target="_blank">grrd's Dice</a></td>
+					</tr>
+					<tr>
+						<td style="width:20%;text-align: center;"><a href="mailto:grrd@gmx.net"><img src="Images/mail.png" alt="mail" style="width: 80%;"/></a></td>
+						<td style="width:80%;padding-left:10px;">E-mail: <a href="mailto:grrd@gmx.net">grrd@gmx.net </a></td>
 					</tr>
 				</table>
 				<a href="#" data-l10n-id="btclose" onclick="closepop(); return false;" data-role="button" data-theme="c" data-icon="delete" class="ui-btn-right" style="float:right;">Close</a>
