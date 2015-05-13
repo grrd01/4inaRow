@@ -4,6 +4,8 @@
 * Licensed under the MPL License
 */
 
+"use strict";
+
 //navigator.mozL10n.language.code = "ta";
 
 window.requestAnimFrame = (function (callback) {
@@ -18,7 +20,7 @@ window.requestAnimFrame = (function (callback) {
 })();
 
 var animate = false;
-var spalte = new Array("spalte0", "spalte1", "spalte2", "spalte3", "spalte4", "spalte5", "spalte6");
+var spalte = ["spalte0", "spalte1", "spalte2", "spalte3", "spalte4", "spalte5", "spalte6"];
 var spalte_canvas = new Array(6);
 var spalte_context = new Array(6);
 var feld = new Array(6); // Spielfeld-Array: 6 Zeilen, 7 Spalten
@@ -35,26 +37,30 @@ var g_ownname = false;
 var g_sendimage;
 var p1_name;
 var p2_name;
+var $inputImage = $("#inputImage");
+var $inputName = $('#inputName');
+var $img_title = $('#img_title');
+var $b_sound = $('#b_sound');
+var url_param;
 
 var wertung= new Array(7);
 var bestwertung= new Array(3);
-var color = new Array("#ff0080","#6969EE");
-var bcolor = new Array("#D6016B","#5A5ACE");
-var zcolor = new Array("#FD6BB4","#9393EF");
+var color = ["#ff0080","#6969EE"];
+var bcolor = ["#D6016B","#5A5ACE"];
+var zcolor = ["#FD6BB4","#9393EF"];
 var player =0;
-var P1lightimg = new Array("Images/lightredon.png","Images/lightredoff.png");
-var P2lightimg = new Array("Images/lightblueon.png","Images/lightblueoff.png");
+var P1lightimg = ["Images/lightredon.png","Images/lightredoff.png"];
+var P2lightimg = ["Images/lightblueon.png","Images/lightblueoff.png"];
 var spiele = 0;
-var siege = new Array(0,0);
+var siege = [0,0];
 var spaltenr, zeile, compispalte, compizeile;
-var viergewinnt, plaz, zeigenflag, demo, moeglichflag = new Boolean(false);
+var viergewinnt, plaz, zeigenflag, demo, moeglichflag = Boolean(false);
 var topbis, topakt;
 var colwidth,colheight;
 
 var socket;
 var user;
 var connection = false;
-var lastconnect;
 var laststart;
 var lastquit;
 var lastround = null;
@@ -76,14 +82,14 @@ function drawCircle(topakt,spaltenr,color,bcolor) {
 function player_click() {
 	modus="2player";
 	if (g_ownimage) {
-		$("#P1icon").attr("src",$("#inputImage").attr('src'));
-		$("#P1icon2").attr("src",$("#inputImage").attr('src'));
+		$("#P1icon").attr("src",$inputImage.attr('src'));
+		$("#P1icon2").attr("src",$inputImage.attr('src'));
 	} else {
 		$("#P1icon").attr("src","Images/player.png");
 		$("#P1icon2").attr("src","Images/player.png");
 	}
 	if (g_ownname) {
-		p1_name = $('#inputName').val();
+		p1_name = $inputName.val();
 	} else {
 		p1_name = navigator.mozL10n.get("lbplayer1");
 	}
@@ -116,9 +122,9 @@ function online_click() {
 	socket.on('startgame', function (data) {
 		user = data;
 		if (user.id != laststart) {
-			if (g_ownimage) {g_sendimage = $("#inputImage").attr('src');} else {g_sendimage = null;}
+			if (g_ownimage) {g_sendimage = $inputImage.attr('src');} else {g_sendimage = null;}
 			socket.emit('usersend', {
-				to: user.opponent,name: $('#inputName').val(), 
+				to: user.opponent,name: $inputName.val(), 
 				pic: g_sendimage, 
 				country: 0, points: 0, rank: 0
 			});
@@ -134,14 +140,14 @@ function online_click() {
 			modus="online";
 			if (user.role == 0) {
 				if (g_ownimage) {
-					$("#P1icon").attr("src",$("#inputImage").attr('src'));
-					$("#P1icon2").attr("src",$("#inputImage").attr('src'));
+					$("#P1icon").attr("src",$inputImage.attr('src'));
+					$("#P1icon2").attr("src",$inputImage.attr('src'));
 				} else {
 					$("#P1icon").attr("src","Images/player.png");
 					$("#P1icon2").attr("src","Images/player.png");
 				}
 				if (g_ownname) {
-					p1_name = $('#inputName').val();
+					p1_name = $inputName.val();
 				} else {
 					p1_name = navigator.mozL10n.get("lbplayer1");
 				}
@@ -153,14 +159,14 @@ function online_click() {
 				$("#P1icon2").attr("src","Images/online.png");
 				p1_name = navigator.mozL10n.get("btonline");
 				if (g_ownimage) {
-					$("#P2icon").attr("src",$("#inputImage").attr('src'));
-					$("#P2icon2").attr("src",$("#inputImage").attr('src'));
+					$("#P2icon").attr("src",$inputImage.attr('src'));
+					$("#P2icon2").attr("src",$inputImage.attr('src'));
 				} else {
 					$("#P2icon").attr("src","Images/player.png");
 					$("#P2icon2").attr("src","Images/player.png");
 				}
 				if (g_ownname) {
-					p2_name = $('#inputName').val();
+					p2_name = $inputName.val();
 				} else {
 					p2_name = navigator.mozL10n.get("lbplayer1");
 				}
@@ -231,14 +237,14 @@ function hard_click() {
 
 function p_computer() {
 	if (g_ownimage) {
-		$("#P1icon").attr("src",$("#inputImage").attr('src'));
-		$("#P1icon2").attr("src",$("#inputImage").attr('src'));
+		$("#P1icon").attr("src",$inputImage.attr('src'));
+		$("#P1icon2").attr("src",$inputImage.attr('src'));
 	} else {
 		$("#P1icon").attr("src","Images/player.png");
 		$("#P1icon2").attr("src","Images/player.png");
 	}
 	if (g_ownname) {
-		p1_name = $('#inputName').val();
+		p1_name = $inputName.val();
 	} else {
 		p1_name = navigator.mozL10n.get("lbplayer");
 	}
@@ -274,8 +280,8 @@ function back() {
 }
 
 function closepop() {
-	if ($('#b_sound').val()==="on") {g_sound=true;} else {g_sound=false;}
-	localStorage.setItem('s_sound', $('#b_sound').val());
+	g_sound = $b_sound.val() === "on";
+	localStorage.setItem('s_sound', $b_sound.val());
 	content_formatting();
 	$.mobile.changePage('#title', {transition: 'pop', reverse: true});
 }
@@ -343,7 +349,6 @@ function spielzug_animate(lastTime, topakt, spaltenr) {
 function spielzug_check(spaltenr) {
 	if (modus == "online") {
 		if ((player == 1 && user.role == 0) || (player == 0 && user.role == 1)) {
-			return;
 		} else {
 			socket.emit('playsend', {to: user.opponent,col: spaltenr, round: countround});
 			spielzug(spaltenr);
@@ -575,6 +580,9 @@ function ai() {
 	spielzug(spaltenr);
 }
 
+/**
+ * @return {number}
+ */
 function Numsort (a, b) {
 	return a - b;
 }
@@ -697,8 +705,8 @@ function rating(player, compizeile, compispalte) {
 
 function zeigen() {
 	animate=true;
-	zwinrow = winrow.slice();
-	zwincol = wincol.slice();
+	var zwinrow = winrow.slice();
+	var zwincol = wincol.slice();
 	zeigen_animate(zwinrow,zwincol,0,new Date().getTime());
 	//while (animate){};
 }
@@ -784,7 +792,7 @@ function content_formatting() {
 		// Spaltenbreite
 		colwidth = Math.min((width - 50)/7,(height - 140)/6);
 		colheight = Math.max(6 * colwidth * 0.85,height - 190);
-		$("#img_title").attr("style","width:100%;");
+		$img_title.attr("style","width:100%;");
 		$("#listheight1").attr("style","height:" + ($(window).height() - $(window).width()/3 -130)/7 + "px;");
 		$("#listheight2").attr("style","height:" + ($(window).height() - $(window).width()/3 -130)/7 + "px;");
 		$("#listheight3").attr("style","height:" + ($(window).height() - $(window).width()/3 -130)/7 + "px;");
@@ -810,7 +818,7 @@ function content_formatting() {
 		// Spaltenbreite	
 		colwidth = Math.min((width - 140 - 40)/7,(height - 20)/6);
 		colheight = Math.max(6 * colwidth * 0.85,height - 95);
-		$("#img_title").attr("style","width:" + ($(window).width()*0.6) + "px;");
+		$img_title.attr("style","width:" + ($(window).width()*0.6) + "px;");
 		$("#blankspace").attr("style","height:" + ($(window).height()/4 - $(window).width()/20) + "px;");
 		$("#page_landscape").attr("style","display:inline;");
 		$("#page_portrait").attr("style","display:none;");
@@ -888,26 +896,24 @@ function content_formatting() {
 }
 
 window.onload = function() {
-	var url_param;
-	var $img_title = $('#img_title');
 	if (localStorage.getItem('s_sound') === null) {
-		$('#b_sound').val("on");} else {$('#b_sound').val(localStorage.getItem('s_sound'));
+		$b_sound.val("on");} else {$b_sound.val(localStorage.getItem('s_sound'));
 	}
-	if ($('#b_sound').val()==="on") {g_sound=true;} else {g_sound=false;}
+	g_sound = $b_sound.val() === "on";
 	if (localStorage.getItem('s_image') !== null) {
-		$("#inputImage").attr('src', localStorage.getItem('s_image'));
+		$inputImage.attr('src', localStorage.getItem('s_image'));
 		$("#inputImage_l").attr('src', localStorage.getItem('s_image'));
 		g_ownimage = true;
 	}
 	if (localStorage.getItem('s_name') !== null) {
-		$('#inputName').val(localStorage.getItem('s_name'));
+		$inputName.val(localStorage.getItem('s_name'));
 		if (localStorage.getItem('s_name').replace(/\s+/g,"") !== "") {g_ownname = true;}
 	}
 
 	url_param = url_query('theme');
 	if ( url_param ) {
 		if (url_param == 'mi') {
-			$('#img_title').attr("src","Images/title1_mi.png");
+			$img_title.attr("src","Images/title1_mi.png");
 			$('#popupDialog_t1').attr("src","Images/title1_mi.png");
 			$('#popupDialog_t2').attr("src","Images/title2_mi.png");
 			$('#popupInfo_t1').attr("src","Images/title1_mi.png");
@@ -957,9 +963,9 @@ window.onload = function() {
 	$img_title.queue( function() {
 		url_param = url_query('theme');
 		if ( url_param && url_param == 'mi') {
-			$('#img_title').attr("src","Images/title2_mi.png"); 
+			$img_title.attr("src","Images/title2_mi.png"); 
 		} else {
-			$('#img_title').attr("src","Images/title2eng.png");
+			$img_title.attr("src","Images/title2eng.png");
 		}
 		$(this).fadeIn(1000);
 		$(this).dequeue();
@@ -1056,7 +1062,7 @@ function resize_image(file){
 		var data = this.result; 
 		g_exif = EXIF.readFromBinaryFile(new BinaryFile(atob(data.split(',')[1])));
 		imageObj.src = data;
-		//$("#inputImage").attr("src",data);
+		//$inputImage.attr("src",data);
 	};
 
 	// set up the images onload function which clears the hidden canvas context, 
@@ -1087,7 +1093,7 @@ function resize_image(file){
 			}
 			context.clearRect(0,0,max_width,max_height);
 			context.drawImage(imageObj, 0, 0, this.width, this.height, mytop, myleft, max_width, max_height);
-			$("#inputImage").attr('src', canvas.toDataURL("image/jpeg"));
+			$inputImage.attr('src', canvas.toDataURL("image/jpeg"));
 			$("#inputImage_l").attr('src', canvas.toDataURL("image/jpeg"));
 			localStorage.setItem('s_image', canvas.toDataURL("image/jpeg"));
 			g_ownimage = true;

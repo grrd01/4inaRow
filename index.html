@@ -11,11 +11,9 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<meta name="apple-mobile-web-app-capable" content="yes" >
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" >
+		<link rel="stylesheet" href="Scripts/4inaRow.css" />
 		<link rel="stylesheet" href="Scripts/jquery.mobile-1.3.2.min.css" />
 		<link rel="stylesheet" href="Scripts/flags32.css" />
-		<style>canvas {border: 0;margin:0;padding:0;}</style>
-		<style>.ui-dialog .ui-header .ui-btn-icon-notext { display:none;}</style>
-		<style> div.ui-slider-switch {position: absolute; right: 0; width: 20%;} </style>
 		<link rel="apple-touch-icon" type="image/x-icon" href="Images/apple-touch-icon-57x57.png" >
 		<link rel="apple-touch-icon" sizes="72x72" href="Images/apple-touch-icon-72x72.png" >
 		<link rel="apple-touch-icon" sizes="114x114" href="Images/apple-touch-icon-114x114.png" >
@@ -69,17 +67,17 @@
 				<img id="img_title" src="Images/title1.png" alt="grrd's 4 in a Row" style="width:100%;" />
 				<noscript> is a connect-4 game for one or two players with a decent AI, selectable difficulty from Kid to Pro that works well on your smartphone.</noscript>
 				<div data-role="controlgroup" data-type="horizontal" style="float:right;">
-					<a href="#popupInfo" data-role="button" data-rel="dialog" data-transition="pop" style="padding:-20px; height: 35px;width: 55px;"><img src="Images/info.png" alt="about" style="margin-top:-5px;margin-left:-10px;height: 25px;width: 25px;"/></a>
-					<a href="#popupSettings" data-role="button" data-rel="dialog" data-transition="pop" style="padding:-20px;height: 35px;width: 55px;"><img src="Images/settings.png" alt="settings" style="margin-top:-5px;margin-left:-10px;height: 25px;width: 25px;"/></a>
+					<a href="#popupInfo" class="bt_small" data-role="button" data-rel="dialog" data-transition="pop"><img class="bt_small" src="Images/info.png" alt="about"/></a>
+					<a href="#popupSettings" class="bt_small" data-role="button" data-rel="dialog" data-transition="pop"><img class="bt_small" src="Images/settings.png" alt="settings"/></a>
 				</div>
 				<div style="clear:right">
 					<div id="page_portrait" style="display:inline;">
 						<ul data-role="listview" data-inset="true" data-filter="false">
-							<li><a href="#" onclick="player_click(); return false;"><div id="listheight1" style="height:40px;"><img src="Images/2player.png" alt="2 Player" style="padding:0;padding-right:20px;height:100%;float:left"/><div id="listpadd1" data-l10n-id="btplay" style="padding-top:10px"></div></div></a></li>
-							<li><a href="#" onclick="online_click(); return false;" id="btonline2"><div id="listheight2" style="height:40px;"><img src="Images/2online.png" alt="2 Player" style="padding:0;padding-right:20px;height:100%;float:left"/><div id="listpadd2" data-l10n-id="btonline" style="padding-top:10px"></div></div></a></li>
-							<li><a href="#" onclick="easy_click(); return false;"><div id="listheight3" style="height:40px;"><img src="Images/easy.png" alt="Easy" style="padding:0;padding-right:20px;height:100%;float:left"/><div id="listpadd3" data-l10n-id="bteasy" style="padding-top:10px"></div></div></a></li>
-							<li><a href="#" onclick="medium_click(); return false;"><div id="listheight4" style="height:40px;"><img src="Images/medium.png" alt="Medium" style="padding:0;padding-right:20px;height:100%;float:left"/><div id="listpadd4" data-l10n-id="btmed" style="padding-top:10px"></div></div></a></li>
-							<li><a href="#" onclick="hard_click(); return false;"><div id="listheight5" style="height:40px;"><img src="Images/hard.png" alt="Hard" style="padding:0;padding-right:20px;height:100%;float:left"/><div id="listpadd5" data-l10n-id="bthard" style="padding-top:10px"></div></div></a></li>
+							<li><a href="#" onclick="player_click(); return false;"><div id="listheight1" style="height:40px;"><img class="page_portrait" src="Images/2player.png" alt="2 Player"/><div id="listpadd1" data-l10n-id="btplay" style="padding-top:10px"></div></div></a></li>
+							<li><a href="#" onclick="online_click(); return false;" id="btonline2"><div id="listheight2" style="height:40px;"><img class="page_portrait" src="Images/2online.png" alt="Online"/><div id="listpadd2" data-l10n-id="btonline" style="padding-top:10px"></div></div></a></li>
+							<li><a href="#" onclick="easy_click(); return false;"><div id="listheight3" style="height:40px;"><img class="page_portrait" src="Images/easy.png" alt="Easy"/><div id="listpadd3" data-l10n-id="bteasy" style="padding-top:10px"></div></div></a></li>
+							<li><a href="#" onclick="medium_click(); return false;"><div id="listheight4" style="height:40px;"><img class="page_portrait" src="Images/medium.png" alt="Medium"/><div id="listpadd4" data-l10n-id="btmed" style="padding-top:10px"></div></div></a></li>
+							<li><a href="#" onclick="hard_click(); return false;"><div id="listheight5" style="height:40px;"><img class="page_portrait" src="Images/hard.png" alt="Hard"/><div id="listpadd5" data-l10n-id="bthard" style="padding-top:10px"></div></div></a></li>
 						</ul>
 					</div>
 				</div>
@@ -87,11 +85,11 @@
 				<div id="page_landscape" style="display:none;">
 					<div id="blankspace" style="height:100px;"></div>
 					<div data-role="controlgroup" data-type="horizontal" style="width:100%;">
-						<a id="btplay" style="width:19%;" href="#" onclick="player_click(); return false;" data-role="button"><img id="imgplay" src="Images/2player.png" alt="2Player" style="padding-top:20%;padding-bottom:20%;width: 100%;min-width: 40px;max-width: 108px;"/><br><div data-l10n-id="btplay"></div></a>
-						<a id="btonline" style="width:19%;" href="#" onclick="online_click(); return false;" data-role="button"><img id="imgonline" src="Images/2online.png" alt="2Player" style="width: 100%;min-width: 40px;max-width: 108px;"/><br><div data-l10n-id="btonline"></div></a>
-						<a id="bteasy" style="width:19%;" href="#" onclick="easy_click(); return false;" data-role="button"><img id="imgeasy" src="Images/easy.png" alt="Easy" style="width: 100%;min-width: 40px;max-width: 108px;"/><br><div data-l10n-id="bteasy"></div></a>
-						<a id="btmed" style="width:19%;" href="#" onclick="medium_click(); return false;" data-role="button"><img id="imgmed" src="Images/medium.png" alt="Medium" style="width: 100%;min-width: 40px;max-width: 108px;"/><br><div data-l10n-id="btmed"></div></a>
-						<a id="bthard" style="width:19%;" href="#" onclick="hard_click(); return false;" data-role="button"><img id="imghard" src="Images/hard.png" alt="Hard" style="padding-top:50px;width: 100%;min-width: 40px;max-width: 108px;"/><br><div data-l10n-id="bthard"></div></a>
+						<a id="btplay" style="width:19%;" href="#" onclick="player_click(); return false;" data-role="button"><img class="page_landscape" id="imgplay" src="Images/2player.png" alt="2Player"/><br><div data-l10n-id="btplay"></div></a>
+						<a id="btonline" style="width:19%;" href="#" onclick="online_click(); return false;" data-role="button"><img class="page_landscape" id="imgonline" src="Images/2online.png" alt="Online"/><br><div data-l10n-id="btonline"></div></a>
+						<a id="bteasy" style="width:19%;" href="#" onclick="easy_click(); return false;" data-role="button"><img class="page_landscape" id="imgeasy" src="Images/easy.png" alt="Easy"/><br><div data-l10n-id="bteasy"></div></a>
+						<a id="btmed" style="width:19%;" href="#" onclick="medium_click(); return false;" data-role="button"><img class="page_landscape" id="imgmed" src="Images/medium.png" alt="Medium"/><br><div data-l10n-id="btmed"></div></a>
+						<a id="bthard" style="width:19%;" href="#" onclick="hard_click(); return false;" data-role="button"><img class="page_landscape" id="imghard" src="Images/hard.png" alt="Hard"/><br><div data-l10n-id="bthard"></div></a>
 					</div>
 				</div>
 			</div><!-- /content -->
@@ -103,9 +101,9 @@
 				<div style="text-align:center;">
 					<table style="border-width: 0;border-spacing: 0;">
 						<tr>
-							<td id="indicator_landscape_l" style="display:none;width:70px;vertical-align:bottom;text-align:center;">
+							<td id="indicator_landscape_l" class="indicator_landscape">
 								<img id="P1icon2" src="Images/player.png" alt="P1" />
-								<div id="P1name2" style="margin-top: 0; width:70px; white-space: nowrap;overflow: hidden;"></div>
+								<div id="P1name2" class="name_landscape"></div>
 								<img id="P1light2" src="Images/lightredon.png" alt="P1" />
 							</td>
 							<td id="tmitte" style="text-align:center;width:100%; white-space: nowrap;">
@@ -117,9 +115,9 @@
 								<canvas id="spalte5"></canvas>
 								<canvas id="spalte6"></canvas>
 							</td>
-							<td id="indicator_landscape_r" style="display:none;width:70px;vertical-align:bottom;text-align:center;">
+							<td id="indicator_landscape_r" class="indicator_landscape">
 								<img id="P2icon2" src="Images/computer.png" alt="P2"/>
-								<div id="P2name2" style="margin-top: 0; width:70px; white-space: nowrap;overflow: hidden;"></div>
+								<div id="P2name2" class="name_landscape"></div>
 								<img id="P2light2" src="Images/lightblueoff.png" alt="P2" />
 							</td>
 						</tr>
@@ -129,11 +127,11 @@
 				<fieldset id="indicator_portrait" class="ui-grid-a" style="display:block;">
 					<div class="ui-block-a" style="text-align:left;">
 						<img id="P1icon" src="Images/player.png" alt="P1" /><img id="P1light" src="Images/lightredon.png" alt="P1" />
-						<div id="P1name" style="margin-top: 0; white-space: nowrap;overflow: hidden;"></div>
+						<div id="P1name" class="name_portrait"></div>
 					</div>
 					<div class="ui-block-b" style="text-align:right;">
 						<img id="P2light" src="Images/lightblueoff.png" alt="P2" /><img id="P2icon" src="Images/computer.png" alt="P2"/>
-						<div id="P2name" style="margin-top: 0; white-space: nowrap;overflow: hidden;"></div>
+						<div id="P2name" class="name_portrait"></div>
 					</div>
 				</fieldset>
 				<a href="#" data-l10n-id="btback" onclick="back(); return false;" data-direction="reverse" data-role="button" data-theme="b">Back</a>
@@ -143,24 +141,24 @@
 		<!-- Start of third page: #popup -->
 		<div data-role="page" id="popupDialog">
 			<div data-role="header" data-theme="a" style="text-align:center;">
-				<img id="popupDialog_t1" src="Images/title1.png" alt="4 in a row" style="width:40%;margin-top:8px; margin-bottom:6px" data-inline="true"/>
-				<img id="popupDialog_t2" src="Images/title2eng.png" alt="4 in a row" style="width:40%; margin-top:8px; margin-bottom:6px" data-inline="true"/>
+				<img id="popupDialog_t1" src="Images/title1.png" alt="4 in a row" class="title_small" data-inline="true"/>
+				<img id="popupDialog_t2" src="Images/title2eng.png" alt="4 in a row" class="title_small" data-inline="true"/>
 			</div>
 			<div data-role="content" data-theme="d">
 				<h3 id="printMessage" class="ui-title"></h3>
 				<span id="printSpiele"></span>
 				<fieldset class="ui-grid-b">
 					<div class="ui-block-a">
-						<h3 id="printScore1a" class="ui-title" style="text-align:center; white-space: nowrap;overflow: hidden;"></h3>
-						<h3 id="printScore1b" class="ui-title" style="text-align:center;"></h3>
+						<h3 id="printScore1a" class="ui-title score"></h3>
+						<h3 id="printScore1b" class="ui-title score"></h3>
 					</div>
 					<div class="ui-block-b">
-						<h3 class="ui-title" style="text-align:center;"> - </h3>
-						<h3 class="ui-title" style="text-align:center;"> : </h3>
+						<h3 class="ui-title score"> - </h3>
+						<h3 class="ui-title score"> : </h3>
 					</div>
 					<div class="ui-block-c">
-						<h3 id="printScore2a" class="ui-title" style="text-align:center; white-space: nowrap;overflow: hidden;"></h3>
-						<h3 id="printScore2b" class="ui-title" style="text-align:center;"></h3>
+						<h3 id="printScore2a" class="ui-title score"></h3>
+						<h3 id="printScore2b" class="ui-title score"></h3>
 					</div>
 				</fieldset>
 
@@ -191,8 +189,8 @@
 		<div data-role="page" id="popupInfo">
 
 			<div data-role="header" data-theme="a" style="text-align:center;">
-				<img id="popupInfo_t1" src="Images/title1.png" alt="4 in a row" style="width:40%;margin-top:8px; margin-bottom:6px" data-inline="true"/>
-				<img id="popupInfo_t2" src="Images/title2eng.png" alt="4 in a row" style="width:40%; margin-top:8px; margin-bottom:6px" data-inline="true"/>
+				<img id="popupInfo_t1" src="Images/title1.png" alt="4 in a row" class="title_small" data-inline="true"/>
+				<img id="popupInfo_t2" src="Images/title2eng.png" alt="4 in a row" class="title_small" data-inline="true"/>
 			</div>
 			<div data-role="content" data-theme="d">
 				<span data-l10n-id="lbinstr">Who is the first to put 4 stones horizontally, vertically or diagonally in a line?</span> <br><br>
@@ -229,8 +227,8 @@
 		<!-- Start of 5th page: #Settings -->
 		<div data-role="page" id="popupSettings">
 			<div data-role="header" data-theme="a" style="text-align:center;">
-				<img id="popupSettings_t1" src="Images/title1.png" alt="4 in a row" style="width:40%;margin-top:8px; margin-bottom:6px" data-inline="true"/>
-				<img id="popupSettings_t2" src="Images/title2eng.png" alt="4 in a row" style="width:40%; margin-top:8px; margin-bottom:6px" data-inline="true"/>
+				<img id="popupSettings_t1" src="Images/title1.png" alt="4 in a row" class="title_small" data-inline="true"/>
+				<img id="popupSettings_t2" src="Images/title2eng.png" alt="4 in a row" class="title_small" data-inline="true"/>
 			</div>
 			<div style="display:none;"><input type="file" id="b_imageinput" accept="image/*"></div>
 			<div data-role="content" data-theme="d">
@@ -266,8 +264,8 @@
 		<!-- Start of 6th page: #online -->
 		<div data-role="page" id="popupOnline">
 			<div data-role="header" data-theme="a" style="text-align:center;">
-				<img src="Images/title1.png" alt="4 in a row" style="width:40%;margin-top:8px; margin-bottom:6px" data-inline="true"/>
-				<img src="Images/title2eng.png" alt="4 in a row" style="width:40%; margin-top:8px; margin-bottom:6px" data-inline="true"/>
+				<img src="Images/title1.png" alt="4 in a row" class="title_small" data-inline="true"/>
+				<img src="Images/title2eng.png" alt="4 in a row" class="title_small" data-inline="true"/>
 			</div>
 			<div data-role="content" data-theme="d">
 				<h3 data-l10n-id="lbwait">Waiting for player 2 ...</h3>
@@ -279,8 +277,8 @@
 		<!-- Start of 7th page: #left -->
 		<div data-role="page" id="popupLeft">
 			<div data-role="header" data-theme="a" style="text-align:center;">
-				<img src="Images/title1.png" alt="4 in a row" style="width:40%;margin-top:8px; margin-bottom:6px" data-inline="true"/>
-				<img src="Images/title2eng.png" alt="4 in a row" style="width:40%; margin-top:8px; margin-bottom:6px" data-inline="true"/>
+				<img src="Images/title1.png" alt="4 in a row" class="title_small" data-inline="true"/>
+				<img src="Images/title2eng.png" alt="4 in a row" class="title_small" data-inline="true"/>
 			</div>
 			<div data-role="content" data-theme="d">
 				<p data-l10n-id="lbleft">Your opponent has left the game.</p>
