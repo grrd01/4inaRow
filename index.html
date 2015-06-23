@@ -73,11 +73,11 @@
 				<div class="cr">
 					<div id="page_portrait" class="di">
 						<ul data-role="listview" data-inset="true" data-filter="false">
-							<li><a href="#" onclick="player_click(); return false;"><div id="listheight1" class="h40"><img class="page_portrait" src="Images/2player.png" alt="2 Player"/><div id="listpadd1" data-l10n-id="btplay" class="pt10"></div></div></a></li>
-							<li><a href="#" onclick="online_click(); return false;" id="btonline2"><div id="listheight2" class="h40"><img class="page_portrait" src="Images/2online.png" alt="Online"/><div id="listpadd2" data-l10n-id="btonline" class="pt10"></div></div></a></li>
-							<li><a href="#" onclick="easy_click(); return false;"><div id="listheight3" class="h40"><img class="page_portrait" src="Images/easy.png" alt="Easy"/><div id="listpadd3" data-l10n-id="bteasy" class="pt10"></div></div></a></li>
-							<li><a href="#" onclick="medium_click(); return false;"><div id="listheight4" class="h40"><img class="page_portrait" src="Images/medium.png" alt="Medium"/><div id="listpadd4" data-l10n-id="btmed" class="pt10"></div></div></a></li>
-							<li><a href="#" onclick="hard_click(); return false;"><div id="listheight5" class="h40"><img class="page_portrait" src="Images/hard.png" alt="Hard"/><div id="listpadd5" data-l10n-id="bthard" class="pt10"></div></div></a></li>
+							<li><a id="btplay2" href="#"><div id="listheight1" class="h40"><img class="page_portrait" src="Images/2player.png" alt="2 Player"/><div id="listpadd1" data-l10n-id="btplay" class="pt10"></div></div></a></li>
+							<li><a id="btonline2" href="#"><div id="listheight2" class="h40"><img class="page_portrait" src="Images/2online.png" alt="Online"/><div id="listpadd2" data-l10n-id="btonline" class="pt10"></div></div></a></li>
+							<li><a id="bteasy2" href="#"><div id="listheight3" class="h40"><img class="page_portrait" src="Images/easy.png" alt="Easy"/><div id="listpadd3" data-l10n-id="bteasy" class="pt10"></div></div></a></li>
+							<li><a id="btmed2" href="#"><div id="listheight4" class="h40"><img class="page_portrait" src="Images/medium.png" alt="Medium"/><div id="listpadd4" data-l10n-id="btmed" class="pt10"></div></div></a></li>
+							<li><a id="bthard2" href="#"><div id="listheight5" class="h40"><img class="page_portrait" src="Images/hard.png" alt="Hard"/><div id="listpadd5" data-l10n-id="bthard" class="pt10"></div></div></a></li>
 						</ul>
 					</div>
 				</div>
@@ -85,11 +85,11 @@
 				<div id="page_landscape" class="dn">
 					<div id="blankspace" class="h100"></div>
 					<div data-role="controlgroup" data-type="horizontal" class="w100">
-						<a id="btplay" class="w19" href="#" onclick="player_click(); return false;" data-role="button"><img class="page_landscape" id="imgplay" src="Images/2player.png" alt="2Player"/><br><div data-l10n-id="btplay"></div></a>
-						<a id="btonline" class="w19" href="#" onclick="online_click(); return false;" data-role="button"><img class="page_landscape" id="imgonline" src="Images/2online.png" alt="Online"/><br><div data-l10n-id="btonline"></div></a>
-						<a id="bteasy" class="w19" href="#" onclick="easy_click(); return false;" data-role="button"><img class="page_landscape" id="imgeasy" src="Images/easy.png" alt="Easy"/><br><div data-l10n-id="bteasy"></div></a>
-						<a id="btmed" class="w19" href="#" onclick="medium_click(); return false;" data-role="button"><img class="page_landscape" id="imgmed" src="Images/medium.png" alt="Medium"/><br><div data-l10n-id="btmed"></div></a>
-						<a id="bthard" class="w19" href="#" onclick="hard_click(); return false;" data-role="button"><img class="page_landscape" id="imghard" src="Images/hard.png" alt="Hard"/><br><div data-l10n-id="bthard"></div></a>
+						<a id="btplay" class="w19" href="#" data-role="button"><img class="page_landscape" id="imgplay" src="Images/2player.png" alt="2Player"/><br><div data-l10n-id="btplay"></div></a>
+						<a id="btonline" class="w19" href="#" data-role="button"><img class="page_landscape" id="imgonline" src="Images/2online.png" alt="Online"/><br><div data-l10n-id="btonline"></div></a>
+						<a id="bteasy" class="w19" href="#" data-role="button"><img class="page_landscape" id="imgeasy" src="Images/easy.png" alt="Easy"/><br><div data-l10n-id="bteasy"></div></a>
+						<a id="btmed" class="w19" href="#" data-role="button"><img class="page_landscape" id="imgmed" src="Images/medium.png" alt="Medium"/><br><div data-l10n-id="btmed"></div></a>
+						<a id="bthard" class="w19" href="#" data-role="button"><img class="page_landscape" id="imghard" src="Images/hard.png" alt="Hard"/><br><div data-l10n-id="bthard"></div></a>
 					</div>
 				</div>
 			</div><!-- /content -->
@@ -107,12 +107,12 @@
 								<img id="P1light2" src="Images/lightredon.png" alt="P1" />
 							</td>
 							<td id="tmitte" class="tc w100 nowrap">
-								<canvas id="spalte0"></canvas>
-								<canvas id="spalte1"></canvas>
-								<canvas id="spalte2"></canvas>
-								<canvas id="spalte3"></canvas>
-								<canvas id="spalte4"></canvas>
-								<canvas id="spalte5"></canvas>
+								<canvas id="spalte0"></canvas>&nbsp;
+								<canvas id="spalte1"></canvas>&nbsp;
+								<canvas id="spalte2"></canvas>&nbsp;
+								<canvas id="spalte3"></canvas>&nbsp;
+								<canvas id="spalte4"></canvas>&nbsp;
+								<canvas id="spalte5"></canvas>&nbsp;
 								<canvas id="spalte6"></canvas>
 							</td>
 							<td id="indicator_landscape_r" class="indicator_landscape">
@@ -134,7 +134,7 @@
 						<div id="P2name" class="name_portrait"></div>
 					</div>
 				</fieldset>
-				<a href="#" data-l10n-id="btback" onclick="back(); return false;" data-direction="reverse" data-role="button" data-theme="b">Back</a>
+				<a class="back" href="#" data-l10n-id="btback" data-direction="reverse" data-role="button" data-theme="b">Back</a>
 			</div><!-- /content -->
 		</div><!-- /page -->
 
@@ -165,10 +165,10 @@
 				<fieldset id="popupDialog_portrait" class="ui-grid-a">
 					<p data-l10n-id="lbagain">Play again?</p>
 					<div class="ui-block-a">
-						<a href="#" data-l10n-id="lbyes" onclick="playagain(); return false;" data-role="button" data-theme="c">Yes</a>
+						<a class="again" href="#" data-l10n-id="lbyes" data-role="button" data-theme="c">Yes</a>
 					</div>
 					<div class="ui-block-b">
-						<a href="#" data-l10n-id="lbno" onclick="back(); return false;" data-role="button" data-theme="b">No</a>
+						<a class="back" href="#" data-l10n-id="lbno" data-role="button" data-theme="b">No</a>
 					</div>
 				</fieldset>
 				<fieldset id="popupDialog_landscape" class="ui-grid-b">
@@ -176,10 +176,10 @@
 						<p data-l10n-id="lbagain">Play again?</p>
 					</div>
 					<div class="ui-block-b">
-						<a href="#" data-l10n-id="lbyes" onclick="playagain(); return false;" data-role="button" data-theme="c">Yes</a>
+						<a class="again" href="#" data-l10n-id="lbyes" data-role="button" data-theme="c">Yes</a>
 					</div>
 					<div class="ui-block-c">
-						<a href="#" data-l10n-id="lbno" onclick="back(); return false;" data-role="button" data-theme="b">No</a>
+						<a class="back" href="#" data-l10n-id="lbno" data-role="button" data-theme="b">No</a>
 					</div>
 				</fieldset>
 			</div>
@@ -199,7 +199,7 @@
 				<img src="Images/43.png" alt="diagonal" class="w20 mr4"/>
 				<img src="Images/44.png" alt="diagonal" class="w20"/>
 				<!--span data-l10n-id="lbthanks">Thanks for playing grrd's 4 in a Row!</span--> <br><br>
-				<span data-l10n-id="lbdev">Developed by Gérard Tyedmers with <a href="http://jquerymobile.com/" target="_blank">jQuery mobile</a><span>, </span><a href="http://nodejs.org/" target="_blank">node.js</a> <span data-l10n-id="lband"> and </span> <a href="http://socket.io/" target="_blank">socket.io</a><span>. </span></span>
+				<span data-l10n-id="lbdev">Developed by Gérard Tyedmers with <a href="http://jquerymobile.com/" target="_blank">jQuery mobile</a><span>,&nbsp;</span><a href="http://nodejs.org/" target="_blank">node.js</a> <span data-l10n-id="lband"> and </span> <a href="http://socket.io/" target="_blank">socket.io</a><span>. </span></span>
 				<br><br>
 
 				<table>
@@ -220,7 +220,7 @@
 						<td class="w80 pl10">E-mail: <a href="mailto:grrd@gmx.net">grrd@gmx.net </a></td>
 					</tr>
 				</table>
-				<a href="#" data-l10n-id="btclose" onclick="closepop(); return false;" data-role="button" data-theme="c" data-icon="delete" class="ui-btn-right fr">Close</a>
+				<a class="btclose ui-btn-right fr" href="#" data-l10n-id="btclose" data-role="button" data-theme="c" data-icon="delete">Close</a>
 			</div>
 		</div><!-- /page popup -->
 
@@ -234,10 +234,10 @@
 			<div data-role="content" data-theme="d">
 				<div id="popupSettings_portrait">
 					<div data-l10n-id="lbimg" data-inline="true">Your picture:</div>
-					<a href="#" data-role="button" onclick="image_click(); return false;"><img id="inputImage" src="Images/player.png" alt="Player" class="darkgrey" data-inline="true"/></a>
+					<a class="btimg" href="#" data-role="button"><img id="inputImage" src="Images/player.png" alt="Player" class="darkgrey" data-inline="true"/></a>
 					<div id="popupSettings_col_b">
 						<div data-l10n-id="lbname" data-inline="true">Your name:</div>
-						<input id="inputName" data-clear-btn="true" name="myname" value="" type="text" size="10" maxlength="10" onchange="inputName_change(this.value)">
+						<input id="inputName" data-clear-btn="true" name="myname" value="" type="text" size="10" maxlength="10">
 						<div data-role="fieldcontain">
 							<label for="b_sound" class="di" data-l10n-id="lbsound">Play sounds</label>
 							<select name="b_sound" id="b_sound" data-role="slider">
@@ -251,12 +251,12 @@
 				<fieldset class="ui-grid-a dn" id="popupSettings_landscape">
 					<div class="ui-block-a">
 						<div data-l10n-id="lbimg" data-inline="true">Your picture:</div>
-						<a href="#" data-role="button" onclick="image_click(); return false;"><img id="inputImage_l" src="Images/player.png" alt="Player" class="darkgrey" data-inline="true"/></a>
+						<a class="btimg" href="#" data-role="button"><img id="inputImage_l" src="Images/player.png" alt="Player" class="darkgrey" data-inline="true"/></a>
 					</div>
 					<div class="ui-block-b" id="popupSettings_landscape_b">
 					</div>
 				</fieldset>
-				<a href="#" data-l10n-id="btclose" onclick="closepop(); return false;" data-role="button" data-theme="c" data-icon="delete" >Close</a>
+				<a class="btclose" href="#" data-l10n-id="btclose" data-role="button" data-theme="c" data-icon="delete" >Close</a>
 
 		</div>
 		</div><!-- /page Settings -->
@@ -270,7 +270,7 @@
 			<div data-role="content" data-theme="d">
 				<h3 data-l10n-id="lbwait">Waiting for player 2 ...</h3>
 				<p data-l10n-id="lbwait2">You can play a 1 player game meanwhile.</p>
-				<a href="#" data-l10n-id="btclose" onclick="closepop(); return false;" data-role="button" data-theme="c" data-icon="delete" class="ui-btn-right fr">Close</a>
+				<a class="btclose ui-btn-right fr" href="#" data-l10n-id="btclose" data-role="button" data-theme="c" data-icon="delete">Close</a>
 			</div>
 		</div><!-- /page Online -->
 
@@ -282,7 +282,7 @@
 			</div>
 			<div data-role="content" data-theme="d">
 				<p data-l10n-id="lbleft">Your opponent has left the game.</p>
-				<a href="#" data-l10n-id="btclose" onclick="back(); return false;" data-role="button" data-theme="c" data-icon="delete" class="ui-btn-right fr">Close</a>
+				<a class="back ui-btn-right fr" href="#" data-l10n-id="btclose" data-role="button" data-theme="c" data-icon="delete">Close</a>
 			</div>
 		</div><!-- /page left -->
 

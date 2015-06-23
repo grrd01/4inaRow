@@ -6,6 +6,7 @@
 
 "use strict";
 
+(function() {
 //navigator.mozL10n.language.code = "ta";
 
 window.requestAnimFrame = (function (callback) {
@@ -54,7 +55,7 @@ var P2lightimg = ["Images/lightblueon.png","Images/lightblueoff.png"];
 var spiele = 0;
 var siege = [0,0];
 var spaltenr, zeile, compispalte, compizeile;
-var viergewinnt, plaz, zeigenflag, demo, moeglichflag = Boolean(false);
+var viergewinnt, plaz, zeigenflag, moeglichflag = Boolean(false);
 var topbis, topakt;
 var colwidth,colheight;
 
@@ -923,8 +924,18 @@ window.onload = function() {
 		}
 	}
 
+	$('[id^="btplay"]').click(function(e) {player_click(); e.preventDefault();});
+	$('[id^="btonline"]').click(function(e) {online_click(); e.preventDefault();});
+	$('[id^="bteasy"]').click(function(e) {easy_click(); e.preventDefault();});
+	$('[id^="btmed"]').click(function(e) {medium_click(); e.preventDefault();});
+	$('[id^="bthard"]').click(function(e) {hard_click(); e.preventDefault();});
 
-	// add click listener to canvas
+	$('.back').click(function(e) {back(); e.preventDefault();});
+	$('.again').click(function(e) {playagain(); e.preventDefault();});
+	$('.btimg').click(function(e) {image_click(); e.preventDefault();});
+	$('.btclose').click(function(e) {closepop(); e.preventDefault();});
+	$('#inputName').change(function() {inputName_change(this.value);});
+
 	for (var i = 0; i < spalte.length; ++i) {
 		//document.getElementById(spalte[i]).addEventListener("click", function() {spielzug(i)});
 		spalte_canvas[i] = document.getElementById(spalte[i]);
@@ -1100,3 +1111,4 @@ function resize_image(file){
 		}
 	};
 }
+}());
