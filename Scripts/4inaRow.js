@@ -9,7 +9,7 @@
 (function() {
 //navigator.mozL10n.language.code = "ta";
 
-window.requestAnimFrame = (function (callback) {
+window.requestAnimFrame = (function () {
 	return window.requestAnimationFrame ||
 	window.webkitRequestAnimationFrame ||
 	window.mozRequestAnimationFrame ||
@@ -212,7 +212,7 @@ function online_click() {
 		}
 	});
 
-	socket.on('quit', function (data) {
+	socket.on('quit', function () {
 		if (user.id != lastquit) {
 			lastquit = user.id;
 			onexit = true;
@@ -855,6 +855,7 @@ function content_formatting() {
 
 	for (var j = 0; j < feld[0].length; ++j) {
 		for (i = 0; i < feld.length; ++i) {
+            if (typeof spalte_context[j] === 'undefined') {return;}
 			spalte_context[j].beginPath();
 			spalte_context[j].arc(colwidth/2, (feld.length - i - 0.5) * colwidth*0.85,
 			colwidth/2*0.7, 0, 2 * Math.PI, false);
@@ -873,6 +874,7 @@ function content_formatting() {
 
 
 	for (j = 0; j < feld[0].length; ++j) {
+        if (typeof spalte_context[j] === 'undefined') {return;}
 		spalte_context[j].save();
 		spalte_context[j].beginPath();
 		for (i = 0; i < feld.length; ++i) {
@@ -1033,15 +1035,14 @@ function inputName_change(inpname) {
 }
 
 function image_click(){
-	b_imageinput.click();
+	$('#b_imageinput').click();
 }
 
 function resize_image(file){
 	var fileLoader = new FileReader(),
 	canvas = document.createElement('canvas'),
 	context = null,
-	imageObj = new Image(),
-	blob = null;
+	imageObj = new Image();
 	var max_width = 67;
 	var max_height = 71;
 	var g_exif;
@@ -1085,18 +1086,18 @@ function resize_image(file){
 		if(this.width === 0 || this.height === 0){
 			alert('Image is empty');
 		} else {
-			if (g_exif.Orientation === 5 || g_exif.Orientation === 6) {
+			if (g_exif.orientation === 5 || g_exif.orientation === 6) {
 				context.rotate(90*Math.PI/180);
 				myleft = -1*max_width;
 				max_width = 71;
 				max_height = 67;
 			}
-			if (g_exif.Orientation === 3 || g_exif.Orientation === 4) {
+			if (g_exif.orientation === 3 || g_exif.orientation === 4) {
 				context.rotate(180*Math.PI/180);
 				myleft = -1*max_width -4;
 				mytop = -1*max_height +4;
 			}
-			if (g_exif.Orientation === 7 || g_exif.Orientation === 8) {
+			if (g_exif.orientation === 7 || g_exif.orientation === 8) {
 				context.rotate(270*Math.PI/180);
 				mytop = -1*max_height;
 				max_width = 71;
