@@ -1087,18 +1087,18 @@ function resize_image(file){
         if(this.width === 0 || this.height === 0){
             alert('Image is empty');
         } else {
-            if (g_exif.orientation === 5 || g_exif.orientation === 6) {
+            if (g_exif.Orientation === 5 || g_exif.Orientation === 6) {
                 context.rotate(90*Math.PI/180);
                 myleft = -1*max_width;
                 max_width = 71;
                 max_height = 67;
             }
-            if (g_exif.orientation === 3 || g_exif.orientation === 4) {
+            if (g_exif.Orientation === 3 || g_exif.Orientation === 4) {
                 context.rotate(180*Math.PI/180);
                 myleft = -1*max_width -4;
                 mytop = -1*max_height +4;
             }
-            if (g_exif.orientation === 7 || g_exif.orientation === 8) {
+            if (g_exif.Orientation === 7 || g_exif.Orientation === 8) {
                 context.rotate(270*Math.PI/180);
                 mytop = -1*max_height;
                 max_width = 71;
