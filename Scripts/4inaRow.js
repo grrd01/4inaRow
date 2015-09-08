@@ -113,6 +113,7 @@ function online_click() {
     if(!connection) {
         //socket = io.connect('http://localhost:3250');
         socket = io.connect('http://grrds4inarow.nodejitsu.com:80');
+        //socket = io.connect('http://4inarow-grrd.rhcloud.com:8000');
         connection = true;
     } else {socket.socket.reconnect();}
     

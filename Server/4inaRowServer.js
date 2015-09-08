@@ -5,10 +5,6 @@ var Moniker = require('moniker');
 var port = 3250;
 
 var users = [];
-var game = {
-		p1: null,
-		p2: null
-	};
 
 app.listen(port);
 
@@ -41,12 +37,12 @@ var addUser = function(socket) {
 		id: socket.id,
 		role: null,
 		opponent: null
-	}
+	};
 	users.push(user);
 	updateUsers();
 	startgame(user);
 	return user;
-}
+};
 
 var removeUser = function(user) {
 	for(var i=0; i<users.length; i++) {
@@ -56,7 +52,7 @@ var removeUser = function(user) {
 	return;
 	}
 	}
-}
+};
 
 var updateUsers = function() {
 	var str = '';
@@ -65,7 +61,7 @@ var updateUsers = function() {
 	str += user.name + ' <br />';
 	}
 	//io.sockets.emit("users", { users: str });
-}
+};
 
 var startgame = function(user) {
 	for(var i=0; i<users.length; i++) {
@@ -85,4 +81,4 @@ var startgame = function(user) {
 			}
 		}
 	}
-}
+};
