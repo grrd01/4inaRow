@@ -103,7 +103,7 @@ function player_click() {
     $("#P2icon2").attr("src","Images/player.png");
     set_lights();
     onexit = false;
-    $.mobile.changePage('#game', {transition: 'slidefade'}); //slide broken in chrome43
+    $.mobile.changePage('#game', {transition: 'slide'});
 }
 
 function online_click() {
@@ -132,7 +132,7 @@ function online_click() {
             });
             laststart = user.id;
             onexit = false;
-            if (modus !== null) {$.mobile.changePage('#title', {transition: 'slidefade', reverse: true});} //slide broken in chrome43
+            if (modus !== null) {$.mobile.changePage('#title', {transition: 'slide', reverse: true});}
             animate = false;
             leeren();
             spiele = 0;
@@ -177,7 +177,7 @@ function online_click() {
             $("#P1name2").html(p1_name);
             $("#P2name").html(p2_name);
             $("#P2name2").html(p2_name);
-            $.mobile.changePage('#game', {transition: 'slidefade'}); //slide broken in chrome43
+            $.mobile.changePage('#game', {transition: 'slide'});
         }
     });
     
@@ -259,7 +259,7 @@ function p_computer() {
     $("#P2icon2").attr("src","Images/computer.png");
     set_lights();
     onexit = false;
-    $.mobile.changePage('#game', {transition: 'slidefade'}); // slide broken in chrome43
+    $.mobile.changePage('#game', {transition: 'slide'});
 }
 
 function back() {
@@ -272,7 +272,7 @@ function back() {
     }
     onexit = true;
     content_formatting();
-    $.mobile.changePage('#title', {transition: 'slidefade', reverse: true}); // slide broken in chrome43
+    $.mobile.changePage('#title', {transition: 'slide', reverse: true});
     animate = false;
     leeren();
     spiele = 0;
