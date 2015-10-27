@@ -5,13 +5,14 @@
 */
 
 canvas {border: 0;margin:0;padding:0;}
+ul {list-style-type: none;}
 .ui-dialog .ui-header .ui-btn-icon-notext {display:none;}
 div.ui-slider-switch {position:absolute; right: 0; width: 20%;}
-a.bt_small {padding:-20px;height:35px;width:55px;}
+a.bt_small {padding:0;height:35px;width:55px;}
 img.bt_small {margin-top:-5px;margin-left:-10px;height: 25px;width: 25px;}
-img.page_portrait {padding:0 20px 0 0;height:100%;float:left}
-img.page_landscape {width: 100%;min-width: 40px;max-width: 108px;}
-table.noborder {border-width:0;border-spacing:0;}
+.img_port {padding:0 20px 0 0;height:100%;float:left}
+.img_land {width: 100%;min-width: 40px;max-width: 108px;}
+table.no_border {border-width:0;border-spacing:0;}
 td.indicator_landscape {display:none;width:70px;vertical-align:bottom;text-align:center;}
 div.name_portrait {margin-top: 0; white-space: nowrap;overflow: hidden;}
 div.name_landscape {margin-top: 0; width:70px; white-space:nowrap;overflow: hidden;}
@@ -30,11 +31,9 @@ h3.score {text-align:center; white-space:nowrap;overflow:hidden;}
 .tr {text-align:right;}
 .fr {float:right;}
 .cr {clear:right;}
-.h40 {height:40px;}
 .h100 {height:100px;}
-.w19 {width:19%;}
 .w20 {width:20%;}
 .w65 {width:65%;}
 .w80 {width:80%;}
 .w100 {width:100%;}
-.darkgrey {background-color: #404040;}
+.dark_grey {background-color: #404040;}
