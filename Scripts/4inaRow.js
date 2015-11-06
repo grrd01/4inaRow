@@ -57,6 +57,11 @@
     var topBis, topAkt;
     var colWidth, colHeight;
 
+    var onlineStart, onlineWin, onlineLoose,onlineDraw, onlineLeft;
+    var easyStart, easyWin, easyLoose, easyDraw;
+    var mediumStart, mediumWin, mediumLoose, mediumDraw;
+    var hardStart, hardWin, hardLoose, hardDraw;
+
     var socket;
     var user;
     var connection = false;
@@ -194,6 +199,76 @@
         $("#P2light").attr("src", P2LightImg[1 - player]);
         $("#P1light2").attr("src", P1LightImg[player]);
         $("#P2light2").attr("src", P2LightImg[1 - player]);
+    }
+
+    function updateStats(statEvent) {
+        var storageItem, storageValue, maxValue;
+
+        if (modus && statEvent) {
+            storageItem = modus + "_" + statEvent;
+            storageValue = parseInt(localStorage.getItem(storageItem) || 0) + 1;
+            localStorage.setItem(storageItem, storageValue);
+        }
+
+        easyStart = localStorage.getItem('easy_start') || 0;
+        easyWin = localStorage.getItem('easy_win') || 0;
+        easyLoose = localStorage.getItem('easy_loose') || 0;
+        easyDraw = localStorage.getItem('easy_draw') || 0;
+        mediumStart = localStorage.getItem('medium_start') || 0;
+        mediumWin = localStorage.getItem('medium_win') || 0;
+        mediumLoose = localStorage.getItem('medium_loose') || 0;
+        mediumDraw = localStorage.getItem('medium_draw') || 0;
+        hardStart = localStorage.getItem('hard_start') || 0;
+        hardWin = localStorage.getItem('hard_win') || 0;
+        hardLoose = localStorage.getItem('hard_loose') || 0;
+        hardDraw = localStorage.getItem('hard_draw') || 0;
+        onlineStart = localStorage.getItem('online_Start') || 0;
+        onlineWin = localStorage.getItem('online_win') || 0;
+        onlineLoose = localStorage.getItem('online_loose') || 0;
+        onlineDraw = localStorage.getItem('online_draw') || 0;
+        onlineLeft = localStorage.getItem('online_left') || 0;
+
+        maxValue = Math.max(easyWin, easyLoose, mediumWin, mediumLoose, hardWin, hardLoose, onlineWin, onlineLoose, 1);
+
+        document.getElementById("easy_win").innerHTML = navigator.mozL10n.get("lbwon") + " " + easyWin;
+        document.getElementById("easy_loose").innerHTML = navigator.mozL10n.get("lblost") + " " + easyLoose;
+        document.getElementById("medium_win").innerHTML = navigator.mozL10n.get("lbwon") + " " + mediumWin;
+        document.getElementById("medium_loose").innerHTML = navigator.mozL10n.get("lblost") + " " + mediumLoose;
+        document.getElementById("hard_win").innerHTML = navigator.mozL10n.get("lbwon") + " " + hardWin;
+        document.getElementById("hard_loose").innerHTML = navigator.mozL10n.get("lblost") + " " + hardLoose;
+        document.getElementById("online_win").innerHTML = navigator.mozL10n.get("lbwon") + " " + onlineWin;
+        document.getElementById("online_loose").innerHTML = navigator.mozL10n.get("lblost") + " " + onlineLoose;
+
+        document.getElementById("easy_win").style.width = (100 / maxValue * easyWin) + "%";
+        document.getElementById("easy_loose").style.width = (100 / maxValue * easyLoose) + "%";
+        document.getElementById("medium_win").style.width = (100 / maxValue * mediumWin) + "%";
+        document.getElementById("medium_loose").style.width = (100 / maxValue * mediumLoose) + "%";
+        document.getElementById("hard_win").style.width = (100 / maxValue * hardWin) + "%";
+        document.getElementById("hard_loose").style.width = (100 / maxValue * hardLoose) + "%";
+        document.getElementById("online_win").style.width = (100 / maxValue * onlineWin) + "%";
+        document.getElementById("online_loose").style.width = (100 / maxValue * onlineLoose) + "%";
+    }
+
+    function resetStats() {
+        localStorage.removeItem('easy_start');
+        localStorage.removeItem('easy_win');
+        localStorage.removeItem('easy_loose');
+        localStorage.removeItem('easy_draw');
+        localStorage.removeItem('medium_start');
+        localStorage.removeItem('medium_win');
+        localStorage.removeItem('medium_loose');
+        localStorage.removeItem('medium_draw');
+        localStorage.removeItem('hard_start');
+        localStorage.removeItem('hard_win');
+        localStorage.removeItem('hard_loose');
+        localStorage.removeItem('hard_draw');
+        localStorage.removeItem('online_Start');
+        localStorage.removeItem('online_win');
+        localStorage.removeItem('online_loose');
+        localStorage.removeItem('online_draw');
+        localStorage.removeItem('online_left');
+
+        updateStats();
     }
 
     function playerClick() {
@@ -362,6 +437,20 @@
 
                 if (viergewinnt) {
                     siege[player] = siege[player] + 1;
+                    if (modus === "easy" || modus === "medium" || modus === "hard") {
+                        if (player === 0) {
+                            updateStats("win");
+                        } else {
+                            updateStats("loose");
+                        }
+                    }
+                    if (modus === "online") {
+                        if ((player === 0 && user.role === "0") || (player === 1 && user.role === "1")) {
+                            updateStats("win");
+                        } else {
+                            updateStats("loose");
+                        }
+                    }
                     if (gSound) {
                         document.getElementById('ding_sound').play();
                     }
@@ -377,6 +466,7 @@
                     }
                 } else {
                     if (!plaz) {
+                        updateStats("draw");
                         meldung(navigator.mozL10n.get("lbdraw"), new Date().getTime());
                     } else {
                         player = 1 - player;
@@ -1078,6 +1168,10 @@
             closePop();
             e.preventDefault();
         });
+        $('#btreset').click(function (e) {
+            resetStats();
+            e.preventDefault();
+        });
         $('#inputName').change(function () {
             inputName_change(this.value);
         });
@@ -1157,6 +1251,7 @@
                 navigator.mozL10n.language.code = url_param;
             }
         }
+        updateStats();
         //$("#inputName").attr("placeholder",navigator.mozL10n.get("lbname"));
     });
 }());
