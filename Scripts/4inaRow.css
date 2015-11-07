@@ -9,7 +9,7 @@ ul {list-style-type: none;}
 .ui-dialog .ui-header .ui-btn-icon-notext {display: none;}
 div.ui-slider-switch {position: absolute; right: 0; width: 20%;}
 a.bt_small {padding: 0; height: 35px; width: 55px;}
-img.bt_small {margin-top: -5px; margin-left: -5px; height: 25px; width: 25px;}
+img.bt_small {margin: -5px; height: 25px; width: 25px;}
 .img_port {padding: 0 20px 0 0; height: 100%; float: left;}
 .img_land {width: 100%; min-width: 40px; max-width: 108px;}
 .img_stats {-webkit-filter: invert(1); filter: invert(1); padding-top: 15px; padding-left: 10px;}
