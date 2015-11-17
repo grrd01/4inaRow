@@ -18,19 +18,20 @@
 
     var ii;
     var animate = false;
-    var spalte = ["spalte0", "spalte1", "spalte2", "spalte3", "spalte4", "spalte5", "spalte6"];
-    var spalte_canvas = [];
-    var spalte_context = [];
-    var feld = [];
+    var col = ["col0", "col1", "col2", "col3", "col4", "col5", "col6"];
+    var col_canvas = [];
+    var col_context = [];
+    var field = [];
     for (ii = 0; ii < 6; ii += 1) {
-        feld[ii] = [];
-        feld[ii][6] = undefined;
+        field[ii] = [];
+        field[ii][6] = undefined;
     }
-    var winrow = [];
-    var wincol = [];
-    var moeglichanz, steinetotal, steinebest, steinecount;
-    var modus = null;
+    var winRow = [];
+    var winCol = [];
+    var numPossible, stoneTotal, stoneBest, stoneCount;
+    var mode = null;
     var gSound = true;
+    var gCountry;
     var gOwnImage = false;
     var gOwnName = false;
     var gSendImage;
@@ -40,20 +41,22 @@
     var $inputName = $('#inputName');
     var $img_title = $('#img_title');
     var $b_sound = $('#b_sound');
+    var $l_country = $('#l_country');
+    var $txt_search = $('#txt_search');
     var url_param;
 
-    var wertung = [];
-    var bestwertung = [];
+    var rating = [];
+    var bestRating = [];
     var color = ["#ff0080", "#6969EE"];
     var bColor = ["#D6016B", "#5A5ACE"];
     var zColor = ["#FD6BB4", "#9393EF"];
     var player = 0;
-    var P1LightImg = ["Images/lightredon.png", "Images/lightredoff.png"];
-    var P2LightImg = ["Images/lightblueon.png", "Images/lightblueoff.png"];
-    var spiele = 0;
+    var P1LightImg = ["Images/red_on.png", "Images/red_off.png"];
+    var P2LightImg = ["Images/blue_on.png", "Images/blue_off.png"];
+    var games = 0;
     var siege = [0, 0];
-    var spaltenr, zeile, compiSpalte, compiZeile;
-    var viergewinnt, plaz, zeigenflag, moeglichflag = Boolean(false);
+    var colNr, row, computerCol, computerRow;
+    var fourInARow, space, showFlag, possibleFlag = Boolean(false);
     var topBis, topAkt;
     var colWidth, colHeight;
 
@@ -72,14 +75,14 @@
     var onExit = false;
     var fromOnline = false;
 
-    function drawCircle(topAkt, spaltenr, color, bColor) {
-        spalte_context[spaltenr].beginPath();
-        spalte_context[spaltenr].arc(colWidth / 2, topAkt, colWidth / 2 * 0.85, 0, 2 * Math.PI, false);
-        spalte_context[spaltenr].fillStyle = color;
-        spalte_context[spaltenr].fill();
-        spalte_context[spaltenr].lineWidth = colWidth / 20;
-        spalte_context[spaltenr].strokeStyle = bColor;
-        spalte_context[spaltenr].stroke();
+    function drawCircle(topAkt, colNr, color, bColor) {
+        col_context[colNr].beginPath();
+        col_context[colNr].arc(colWidth / 2, topAkt, colWidth / 2 * 0.85, 0, 2 * Math.PI, false);
+        col_context[colNr].fillStyle = color;
+        col_context[colNr].fill();
+        col_context[colNr].lineWidth = colWidth / 20;
+        col_context[colNr].strokeStyle = bColor;
+        col_context[colNr].stroke();
     }
 
     function contentFormatting() {
@@ -87,12 +90,12 @@
         var height = $(window).height();
         var width = $(window).width();
         if (height > width) {
-            // Spaltenbreite
+            // column width
             colWidth = Math.min((width - 50) / 7, (height - 140) / 6);
             colHeight = Math.max(6 * colWidth * 0.85, height - 190);
             $img_title.attr("style", "width:100%;");
             $(".li_port").attr("style", "height:" + ($(window).height() - $(window).width() / 3 - 130) / 7 + "px;");
-            $(".li_padd").attr("style", "padding-top:" + ($(window).height() - $(window).width() / 3 - 270) / 14 + "px;");
+            $(".li_pad").attr("style", "padding-top:" + ($(window).height() - $(window).width() / 3 - 270) / 14 + "px;");
             $("#page_landscape").attr("style", "display:none;");
             $("#page_portrait").attr("style", "display:inline;");
             $("#indicator_landscape_l").attr("style", "display:none;");
@@ -105,7 +108,7 @@
             $("#popupSettings_col_b").appendTo("#popupSettings_portrait");
             $("#printMessage").attr("style", "display:block;");
         } else {
-            // Spaltenbreite
+            // column width
             colWidth = Math.min((width - 140 - 40) / 7, (height - 20) / 6);
             colHeight = Math.max(6 * colWidth * 0.85, height - 95);
             $img_title.attr("style", "width:" + ($(window).width() * 0.6) + "px;");
@@ -128,66 +131,66 @@
         $(".a_land").attr("style", "width:" + (width / 5 - 8) + "px;padding-bottom:" + imgPad / 2 + "px;");
         $(".img_land").attr("style", "padding-top:" + imgPad + "px;padding-bottom:" + imgPad / 2 + "px;width: 100%;min-width: 40px;max-width: 108px;");
 
-        for (i = 0; i < spalte.length; i += 1) {
-            document.getElementById(spalte[i]).width = colWidth;
-            document.getElementById(spalte[i]).height = colHeight;
+        for (i = 0; i < col.length; i += 1) {
+            document.getElementById(col[i]).width = colWidth;
+            document.getElementById(col[i]).height = colHeight;
         }
 
-        for (j = 0; j < feld[0].length; j += 1) {
-            if (spalte_context[j] === undefined) {
+        for (j = 0; j < field[0].length; j += 1) {
+            if (col_context[j] === undefined) {
                 break;
             }
-            for (i = 0; i < feld.length; i += 1) {
-                spalte_context[j].beginPath();
-                spalte_context[j].arc(colWidth / 2, (feld.length - i - 0.5) * colWidth * 0.85, colWidth / 2 * 0.7, 0, 2 * Math.PI, false);
-                spalte_context[j].lineWidth = colWidth / 10;
-                spalte_context[j].strokeStyle = "#212121";
-                spalte_context[j].stroke();
+            for (i = 0; i < field.length; i += 1) {
+                col_context[j].beginPath();
+                col_context[j].arc(colWidth / 2, (field.length - i - 0.5) * colWidth * 0.85, colWidth / 2 * 0.7, 0, 2 * Math.PI, false);
+                col_context[j].lineWidth = colWidth / 10;
+                col_context[j].strokeStyle = "#212121";
+                col_context[j].stroke();
 
-                spalte_context[j].beginPath();
-                spalte_context[j].arc(colWidth / 2, (feld.length - i - 0.5) * colWidth * 0.85, colWidth / 2 * 0.7, 1.8 * Math.PI, 0.8 * Math.PI, false);
-                spalte_context[j].lineWidth = spalte_canvas[j].width / 10;
-                spalte_context[j].strokeStyle = "grey";
-                spalte_context[j].stroke();
+                col_context[j].beginPath();
+                col_context[j].arc(colWidth / 2, (field.length - i - 0.5) * colWidth * 0.85, colWidth / 2 * 0.7, 1.8 * Math.PI, 0.8 * Math.PI, false);
+                col_context[j].lineWidth = col_canvas[j].width / 10;
+                col_context[j].strokeStyle = "grey";
+                col_context[j].stroke();
             }
         }
 
 
-        for (j = 0; j < feld[0].length; j += 1) {
-            if (spalte_context[j] === undefined) {
+        for (j = 0; j < field[0].length; j += 1) {
+            if (col_context[j] === undefined) {
                 break;
             }
-            spalte_context[j].save();
-            spalte_context[j].beginPath();
-            for (i = 0; i < feld.length; i += 1) {
-                spalte_context[j].arc(colWidth / 2, (feld.length - i - 0.5) * colWidth * 0.85, colWidth / 2 * 0.7, 0, 2 * Math.PI, false);
+            col_context[j].save();
+            col_context[j].beginPath();
+            for (i = 0; i < field.length; i += 1) {
+                col_context[j].arc(colWidth / 2, (field.length - i - 0.5) * colWidth * 0.85, colWidth / 2 * 0.7, 0, 2 * Math.PI, false);
             }
-            spalte_context[j].clip();
-            spalte_context[j].clearRect(0, 0, colWidth, colHeight);
+            col_context[j].clip();
+            col_context[j].clearRect(0, 0, colWidth, colHeight);
         }
 
-        for (i = 0; i < feld.length; i += 1) {
-            for (j = 0; j < feld[i].length; j += 1) {
-                if (feld[i][j] !== undefined) {
-                    drawCircle((feld.length - i - 0.5) * colWidth * 0.85, j, color[feld[i][j]], bColor[feld[i][j]]);
+        for (i = 0; i < field.length; i += 1) {
+            for (j = 0; j < field[i].length; j += 1) {
+                if (field[i][j] !== undefined) {
+                    drawCircle((field.length - i - 0.5) * colWidth * 0.85, j, color[field[i][j]], bColor[field[i][j]]);
                 }
             }
         }
         if (animate) {
-            topAkt = topAkt / topBis * ((feld.length - zeile - 0.5) * colWidth * 0.85);
-            topBis = (feld.length - zeile - 0.5) * colWidth * 0.85;
+            topAkt = topAkt / topBis * ((field.length - row - 0.5) * colWidth * 0.85);
+            topBis = (field.length - row - 0.5) * colWidth * 0.85;
         }
     }
 
-    function leeren() {
+    function clearBoard() {
         var i, j;
         countRound = 0;
         lastRound = null;
-        for (i = 0; i < feld.length; i += 1) {
-            for (j = 0; j < feld[i].length; j += 1) {
-                feld[i][j] = undefined;
+        for (i = 0; i < field.length; i += 1) {
+            for (j = 0; j < field[i].length; j += 1) {
+                field[i][j] = undefined;
                 if (i === 0) {
-                    spalte_context[j].clearRect(0, 0, colWidth, colHeight);
+                    col_context[j].clearRect(0, 0, colWidth, colHeight);
                 }
             }
         }
@@ -204,8 +207,8 @@
     function updateStats(statEvent) {
         var storageItem, storageValue, maxValue;
 
-        if (modus && statEvent) {
-            storageItem = modus + "_" + statEvent;
+        if (mode && statEvent) {
+            storageItem = mode + "_" + statEvent;
             storageValue = parseInt(localStorage.getItem(storageItem) || 0) + 1;
             localStorage.setItem(storageItem, storageValue);
         }
@@ -230,14 +233,14 @@
 
         maxValue = Math.max(easyWin, easyLoose, mediumWin, mediumLoose, hardWin, hardLoose, onlineWin, onlineLoose, 1);
 
-        document.getElementById("easy_win").innerHTML = navigator.mozL10n.get("lbwon") + " " + easyWin;
-        document.getElementById("easy_loose").innerHTML = navigator.mozL10n.get("lblost") + " " + easyLoose;
-        document.getElementById("medium_win").innerHTML = navigator.mozL10n.get("lbwon") + " " + mediumWin;
-        document.getElementById("medium_loose").innerHTML = navigator.mozL10n.get("lblost") + " " + mediumLoose;
-        document.getElementById("hard_win").innerHTML = navigator.mozL10n.get("lbwon") + " " + hardWin;
-        document.getElementById("hard_loose").innerHTML = navigator.mozL10n.get("lblost") + " " + hardLoose;
-        document.getElementById("online_win").innerHTML = navigator.mozL10n.get("lbwon") + " " + onlineWin;
-        document.getElementById("online_loose").innerHTML = navigator.mozL10n.get("lblost") + " " + onlineLoose;
+        document.getElementById("easy_win").innerHTML = navigator.mozL10n.get("lb_won") + " " + easyWin;
+        document.getElementById("easy_loose").innerHTML = navigator.mozL10n.get("lb_lost") + " " + easyLoose;
+        document.getElementById("medium_win").innerHTML = navigator.mozL10n.get("lb_won") + " " + mediumWin;
+        document.getElementById("medium_loose").innerHTML = navigator.mozL10n.get("lb_lost") + " " + mediumLoose;
+        document.getElementById("hard_win").innerHTML = navigator.mozL10n.get("lb_won") + " " + hardWin;
+        document.getElementById("hard_loose").innerHTML = navigator.mozL10n.get("lb_lost") + " " + hardLoose;
+        document.getElementById("online_win").innerHTML = navigator.mozL10n.get("lb_won") + " " + onlineWin;
+        document.getElementById("online_loose").innerHTML = navigator.mozL10n.get("lb_lost") + " " + onlineLoose;
 
         document.getElementById("easy_win").style.width = (100 / maxValue * easyWin) + "%";
         document.getElementById("easy_loose").style.width = (100 / maxValue * easyLoose) + "%";
@@ -272,7 +275,7 @@
     }
 
     function playerClick() {
-        modus = "2player";
+        mode = "2player";
         if (gOwnImage) {
             $("#P1icon").attr("src", $inputImage.attr('src'));
             $("#P1icon2").attr("src", $inputImage.attr('src'));
@@ -283,9 +286,9 @@
         if (gOwnName) {
             p1_name = $inputName.val();
         } else {
-            p1_name = navigator.mozL10n.get("lbplayer1");
+            p1_name = navigator.mozL10n.get("lb_player1");
         }
-        p2_name = navigator.mozL10n.get("lbplayer2");
+        p2_name = navigator.mozL10n.get("lb_player2");
         $("#P1name").html(p1_name);
         $("#P1name2").html(p1_name);
         $("#P2name").html(p2_name);
@@ -297,29 +300,29 @@
         $.mobile.changePage('#game', {transition: 'slide'});
     }
 
-    function meldung(meldungtext, wait) {
+    function message(messageTxt, wait) {
         if (onExit) {
             return;
         }
         if (wait + 2000 > new Date().getTime() && animate) {
             window.requestAnimFrame(function () {
-                meldung(meldungtext, wait);
+                message(messageTxt, wait);
             });
         } else {
-            spiele = spiele + 1;
-            $('#printMessage').html(meldungtext);
-            if (spiele === 1) {
-                $('#printSpiele').html(spiele + " " + navigator.mozL10n.get("lbgame"));
+            games = games + 1;
+            $('#printMessage').html(messageTxt);
+            if (games === 1) {
+                $('#printGames').html(games + " " + navigator.mozL10n.get("lb_game"));
             } else {
-                $('#printSpiele').html(spiele + " " + navigator.mozL10n.get("lbgames"));
+                $('#printGames').html(games + " " + navigator.mozL10n.get("lb_games"));
             }
             $('#printScore1a').html(p1_name);
             $('#printScore2a').html(p2_name);
             $('#printScore1b').html(siege[0]);
             $('#printScore2b').html(siege[1]);
             $.mobile.changePage('#popupDialog', {transition: 'pop', role: 'dialog'});
-            leeren();
-            if (spiele % 2 !== 0) {
+            clearBoard();
+            if (games % 2 !== 0) {
                 player = 1;
             } else {
                 player = 0;
@@ -329,49 +332,49 @@
         }
     }
 
-    function zeigenAnimate(mywinrow, mywincol, myzeigencount, zwait) {
+    function showAnimate(myWinRow, myWinCol, showCount, zWait) {
         var i;
         if (onExit) {
             return;
         }
-        if (myzeigencount < 6 && zwait + 250 < new Date().getTime() && animate) {
-            myzeigencount += 1;
-            zwait = new Date().getTime();
+        if (showCount < 6 && zWait + 250 < new Date().getTime() && animate) {
+            showCount += 1;
+            zWait = new Date().getTime();
             for (i = 0; i < 4; i += 1) {
-                if (myzeigencount % 2 !== 0) {
-                    drawCircle((feld.length - mywinrow[i] - 0.5) * colWidth * 0.85, mywincol[i], zColor[player], "white");
+                if (showCount % 2 !== 0) {
+                    drawCircle((field.length - myWinRow[i] - 0.5) * colWidth * 0.85, myWinCol[i], zColor[player], "white");
                 } else {
-                    drawCircle((feld.length - mywinrow[i] - 0.5) * colWidth * 0.85, mywincol[i], color[player], "white");
+                    drawCircle((field.length - myWinRow[i] - 0.5) * colWidth * 0.85, myWinCol[i], color[player], "white");
                 }
             }
             window.requestAnimFrame(function () {
-                zeigenAnimate(mywinrow, mywincol, myzeigencount, zwait);
+                showAnimate(myWinRow, myWinCol, showCount, zWait);
             });
-        } else if (myzeigencount < 6 && animate) {
+        } else if (showCount < 6 && animate) {
             window.requestAnimFrame(function () {
-                zeigenAnimate(mywinrow, mywincol, myzeigencount, zwait);
+                showAnimate(myWinRow, myWinCol, showCount, zWait);
             });
         }
     }
 
-    function zeigen() {
+    function show4() {
         animate = true;
-        var zwinrow = winrow.slice();
-        var zwincol = wincol.slice();
-        zeigenAnimate(zwinrow, zwincol, 0, new Date().getTime());
+        var zWinRow = winRow.slice();
+        var zWinCol = winCol.slice();
+        showAnimate(zWinRow, zWinCol, 0, new Date().getTime());
     }
 
-    function kontrolle_det(zeile, spaltenr, zeilenfaktor, spaltenfaktor, player, zeigenflag) {
+    function checkDet(row, colNr, rowFactor, colFactor, player, showFlag) {
         var i;
-        if (zeile + 3 * zeilenfaktor < feld.length && spaltenr + 3 * spaltenfaktor < feld[zeile].length && (zeile + 3 * zeilenfaktor) >= 0 && (spaltenr + 3 * spaltenfaktor) >= 0) {
+        if (row + 3 * rowFactor < field.length && colNr + 3 * colFactor < field[row].length && (row + 3 * rowFactor) >= 0 && (colNr + 3 * colFactor) >= 0) {
             for (i = 0; i < 4; i += 1) {
-                if (feld[zeile + i * zeilenfaktor][spaltenr + i * spaltenfaktor] === player) {
-                    winrow[i] = zeile + i * zeilenfaktor;
-                    wincol[i] = spaltenr + i * spaltenfaktor;
+                if (field[row + i * rowFactor][colNr + i * colFactor] === player) {
+                    winRow[i] = row + i * rowFactor;
+                    winCol[i] = colNr + i * colFactor;
                     if (i === 3) {
-                        viergewinnt = true;
-                        if (zeigenflag) {
-                            zeigen();
+                        fourInARow = true;
+                        if (showFlag) {
+                            show4();
                         }
                         i = 5;
                     }
@@ -382,31 +385,31 @@
         }
     }
 
-    function kontrolle(player, zeigenflag) {
+    function check(player, showFlag) {
         // **************************************************************
-        // viergewinnt?
+        // 4 in a row?
         // **************************************************************
-        viergewinnt = false;
-        for (zeile = 0; zeile < feld.length; zeile += 1) {
-            for (spaltenr = 0; spaltenr < feld[zeile].length; spaltenr += 1) {
-                kontrolle_det(zeile, spaltenr, 1, 0, player, zeigenflag);
-                kontrolle_det(zeile, spaltenr, 0, 1, player, zeigenflag);
-                kontrolle_det(zeile, spaltenr, 1, 1, player, zeigenflag);
-                kontrolle_det(zeile, spaltenr, 1, -1, player, zeigenflag);
+        fourInARow = false;
+        for (row = 0; row < field.length; row += 1) {
+            for (colNr = 0; colNr < field[row].length; colNr += 1) {
+                checkDet(row, colNr, 1, 0, player, showFlag);
+                checkDet(row, colNr, 0, 1, player, showFlag);
+                checkDet(row, colNr, 1, 1, player, showFlag);
+                checkDet(row, colNr, 1, -1, player, showFlag);
             }
         }
         // **************************************************************
-        // haz no plaz?
+        // still space available?
         // **************************************************************
-        plaz = false;
-        for (spaltenr = 0; spaltenr < feld[0].length; spaltenr += 1) {
-            if (feld[feld.length - 1][spaltenr] === undefined) {
-                plaz = true;
+        space = false;
+        for (colNr = 0; colNr < field[0].length; colNr += 1) {
+            if (field[field.length - 1][colNr] === undefined) {
+                space = true;
             }
         }
     }
 
-    function spielzugAnimate(lastTime, topAkt, spaltenr) {
+    function playAnimate(lastTime, topAkt, colNr) {
         var date, time, timeDiff;
         var linearDistEachFrame;
         if (animate) {
@@ -421,30 +424,30 @@
                 topAkt = Math.min(topBis, topAkt + linearDistEachFrame);
                 lastTime = time;
                 // clear
-                spalte_context[spaltenr].clearRect(0, 0, colWidth, topBis + colWidth / 2 * 0.85);
+                col_context[colNr].clearRect(0, 0, colWidth, topBis + colWidth / 2 * 0.85);
                 // draw
-                drawCircle(topAkt, spaltenr, color[player], bColor[player]);
+                drawCircle(topAkt, colNr, color[player], bColor[player]);
                 // request new frame
                 window.requestAnimFrame(function () {
-                    spielzugAnimate(lastTime, topAkt, spaltenr);
+                    playAnimate(lastTime, topAkt, colNr);
                 });
             } else {
                 if (gSound) {
                     document.getElementById('click_sound').play();
                 }
                 animate = false;
-                kontrolle(player, true);
+                check(player, true);
 
-                if (viergewinnt) {
+                if (fourInARow) {
                     siege[player] = siege[player] + 1;
-                    if (modus === "easy" || modus === "medium" || modus === "hard") {
+                    if (mode === "easy" || mode === "medium" || mode === "hard") {
                         if (player === 0) {
                             updateStats("win");
                         } else {
                             updateStats("loose");
                         }
                     }
-                    if (modus === "online") {
+                    if (mode === "online") {
                         if ((player === 0 && user.role === "0") || (player === 1 && user.role === "1")) {
                             updateStats("win");
                         } else {
@@ -454,24 +457,24 @@
                     if (gSound) {
                         document.getElementById('ding_sound').play();
                     }
-                    //if (modus !== "2player" && player == 1) {
-                    //    meldung(navigator.mozL10n.get("lbcomputer") + " " + navigator.mozL10n.get("lbwin"), new Date().getTime());
+                    //if (mode !== "2player" && player == 1) {
+                    //    message(navigator.mozL10n.get("lb_computer") + " " + navigator.mozL10n.get("lb_win"), new Date().getTime());
                     //} else {
-                    //    meldung(navigator.mozL10n.get("lbplayer") + " " + (player + 1) + " " + navigator.mozL10n.get("lbwin"), new Date().getTime());
+                    //    message(navigator.mozL10n.get("lb_player") + " " + (player + 1) + " " + navigator.mozL10n.get("lb_win"), new Date().getTime());
                     //}
                     if (player === 0) {
-                        meldung(p1_name + " " + navigator.mozL10n.get("lbwin"), new Date().getTime());
+                        message(p1_name + " " + navigator.mozL10n.get("lb_win"), new Date().getTime());
                     } else {
-                        meldung(p2_name + " " + navigator.mozL10n.get("lbwin"), new Date().getTime());
+                        message(p2_name + " " + navigator.mozL10n.get("lb_win"), new Date().getTime());
                     }
                 } else {
-                    if (!plaz) {
+                    if (!space) {
                         updateStats("draw");
-                        meldung(navigator.mozL10n.get("lbdraw"), new Date().getTime());
+                        message(navigator.mozL10n.get("lb_draw"), new Date().getTime());
                     } else {
                         player = 1 - player;
                         setLights();
-                        if (modus !== "2player" && modus !== "online" && player === 1) {
+                        if (mode !== "2player" && mode !== "online" && player === 1) {
                             ai();
                         }
                     }
@@ -480,11 +483,11 @@
         }
     }
 
-    function spielzug(spaltenr) {
+    function play(colNr) {
         var date, time;
         if (fromOnline) {
             fromOnline = false;
-            if (modus === "online") {
+            if (mode === "online") {
                 if ((player === 0 && user.role === "0") || (player === 1 && user.role === "1")) {
                     return;
                 }
@@ -492,20 +495,20 @@
         }
         if (!animate) {
             countRound = countRound + 1;
-            zeile = 0;
+            row = 0;
             topBis = 0;
-            while (zeile < feld.length && topBis === 0) {
-                if (feld[zeile][spaltenr] === undefined) {
+            while (row < field.length && topBis === 0) {
+                if (field[row][colNr] === undefined) {
                     animate = true;
-                    feld[zeile][spaltenr] = player;
-                    topBis = (feld.length - zeile - 0.5) * colWidth * 0.85;
+                    field[row][colNr] = player;
+                    topBis = (field.length - row - 0.5) * colWidth * 0.85;
                     date = new Date();
                     time = date.getTime();
                     topAkt = -30;
-                    spielzugAnimate(time, topAkt, spaltenr);
+                    playAnimate(time, topAkt, colNr);
                     break;
                 }
-                zeile = zeile + 1;
+                row = row + 1;
             }
         }
     }
@@ -524,7 +527,7 @@
         }
 
         socket.on('connect', function () {
-            //$.mobile.showPageLoadingMsg("a", navigator.mozL10n.get("lbwait"), false);
+            //$.mobile.showPageLoadingMsg("a", navigator.mozL10n.get("lb_wait"), false);
         });
 
         socket.on('startgame', function (data) {
@@ -539,22 +542,22 @@
                     to: user.opponent,
                     name: $inputName.val(),
                     pic: gSendImage,
-                    country: 0,
-                    points: 0,
-                    rank: 0
+                    country: gCountry,
+                    win: onlineWin,
+                    loose: onlineLoose
                 });
                 lastStart = user.id;
                 onExit = false;
-                if (modus !== null) {
+                if (mode !== null) {
                     $.mobile.changePage('#title', {transition: 'slide', reverse: true});
                 }
                 animate = false;
-                leeren();
-                spiele = 0;
+                clearBoard();
+                games = 0;
                 player = 0;
                 siege = [0, 0];
                 setLights();
-                modus = "online";
+                mode = "online";
                 if (user.role === "0") {
                     if (gOwnImage) {
                         $("#P1icon").attr("src", $inputImage.attr('src'));
@@ -566,15 +569,15 @@
                     if (gOwnName) {
                         p1_name = $inputName.val();
                     } else {
-                        p1_name = navigator.mozL10n.get("lbplayer1");
+                        p1_name = navigator.mozL10n.get("lb_player1");
                     }
                     $("#P2icon").attr("src", "Images/online.png");
                     $("#P2icon2").attr("src", "Images/online.png");
-                    p2_name = navigator.mozL10n.get("btonline");
+                    p2_name = navigator.mozL10n.get("bt_online");
                 } else {
                     $("#P1icon").attr("src", "Images/online.png");
                     $("#P1icon2").attr("src", "Images/online.png");
-                    p1_name = navigator.mozL10n.get("btonline");
+                    p1_name = navigator.mozL10n.get("bt_online");
                     if (gOwnImage) {
                         $("#P2icon").attr("src", $inputImage.attr('src'));
                         $("#P2icon2").attr("src", $inputImage.attr('src'));
@@ -585,7 +588,7 @@
                     if (gOwnName) {
                         p2_name = $inputName.val();
                     } else {
-                        p2_name = navigator.mozL10n.get("lbplayer1");
+                        p2_name = navigator.mozL10n.get("lb_player1");
                     }
                 }
                 $("#P1name").html(p1_name);
@@ -600,7 +603,7 @@
             if (countRound === data.round && lastRound !== data.round) {
                 lastRound = data.round;
                 fromOnline = true;
-                spielzug(data.col);
+                play(data.col);
             }
         });
 
@@ -648,9 +651,9 @@
         if (gOwnName) {
             p1_name = $inputName.val();
         } else {
-            p1_name = navigator.mozL10n.get("lbplayer");
+            p1_name = navigator.mozL10n.get("lb_player");
         }
-        p2_name = navigator.mozL10n.get("lbcomputer");
+        p2_name = navigator.mozL10n.get("lb_computer");
         $("#P1name").html(p1_name);
         $("#P1name2").html(p1_name);
         $("#P2name").html(p2_name);
@@ -663,23 +666,23 @@
     }
 
     function easy_click() {
-        modus = "easy";
+        mode = "easy";
         p_computer();
     }
 
     function medium_click() {
-        modus = "medium";
+        mode = "medium";
         p_computer();
     }
 
     function hard_click() {
-        modus = "hard";
+        mode = "hard";
         p_computer();
     }
 
     function back() {
         //window.location = "#title";
-        if (modus === "online") {
+        if (mode === "online") {
             socket.disconnect();
             $('#btonline').removeClass('ui-disabled');
             $('#btonline2').removeClass('ui-disabled');
@@ -689,11 +692,11 @@
         contentFormatting();
         $.mobile.changePage('#title', {transition: 'slide', reverse: true});
         animate = false;
-        leeren();
-        spiele = 0;
+        clearBoard();
+        games = 0;
         player = 0;
         siege = [0, 0];
-        modus = null;
+        mode = null;
     }
 
     function closePop() {
@@ -703,129 +706,129 @@
         $.mobile.changePage('#title', {transition: 'pop', reverse: true});
     }
 
-    function spielzugCheck(spaltenr) {
-        if (modus === "online") {
+    function playCheck(colNr) {
+        if (mode === "online") {
             if ((player === 1 && user.role === "0") || (player === 0 && user.role === "1")) {
             } else {
-                socket.emit('playsend', {to: user.opponent, col: spaltenr, round: countRound});
-                spielzug(spaltenr);
+                socket.emit('playsend', {to: user.opponent, col: colNr, round: countRound});
+                play(colNr);
             }
         } else {
-            spielzug(spaltenr);
+            play(colNr);
         }
     }
 
-    function rating(player, compiZeile, compiSpalte) {
+    function ratingDet(player, computerRow, computerCol) {
         var a, b;
-        moeglichanz = 0;
-        steinetotal = 0;
-        steinebest = 0;
+        numPossible = 0;
+        stoneTotal = 0;
+        stoneBest = 0;
         // **************************************************************
         // horizontal
         // **************************************************************
-        for (a = compiSpalte - 3; a <= compiSpalte; a += 1) {
-            if (a >= 0 && a + 3 < feld[0].length) {
-                moeglichflag = true;
-                steinecount = 0;
+        for (a = computerCol - 3; a <= computerCol; a += 1) {
+            if (a >= 0 && a + 3 < field[0].length) {
+                possibleFlag = true;
+                stoneCount = 0;
                 for (b = 0; b <= 3; b += 1) {
-                    if (feld[compiZeile][a + b] !== undefined) {
-                        if (feld[compiZeile][a + b] === player) {
-                            //eins von meinen
-                            steinecount = steinecount + 1;
+                    if (field[computerRow][a + b] !== undefined) {
+                        if (field[computerRow][a + b] === player) {
+                            //my stone
+                            stoneCount = stoneCount + 1;
                         } else {
-                            //4 unmöglich
-                            moeglichflag = false;
+                            //4 impossible
+                            possibleFlag = false;
                         }
                     }
                 }
-                if (moeglichflag) {
-                    moeglichanz = moeglichanz + 1;
-                    steinetotal = steinetotal + steinecount;
-                    if (steinecount > steinebest) {
-                        steinebest = steinecount;
+                if (possibleFlag) {
+                    numPossible = numPossible + 1;
+                    stoneTotal = stoneTotal + stoneCount;
+                    if (stoneCount > stoneBest) {
+                        stoneBest = stoneCount;
                     }
                 }
             }
         }
         // **************************************************************
-        // vertikal for (a = compiZeile + 3; a == compiZeile; a -= 1) {
+        // vertical for (a = computerRow + 3; a == computerRow; a -= 1) {
         // **************************************************************
-        for (a = compiZeile + 3; a >= compiZeile; a -= 1) {
-            if (a - 3 >= 0 && a < feld.length) {
-                moeglichflag = true;
-                steinecount = 0;
+        for (a = computerRow + 3; a >= computerRow; a -= 1) {
+            if (a - 3 >= 0 && a < field.length) {
+                possibleFlag = true;
+                stoneCount = 0;
                 for (b = 0; b <= 3; b += 1) {
-                    if (feld[a - b][compiSpalte] !== undefined) {
-                        if (feld[a - b][compiSpalte] === player) {
-                            //eins von meinen
-                            steinecount = steinecount + 1;
+                    if (field[a - b][computerCol] !== undefined) {
+                        if (field[a - b][computerCol] === player) {
+                            //my stone
+                            stoneCount = stoneCount + 1;
                         } else {
-                            //4 unmöglich
-                            moeglichflag = false;
+                            //4 impossible
+                            possibleFlag = false;
                         }
                     }
                 }
-                if (moeglichflag) {
-                    moeglichanz = moeglichanz + 1;
-                    steinetotal = steinetotal + steinecount;
-                    if (steinecount > steinebest) {
-                        steinebest = steinecount;
-                    }
-                }
-            }
-        }
-
-        // **************************************************************
-        // schräg /
-        // **************************************************************
-        for (a = 3; a >= 0; a -= 1) {
-            if (compiSpalte - a >= 0 && compiSpalte - a + 3 < feld[0].length && compiZeile - a >= 0 && compiZeile - a + 3 < feld.length) {
-                moeglichflag = true;
-                steinecount = 0;
-                for (b = 0; b <= 3; b += 1) {
-                    if (feld[compiZeile - a + b][compiSpalte - a + b] !== undefined) {
-                        if (feld[compiZeile - a + b][compiSpalte - a + b] === player) {
-                            //eins von meinen
-                            steinecount = steinecount + 1;
-                        } else {
-                            //4 unmöglich
-                            moeglichflag = false;
-                        }
-                    }
-                }
-                if (moeglichflag) {
-                    moeglichanz = moeglichanz + 1;
-                    steinetotal = steinetotal + steinecount;
-                    if (steinecount > steinebest) {
-                        steinebest = steinecount;
+                if (possibleFlag) {
+                    numPossible = numPossible + 1;
+                    stoneTotal = stoneTotal + stoneCount;
+                    if (stoneCount > stoneBest) {
+                        stoneBest = stoneCount;
                     }
                 }
             }
         }
 
         // **************************************************************
-        // schräg \
+        // diagonal /
         // **************************************************************
         for (a = 3; a >= 0; a -= 1) {
-            if (compiSpalte - a >= 0 && compiSpalte - a + 3 < feld[0].length && compiZeile + a < feld.length && compiZeile + a - 3 >= 0) {
-                moeglichflag = true;
-                steinecount = 0;
+            if (computerCol - a >= 0 && computerCol - a + 3 < field[0].length && computerRow - a >= 0 && computerRow - a + 3 < field.length) {
+                possibleFlag = true;
+                stoneCount = 0;
                 for (b = 0; b <= 3; b += 1) {
-                    if (feld[compiZeile + a - b][compiSpalte - a + b] !== undefined) {
-                        if (feld[compiZeile + a - b][compiSpalte - a + b] === player) {
-                            //eins von meinen
-                            steinecount = steinecount + 1;
+                    if (field[computerRow - a + b][computerCol - a + b] !== undefined) {
+                        if (field[computerRow - a + b][computerCol - a + b] === player) {
+                            //my stone
+                            stoneCount = stoneCount + 1;
                         } else {
-                            //4 unmöglich
-                            moeglichflag = false;
+                            //4 impossible
+                            possibleFlag = false;
                         }
                     }
                 }
-                if (moeglichflag) {
-                    moeglichanz = moeglichanz + 1;
-                    steinetotal = steinetotal + steinecount;
-                    if (steinecount > steinebest) {
-                        steinebest = steinecount;
+                if (possibleFlag) {
+                    numPossible = numPossible + 1;
+                    stoneTotal = stoneTotal + stoneCount;
+                    if (stoneCount > stoneBest) {
+                        stoneBest = stoneCount;
+                    }
+                }
+            }
+        }
+
+        // **************************************************************
+        // diagonal \
+        // **************************************************************
+        for (a = 3; a >= 0; a -= 1) {
+            if (computerCol - a >= 0 && computerCol - a + 3 < field[0].length && computerRow + a < field.length && computerRow + a - 3 >= 0) {
+                possibleFlag = true;
+                stoneCount = 0;
+                for (b = 0; b <= 3; b += 1) {
+                    if (field[computerRow + a - b][computerCol - a + b] !== undefined) {
+                        if (field[computerRow + a - b][computerCol - a + b] === player) {
+                            //my stone
+                            stoneCount = stoneCount + 1;
+                        } else {
+                            //4 impossible
+                            possibleFlag = false;
+                        }
+                    }
+                }
+                if (possibleFlag) {
+                    numPossible = numPossible + 1;
+                    stoneTotal = stoneTotal + stoneCount;
+                    if (stoneCount > stoneBest) {
+                        stoneBest = stoneCount;
                     }
                 }
             }
@@ -841,61 +844,61 @@
 
     function ai() {
         var a;
-        wertung = [];
-        zeigenflag = false;
+        rating = [];
+        showFlag = false;
         // **************************************************************
-        // wertung: xyyzz
-        //    - x: maximal vorhanden
-        //    - yy: möglichkeiten, 4 zu machen
-        //    - zz: total vorhanden
+        // rating: xyyzz
+        //    - x: longest stone chain
+        //    - yy: possibilities to make 4
+        //    - zz: total stones around
         //
-        //    - 0: spalte nicht spielbar (schon voll)
-        //    - 1: spalte spielbar, lässt aber gegner gewinnen
-        //    - 2: spalte spielbar
-        //    - 50000: viergewinnt verhindern
-        //    - 60000: viergewinnt
+        //    - 0: column not available (full)
+        //    - 1: column available, but opponent will win
+        //    - 2: column available
+        //    - 50000: prevent 4 in a row
+        //    - 60000: 4 in a row
         //
         // **************************************************************
-        //    punktewertung pro spalte:
-        //    - wieviele möglichkeiten, 4 zu machen (alle richtungen, positionen) gibt es hier
-        //        (felder noch leer oder meine)
-        //    - wieviele steine sind dazu schon vorhanden (gesamthaft alle varianten, höchste variante)
-        //    - wieviele steine sind dazu noch nötig (auffüllen)?
+        //    rating per column:
+        //    - number of possibilities to make 4 (all directions, all positions) from here
+        //        (fields still empty or mine)
+        //    - how many stones are already there (total for all possibilities, longest chain)
+        //    - how many stones are still needed (fill up)?
         // **************************************************************
-        for (compiSpalte = 0; compiSpalte < feld[0].length; compiSpalte += 1) {
-            wertung[compiSpalte] = 0;
-            for (compiZeile = 0; compiZeile < feld.length; compiZeile += 1) {
-                if (feld[compiZeile][compiSpalte] === undefined) {
-                    feld[compiZeile][compiSpalte] = player;
-                    rating(player, compiZeile, compiSpalte);
-                    wertung[compiSpalte] = 10000 * steinebest + 100 * moeglichanz + steinetotal + 2;
-                    feld[compiZeile][compiSpalte] = undefined;
+        for (computerCol = 0; computerCol < field[0].length; computerCol += 1) {
+            rating[computerCol] = 0;
+            for (computerRow = 0; computerRow < field.length; computerRow += 1) {
+                if (field[computerRow][computerCol] === undefined) {
+                    field[computerRow][computerCol] = player;
+                    ratingDet(player, computerRow, computerCol);
+                    rating[computerCol] = 10000 * stoneBest + 100 * numPossible + stoneTotal + 2;
+                    field[computerRow][computerCol] = undefined;
                     break;
                 }
             }
         }
 
         // **************************************************************
-        //    wert der spalte für gegner ermitteln
-        //    dort spielen, falls höher als bester eigener wert
+        //    get rating for the column for the opponent
+        //    play there if the value is higher than highest of my values
         // **************************************************************
-        bestwertung[0] = 0;
-        for (a = 0; a < wertung.length; a += 1) {
-            if (wertung[a] > bestwertung[0]) {
-                bestwertung[0] = wertung[a];
+        bestRating[0] = 0;
+        for (a = 0; a < rating.length; a += 1) {
+            if (rating[a] > bestRating[0]) {
+                bestRating[0] = rating[a];
             }
         }
 
         player = 1 - player;
-        for (compiSpalte = 0; compiSpalte < feld[0].length; compiSpalte += 1) {
-            for (compiZeile = 0; compiZeile < feld.length; compiZeile += 1) {
-                if (feld[compiZeile][compiSpalte] === undefined) {
-                    feld[compiZeile][compiSpalte] = player;
-                    rating(player, compiZeile, compiSpalte);
-                    if (10000 * steinebest + 100 * moeglichanz + steinetotal + 2 > bestwertung[0]) {
-                        wertung[compiSpalte] = 10000 * steinebest + 100 * moeglichanz + steinetotal + 2;
+        for (computerCol = 0; computerCol < field[0].length; computerCol += 1) {
+            for (computerRow = 0; computerRow < field.length; computerRow += 1) {
+                if (field[computerRow][computerCol] === undefined) {
+                    field[computerRow][computerCol] = player;
+                    ratingDet(player, computerRow, computerCol);
+                    if (10000 * stoneBest + 100 * numPossible + stoneTotal + 2 > bestRating[0]) {
+                        rating[computerCol] = 10000 * stoneBest + 100 * numPossible + stoneTotal + 2;
                     }
-                    feld[compiZeile][compiSpalte] = undefined;
+                    field[computerRow][computerCol] = undefined;
                     break;
                 }
             }
@@ -903,97 +906,97 @@
         player = 1 - player;
 
         // **************************************************************
-        //    kann gegner über mir 4 machen? diese spalte tabu setzen
+        //    can opponent win above me? ignore this column
         // **************************************************************
         player = 1 - player;
-        for (compiSpalte = 0; compiSpalte < feld[0].length; compiSpalte += 1) {
-            for (compiZeile = 0; compiZeile < feld.length - 1; compiZeile += 1) {
-                if (feld[compiZeile][compiSpalte] === undefined) {
-                    feld[compiZeile + 1][compiSpalte] = player;
-                    kontrolle(player, zeigenflag);
-                    feld[compiZeile + 1][compiSpalte] = undefined;
+        for (computerCol = 0; computerCol < field[0].length; computerCol += 1) {
+            for (computerRow = 0; computerRow < field.length - 1; computerRow += 1) {
+                if (field[computerRow][computerCol] === undefined) {
+                    field[computerRow + 1][computerCol] = player;
+                    check(player, showFlag);
+                    field[computerRow + 1][computerCol] = undefined;
                     break;
                 }
             }
-            if (viergewinnt) {
-                //alert ("Aber ganz sicher nicht in spalte " + compiSpalte + " spielen!");
-                wertung[compiSpalte] = 1;
-                viergewinnt = false;
+            if (fourInARow) {
+                //alert ("But do not play in column " + computerCol);
+                rating[computerCol] = 1;
+                fourInARow = false;
             }
         }
         player = 1 - player;
 
         // **************************************************************
-        //    kann gegner 4 machen? dort spielen
+        //    can opponent make 4? play there
         // **************************************************************
         player = 1 - player;
-        for (compiSpalte = 0; compiSpalte < feld[0].length; compiSpalte += 1) {
-            for (compiZeile = 0; compiZeile < feld.length; compiZeile += 1) {
-                if (feld[compiZeile][compiSpalte] === undefined) {
-                    feld[compiZeile][compiSpalte] = player;
-                    kontrolle(player, zeigenflag);
-                    feld[compiZeile][compiSpalte] = undefined;
+        for (computerCol = 0; computerCol < field[0].length; computerCol += 1) {
+            for (computerRow = 0; computerRow < field.length; computerRow += 1) {
+                if (field[computerRow][computerCol] === undefined) {
+                    field[computerRow][computerCol] = player;
+                    check(player, showFlag);
+                    field[computerRow][computerCol] = undefined;
                     break;
                 }
             }
-            if (viergewinnt) {
-                //alert ("Zum nicht Verlieren: In spalte " + compiSpalte + " spielen!");
-                wertung[compiSpalte] = 50000;
-                viergewinnt = false;
+            if (fourInARow) {
+                //alert ("Play in column " + computerCol + " not to loose!");
+                rating[computerCol] = 50000;
+                fourInARow = false;
             }
         }
         player = 1 - player;
 
         // **************************************************************
-        //    kann ich 4 machen? dort spielen
+        //    can I make 4? play there
         // **************************************************************
-        for (compiSpalte = 0; compiSpalte < feld[0].length; compiSpalte += 1) {
-            for (compiZeile = 0; compiZeile < feld.length; compiZeile += 1) {
-                if (feld[compiZeile][compiSpalte] === undefined) {
-                    feld[compiZeile][compiSpalte] = player;
-                    kontrolle(player, zeigenflag);
-                    feld[compiZeile][compiSpalte] = undefined;
+        for (computerCol = 0; computerCol < field[0].length; computerCol += 1) {
+            for (computerRow = 0; computerRow < field.length; computerRow += 1) {
+                if (field[computerRow][computerCol] === undefined) {
+                    field[computerRow][computerCol] = player;
+                    check(player, showFlag);
+                    field[computerRow][computerCol] = undefined;
                     break;
                 }
             }
-            if (viergewinnt) {
-                //alert ("Zum Gewinnen: In spalte " + compiSpalte + " spielen!");
-                wertung[compiSpalte] = 60000;
-                viergewinnt = false;
+            if (fourInARow) {
+                //alert ("Play in column " + computerCol + " to win!");
+                rating[computerCol] = 60000;
+                fourInARow = false;
             }
         }
 
         // **************************************************************
-        //    beste spalte wählen, dort spielen
+        //    choose best column, play there
         // **************************************************************
-        bestwertung = wertung.slice();
-        bestwertung.sort(numSort);
-        bestwertung.reverse();
+        bestRating = rating.slice();
+        bestRating.sort(numSort);
+        bestRating.reverse();
 
-        spaltenr = Math.round(Math.random() * 6); //Zufallszahl im Bereich von 0 bis 6
+        colNr = Math.round(Math.random() * 6); //random number between 0 and 6
 
-        if (modus === "hard") {
-            while (wertung[spaltenr] !== bestwertung[0]) {
-                spaltenr = Math.round(Math.random() * 6); //Zufallszahl im Bereich von 0 bis 6
+        if (mode === "hard") {
+            while (rating[colNr] !== bestRating[0]) {
+                colNr = Math.round(Math.random() * 6); //random number between 0 and 6
             }
         }
-        if (modus === "medium") {
-            while (wertung[spaltenr] < bestwertung[1] || wertung[spaltenr] === 0) {
-                spaltenr = Math.round(Math.random() * 6); //Zufallszahl im Bereich von 0 bis 6
+        if (mode === "medium") {
+            while (rating[colNr] < bestRating[1] || rating[colNr] === 0) {
+                colNr = Math.round(Math.random() * 6); //random number between 0 and 6
             }
         }
-        if (modus === "easy") {
-            while (wertung[spaltenr] < bestwertung[2] || wertung[spaltenr] === 0) {
-                spaltenr = Math.round(Math.random() * 6); //Zufallszahl im Bereich von 0 bis 6
+        if (mode === "easy") {
+            while (rating[colNr] < bestRating[2] || rating[colNr] === 0) {
+                colNr = Math.round(Math.random() * 6); //random number between 0 and 6
             }
         }
-        spielzug(spaltenr);
+        play(colNr);
     }
 
     function playAgain() {
         //ios7-bug: $('#popupDialog').dialog('close');
         $.mobile.changePage('#game', {transition: 'pop', reverse: true});
-        if (modus !== "2player" && modus !== "online" && player === 1) {
+        if (mode !== "2player" && mode !== "online" && player === 1) {
             ai();
         }
     }
@@ -1017,9 +1020,10 @@
             imageObj = new Image();
         var max_width = 67;
         var max_height = 71;
-        var g_exif;
+        var g_exif = undefined;
+        g_exif.Orientation = undefined;
 
-        //create a hidden canvas object we can use to create the new resized image data
+        //create a hidden canvas object we can use to create the new re-sized image data
         canvas.id = "hiddenCanvas";
         canvas.width = max_width;
         canvas.height = max_height;
@@ -1084,7 +1088,7 @@
         };
     }
 
-    function inputName_change(inpName) {
+    function inputNameChange(inpName) {
         if (inpName.replace(/\s+/g, "") !== "") {
             localStorage.setItem('s_name', inpName);
             gOwnName = true;
@@ -1094,8 +1098,20 @@
         }
     }
 
+    function countrySearch(search) {
+        var listItems = $l_country.find("li");
+        listItems.each(function (idx, li) {
+            var country = $(li);
+            if (country[0].innerHTML.toLowerCase().indexOf(search) > -1 || search.length === 0) {
+                country.show();
+            } else {
+                country.hide();
+            }
+        });
+    }
+
     function image_click() {
-        $('#b_imageinput').click();
+        $('#b_image_input').click();
     }
 
     window.onload = function () {
@@ -1117,6 +1133,12 @@
                 gOwnName = true;
             }
         }
+        if (localStorage.getItem('s_country') !== null) {
+            $('#bt_country').empty();
+            gCountry = localStorage.getItem('s_country');
+            var countryLi = document.getElementsByClassName(gCountry);
+            document.getElementById("bt_country").appendChild(countryLi[0].cloneNode(true));
+        }
 
         url_param = url_query('theme');
         if (url_param) {
@@ -1131,23 +1153,23 @@
             }
         }
 
-        $('[id^= "btplay"]').click(function (e) {
+        $('[id^= "bt_play"]').click(function (e) {
             playerClick();
             e.preventDefault();
         });
-        $('[id^= "btonline"]').click(function (e) {
+        $('[id^= "bt_online"]').click(function (e) {
             online_click();
             e.preventDefault();
         });
-        $('[id^= "bteasy"]').click(function (e) {
+        $('[id^= "bt_easy"]').click(function (e) {
             easy_click();
             e.preventDefault();
         });
-        $('[id^= "btmed"]').click(function (e) {
+        $('[id^= "bt_med"]').click(function (e) {
             medium_click();
             e.preventDefault();
         });
-        $('[id^= "bthard"]').click(function (e) {
+        $('[id^= "bt_hard"]').click(function (e) {
             hard_click();
             e.preventDefault();
         });
@@ -1160,11 +1182,11 @@
             playAgain();
             e.preventDefault();
         });
-        $('.btimg').click(function (e) {
+        $('.bt_img').click(function (e) {
             image_click();
             e.preventDefault();
         });
-        $('.btclose').click(function (e) {
+        $('.bt_close').click(function (e) {
             closePop();
             e.preventDefault();
         });
@@ -1172,40 +1194,57 @@
             resetStats();
             e.preventDefault();
         });
-        $('#inputName').change(function () {
-            inputName_change(this.value);
+        $inputName.change(function () {
+            inputNameChange(this.value);
+        });
+        $txt_search.change(function () {
+            countrySearch(this.value.toLowerCase());
+        });
+        $txt_search.keyup(function () {
+            countrySearch(this.value.toLowerCase());
         });
 
-        for (i = 0; i < spalte.length; i += 1) {
-            //document.getElementById(spalte[i]).addEventListener("click", function () {spielzug(i)});
-            spalte_canvas[i] = document.getElementById(spalte[i]);
-            spalte_context[i] = spalte_canvas[i].getContext("2d");
+        for (i = 0; i < col.length; i += 1) {
+            //document.getElementById(col[i]).addEventListener("click", function () {play(i)});
+            col_canvas[i] = document.getElementById(col[i]);
+            col_context[i] = col_canvas[i].getContext("2d");
         }
 
-        document.getElementById("spalte0").addEventListener("click", function () {
-            spielzugCheck(0);
+        document.getElementById("col0").addEventListener("click", function () {
+            playCheck(0);
         });
-        document.getElementById("spalte1").addEventListener("click", function () {
-            spielzugCheck(1);
+        document.getElementById("col1").addEventListener("click", function () {
+            playCheck(1);
         });
-        document.getElementById("spalte2").addEventListener("click", function () {
-            spielzugCheck(2);
+        document.getElementById("col2").addEventListener("click", function () {
+            playCheck(2);
         });
-        document.getElementById("spalte3").addEventListener("click", function () {
-            spielzugCheck(3);
+        document.getElementById("col3").addEventListener("click", function () {
+            playCheck(3);
         });
-        document.getElementById("spalte4").addEventListener("click", function () {
-            spielzugCheck(4);
+        document.getElementById("col4").addEventListener("click", function () {
+            playCheck(4);
         });
-        document.getElementById("spalte5").addEventListener("click", function () {
-            spielzugCheck(5);
+        document.getElementById("col5").addEventListener("click", function () {
+            playCheck(5);
         });
-        document.getElementById("spalte6").addEventListener("click", function () {
-            spielzugCheck(6);
+        document.getElementById("col6").addEventListener("click", function () {
+            playCheck(6);
         });
 
-        jQuery.preLoadImages(["Images/lightredon.png", "Images/lightredoff.png", "Images/lightblueon.png", "Images/lightblueoff.png", "Images/title2eng.png"]);
-        document.getElementById('b_imageinput').addEventListener('change', resize_image, false);
+        $l_country.children().click(function () {
+            //alert(this.className);
+            //document.getElementById("bt_country").removeChild(document.getElementById("bt_country").childNodes[0]);
+            localStorage.setItem('s_country', this.className);
+            $('#bt_country').empty();
+            document.getElementById("bt_country").appendChild(this.cloneNode(true));
+            $('#popupCountry').popup('close');
+            $txt_search.val('');
+            countrySearch('');
+        });
+
+        jQuery.preLoadImages(["Images/red_on.png", "Images/red_off.png", "Images/blue_on.png", "Images/blue_off.png", "Images/title2eng.png"]);
+        document.getElementById('b_image_input').addEventListener('change', resize_image, false);
         $("#popupSettings_col_b").find("label").attr("style", "display:inline;");
 
         contentFormatting();
@@ -1252,6 +1291,6 @@
             }
         }
         updateStats();
-        //$("#inputName").attr("placeholder",navigator.mozL10n.get("lbname"));
+        //$("#inputName").attr("placeholder",navigator.mozL10n.get("lb_name"));
     });
 }());

@@ -20,18 +20,18 @@ div.name_landscape {margin-top: 0; width: 70px; white-space: nowrap; overflow: h
 img.title_small {width: 40%; margin-top: 8px; margin-bottom: 6px}
 h3.score {text-align: center; white-space: nowrap; overflow: hidden;}
 .nowrap {white-space: nowrap;}
-.dn {display: none;}
-.di {display: inline;}
-.db {display: block;}
+.di_n {display: none;}
+.di_i {display: inline;}
+.di_b {display: block;}
 .pl10 {padding-left: 10px;}
 .pt10 {padding-top: 10px;}
 .mr4 {margin-right: 4%;}
-.vm {vertical-align: middle;}
-.tl {text-align: left;}
-.tc {text-align: center;}
-.tr {text-align: right;}
-.fr {float: right;}
-.cr {clear: right;}
+.va_m {vertical-align: middle;}
+.tx_l {text-align: left;}
+.tx_c {text-align: center;}
+.tx_r {text-align: right;}
+.fl_r {float: right;}
+.cl_r {clear: right;}
 .h100 {height: 100px;}
 .w20 {width: 20%;}
 .w65 {width: 65%;}
@@ -41,6 +41,9 @@ h3.score {text-align: center; white-space: nowrap; overflow: hidden;}
 .stats {height: 20px; white-space: nowrap; font-weight: normal;}
 .win {background-color: #77D2A4;}
 .loose {background-color: #E48282;}
+#bt_country {margin: -7px 0 -5px -40px;}
+#d_country {margin: 10px 10px 10px 20px; max-height: calc(90vh - 50px); overflow-y: scroll; overflow-x: hidden}
+form {margin: 20px;}
 
 /* Red button theme for JQuery Mobile
  * - Use data-theme="r" for red versions of the default JQuery Mobile Buttons.
@@ -100,8 +103,8 @@ h3.score {text-align: center; white-space: nowrap; overflow: hidden;}
     text-decoration: none;
 }
 
-/* Red button theme for JQuery Mobile
- * - Use data-theme="r" for red versions of the default JQuery Mobile Buttons.
+/* Green button theme for JQuery Mobile
+ * - Use data-theme="g" for green versions of the default JQuery Mobile Buttons.
  ******************************************************************************************/
 
 .ui-btn-up-g {
