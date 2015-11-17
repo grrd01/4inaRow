@@ -43,6 +43,7 @@ h3.score {text-align: center; white-space: nowrap; overflow: hidden;}
 .loose {background-color: #E48282;}
 #bt_country {margin: -7px 0 -5px -40px;}
 #d_country {margin: 10px 10px 10px 20px; max-height: calc(90vh - 50px); overflow-y: scroll; overflow-x: hidden}
+#popupStart {padding: 20px; max-width: 95%;}
 form {margin: 20px;}
 
 /* Red button theme for JQuery Mobile

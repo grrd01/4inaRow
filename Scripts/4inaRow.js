@@ -43,6 +43,7 @@
     var $b_sound = $('#b_sound');
     var $l_country = $('#l_country');
     var $txt_search = $('#txt_search');
+    var $popupStart = $("#popupStart");
     var url_param;
 
     var rating = [];
@@ -60,6 +61,7 @@
     var topBis, topAkt;
     var colWidth, colHeight;
 
+    var maxValue;
     var onlineStart, onlineWin, onlineLoose,onlineDraw, onlineLeft;
     var easyStart, easyWin, easyLoose, easyDraw;
     var mediumStart, mediumWin, mediumLoose, mediumDraw;
@@ -74,6 +76,7 @@
     var countRound = 0;
     var onExit = false;
     var fromOnline = false;
+    var inGame;
 
     function drawCircle(topAkt, colNr, color, bColor) {
         col_context[colNr].beginPath();
@@ -112,7 +115,7 @@
             colWidth = Math.min((width - 140 - 40) / 7, (height - 20) / 6);
             colHeight = Math.max(6 * colWidth * 0.85, height - 95);
             $img_title.attr("style", "width:" + ($(window).width() * 0.6) + "px;");
-            $("#blankspace").attr("style", "height:" + ($(window).height() / 4 - $(window).width() / 20) + "px;");
+            $("#blank_space").attr("style", "height:" + ($(window).height() / 4 - $(window).width() / 20) + "px;");
             $("#page_landscape").attr("style", "display:inline;");
             $("#page_portrait").attr("style", "display:none;");
             $("#indicator_landscape_l").attr("style", "display:inline;");
@@ -198,14 +201,12 @@
     }
 
     function setLights() {
-        $("#P1light").attr("src", P1LightImg[player]);
-        $("#P2light").attr("src", P2LightImg[1 - player]);
-        $("#P1light2").attr("src", P1LightImg[player]);
-        $("#P2light2").attr("src", P2LightImg[1 - player]);
+        $(".P1light").attr("src", P1LightImg[player]);
+        $(".P2light").attr("src", P2LightImg[1 - player]);
     }
 
     function updateStats(statEvent) {
-        var storageItem, storageValue, maxValue;
+        var storageItem, storageValue;
 
         if (mode && statEvent) {
             storageItem = mode + "_" + statEvent;
@@ -277,11 +278,9 @@
     function playerClick() {
         mode = "2player";
         if (gOwnImage) {
-            $("#P1icon").attr("src", $inputImage.attr('src'));
-            $("#P1icon2").attr("src", $inputImage.attr('src'));
+            $(".P1icon").attr("src", $inputImage.attr('src'));
         } else {
-            $("#P1icon").attr("src", "Images/player.png");
-            $("#P1icon2").attr("src", "Images/player.png");
+            $(".P1icon").attr("src", "Images/player.png");
         }
         if (gOwnName) {
             p1_name = $inputName.val();
@@ -289,12 +288,9 @@
             p1_name = navigator.mozL10n.get("lb_player1");
         }
         p2_name = navigator.mozL10n.get("lb_player2");
-        $("#P1name").html(p1_name);
-        $("#P1name2").html(p1_name);
-        $("#P2name").html(p2_name);
-        $("#P2name2").html(p2_name);
-        $("#P2icon").attr("src", "Images/player.png");
-        $("#P2icon2").attr("src", "Images/player.png");
+        $(".P1name").html(p1_name);
+        $(".P2name").html(p2_name);
+        $(".P2icon").attr("src", "Images/player.png");
         setLights();
         onExit = false;
         $.mobile.changePage('#game', {transition: 'slide'});
@@ -513,10 +509,25 @@
         }
     }
 
+    $(document).on("pageshow", "#game", function () {
+        inGame = true;
+    });
+
+    function displayPopupStart() {
+        if (inGame) {
+            $popupStart.popup();
+            $popupStart.popup("open");
+        } else {
+            setTimeout(function () {
+                displayPopupStart();
+            }, 500);
+        }
+    }
+
     function online_click() {
+        inGame = false;
         $.mobile.changePage('#popupOnline', {transition: 'pop', role: 'dialog'});
-        $("#btonline").addClass('ui-disabled');
-        $("#btonline2").addClass('ui-disabled');
+        $(".bt_online").addClass('ui-disabled');
         if (!connection) {
             //socket = io.connect('http://localhost:3250');
             socket = io.connect('http://grrds4inarow.nodejitsu.com:80');
@@ -560,30 +571,24 @@
                 mode = "online";
                 if (user.role === "0") {
                     if (gOwnImage) {
-                        $("#P1icon").attr("src", $inputImage.attr('src'));
-                        $("#P1icon2").attr("src", $inputImage.attr('src'));
+                        $(".P1icon").attr("src", $inputImage.attr('src'));
                     } else {
-                        $("#P1icon").attr("src", "Images/player.png");
-                        $("#P1icon2").attr("src", "Images/player.png");
+                        $(".P1icon").attr("src", "Images/player.png");
                     }
                     if (gOwnName) {
                         p1_name = $inputName.val();
                     } else {
                         p1_name = navigator.mozL10n.get("lb_player1");
                     }
-                    $("#P2icon").attr("src", "Images/online.png");
-                    $("#P2icon2").attr("src", "Images/online.png");
+                    $(".P2icon").attr("src", "Images/online.png");
                     p2_name = navigator.mozL10n.get("bt_online");
                 } else {
-                    $("#P1icon").attr("src", "Images/online.png");
-                    $("#P1icon2").attr("src", "Images/online.png");
+                    $(".P1icon").attr("src", "Images/online.png");
                     p1_name = navigator.mozL10n.get("bt_online");
                     if (gOwnImage) {
-                        $("#P2icon").attr("src", $inputImage.attr('src'));
-                        $("#P2icon2").attr("src", $inputImage.attr('src'));
+                        $(".P2icon").attr("src", $inputImage.attr('src'));
                     } else {
-                        $("#P2icon").attr("src", "Images/player.png");
-                        $("#P2icon2").attr("src", "Images/player.png");
+                        $(".P2icon").attr("src", "Images/player.png");
                     }
                     if (gOwnName) {
                         p2_name = $inputName.val();
@@ -591,10 +596,8 @@
                         p2_name = navigator.mozL10n.get("lb_player1");
                     }
                 }
-                $("#P1name").html(p1_name);
-                $("#P1name2").html(p1_name);
-                $("#P2name").html(p2_name);
-                $("#P2name2").html(p2_name);
+                $(".P1name").html(p1_name);
+                $(".P2name").html(p2_name);
                 $.mobile.changePage('#game', {transition: 'slide'});
             }
         });
@@ -608,27 +611,63 @@
         });
 
         socket.on('userget', function (data) {
+            maxValue = Math.max(onlineWin, onlineLoose, data.win, data.loose, 1);
             if (user.role === "0") {
                 if (data.pic !== null) {
-                    $("#P2icon").attr("src", data.pic);
-                    $("#P2icon2").attr("src", data.pic);
+                    $(".P2icon").attr("src", data.pic);
                 }
                 if (data.name.length > 0) {
                     p2_name = data.name;
-                    $("#P2name").html(p2_name);
-                    $("#P2name2").html(p2_name);
+                    $('[id^= "P2name"]').html(p2_name);
                 }
+                if (gCountry) {
+                    document.getElementById("P1country").innerHTML = document.getElementById("l_country").getElementsByClassName(gCountry)[0].innerHTML;
+                    document.getElementById("P1country").className = gCountry;
+                } else {
+                    document.getElementById("P1country").innerHTML = "United Nations";
+                    document.getElementById("P1country").className = "flag _United_Nations";
+                }
+
+                if (data.country) {
+                    document.getElementById("P2country").innerHTML = document.getElementById("l_country").getElementsByClassName(data.country)[0].innerHTML;
+                    document.getElementById("P2country").className = data.country;
+                } else {
+                    document.getElementById("P2country").innerHTML = "United Nations";
+                    document.getElementById("P2country").className = "flag _United_Nations";
+                }
+                document.getElementById("P1online_win").style.width = (100 / maxValue * onlineWin) + "%";
+                document.getElementById("P1online_loose").style.width = (100 / maxValue * onlineLoose) + "%";
+                document.getElementById("P2online_win").style.width = (100 / maxValue * data.win) + "%";
+                document.getElementById("P2online_loose").style.width = (100 / maxValue * data.loose) + "%";
             } else {
                 if (data.pic !== null) {
-                    $("#P1icon").attr("src", data.pic);
-                    $("#P1icon2").attr("src", data.pic);
+                    $(".P1icon").attr("src", data.pic);
                 }
                 if (data.name.length > 0) {
                     p1_name = data.name;
-                    $("#P1name").html(p1_name);
-                    $("#P1name2").html(p1_name);
+                    $(".P1name").html(p1_name);
                 }
+                if (gCountry) {
+                    document.getElementById("P2country").innerHTML = document.getElementById("l_country").getElementsByClassName(gCountry)[0].innerHTML;
+                    document.getElementById("P2country").className = gCountry;
+                } else {
+                    document.getElementById("P2country").innerHTML = "United Nations";
+                    document.getElementById("P2country").className = "flag _United_Nations";
+                }
+
+                if (data.country) {
+                    document.getElementById("P1country").innerHTML = document.getElementById("l_country").getElementsByClassName(data.country)[0].innerHTML;
+                    document.getElementById("P1country").className = data.country;
+                } else {
+                    document.getElementById("P1country").innerHTML = "United Nations";
+                    document.getElementById("P1country").className = "flag _United_Nations";
+                }
+                document.getElementById("P1online_win").style.width = (100 / maxValue * data.win) + "%";
+                document.getElementById("P1online_loose").style.width = (100 / maxValue * data.loose) + "%";
+                document.getElementById("P2online_win").style.width = (100 / maxValue * onlineWin) + "%";
+                document.getElementById("P2online_loose").style.width = (100 / maxValue * onlineLoose) + "%";
             }
+            displayPopupStart();
         });
 
         socket.on('quit', function () {
@@ -642,11 +681,9 @@
 
     function p_computer() {
         if (gOwnImage) {
-            $("#P1icon").attr("src", $inputImage.attr('src'));
-            $("#P1icon2").attr("src", $inputImage.attr('src'));
+            $(".P1icon").attr("src", $inputImage.attr('src'));
         } else {
-            $("#P1icon").attr("src", "Images/player.png");
-            $("#P1icon2").attr("src", "Images/player.png");
+            $(".P1icon").attr("src", "Images/player.png");
         }
         if (gOwnName) {
             p1_name = $inputName.val();
@@ -654,12 +691,9 @@
             p1_name = navigator.mozL10n.get("lb_player");
         }
         p2_name = navigator.mozL10n.get("lb_computer");
-        $("#P1name").html(p1_name);
-        $("#P1name2").html(p1_name);
-        $("#P2name").html(p2_name);
-        $("#P2name2").html(p2_name);
-        $("#P2icon").attr("src", "Images/computer.png");
-        $("#P2icon2").attr("src", "Images/computer.png");
+        $(".P1name").html(p1_name);
+        $(".P2name").html(p2_name);
+        $(".P2icon").attr("src", "Images/computer.png");
         setLights();
         onExit = false;
         $.mobile.changePage('#game', {transition: 'slide'});
@@ -684,9 +718,7 @@
         //window.location = "#title";
         if (mode === "online") {
             socket.disconnect();
-            $('#btonline').removeClass('ui-disabled');
-            $('#btonline2').removeClass('ui-disabled');
-
+            $('.bt_online').removeClass('ui-disabled');
         }
         onExit = true;
         contentFormatting();
@@ -1144,32 +1176,28 @@
         if (url_param) {
             if (url_param === 'mi') {
                 $img_title.attr("src", "Images/title1_mi.png");
-                $('#popupDialog_t1').attr("src", "Images/title1_mi.png");
-                $('#popupDialog_t2').attr("src", "Images/title2_mi.png");
-                $('#popupInfo_t1').attr("src", "Images/title1_mi.png");
-                $('#popupInfo_t2').attr("src", "Images/title2_mi.png");
-                $('#popupSettings_t1').attr("src", "Images/title1_mi.png");
-                $('#popupSettings_t2').attr("src", "Images/title2_mi.png");
+                $('.tit1').attr("src", "Images/title1_mi.png");
+                $('.tit2').attr("src", "Images/title2_mi.png");
             }
         }
 
-        $('[id^= "bt_play"]').click(function (e) {
+        $(".bt_play").click(function (e) {
             playerClick();
             e.preventDefault();
         });
-        $('[id^= "bt_online"]').click(function (e) {
+        $(".bt_online").click(function (e) {
             online_click();
             e.preventDefault();
         });
-        $('[id^= "bt_easy"]').click(function (e) {
+        $(".bt_easy").click(function (e) {
             easy_click();
             e.preventDefault();
         });
-        $('[id^= "bt_med"]').click(function (e) {
+        $(".bt_med").click(function (e) {
             medium_click();
             e.preventDefault();
         });
-        $('[id^= "bt_hard"]').click(function (e) {
+        $(".bt_hard").click(function (e) {
             hard_click();
             e.preventDefault();
         });
@@ -1190,7 +1218,7 @@
             closePop();
             e.preventDefault();
         });
-        $('#btreset').click(function (e) {
+        $('#bt_reset').click(function (e) {
             resetStats();
             e.preventDefault();
         });
@@ -1205,35 +1233,17 @@
         });
 
         for (i = 0; i < col.length; i += 1) {
-            //document.getElementById(col[i]).addEventListener("click", function () {play(i)});
             col_canvas[i] = document.getElementById(col[i]);
             col_context[i] = col_canvas[i].getContext("2d");
+            (function (i) {
+                col_canvas[i].addEventListener("click", function () {
+                    playCheck(i);
+                });
+            })(i);
+
         }
 
-        document.getElementById("col0").addEventListener("click", function () {
-            playCheck(0);
-        });
-        document.getElementById("col1").addEventListener("click", function () {
-            playCheck(1);
-        });
-        document.getElementById("col2").addEventListener("click", function () {
-            playCheck(2);
-        });
-        document.getElementById("col3").addEventListener("click", function () {
-            playCheck(3);
-        });
-        document.getElementById("col4").addEventListener("click", function () {
-            playCheck(4);
-        });
-        document.getElementById("col5").addEventListener("click", function () {
-            playCheck(5);
-        });
-        document.getElementById("col6").addEventListener("click", function () {
-            playCheck(6);
-        });
-
         $l_country.children().click(function () {
-            //alert(this.className);
             //document.getElementById("bt_country").removeChild(document.getElementById("bt_country").childNodes[0]);
             localStorage.setItem('s_country', this.className);
             $('#bt_country').empty();
