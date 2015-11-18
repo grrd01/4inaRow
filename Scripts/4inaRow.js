@@ -453,11 +453,6 @@
                     if (gSound) {
                         document.getElementById('ding_sound').play();
                     }
-                    //if (mode !== "2player" && player == 1) {
-                    //    message(navigator.mozL10n.get("lb_computer") + " " + navigator.mozL10n.get("lb_win"), new Date().getTime());
-                    //} else {
-                    //    message(navigator.mozL10n.get("lb_player") + " " + (player + 1) + " " + navigator.mozL10n.get("lb_win"), new Date().getTime());
-                    //}
                     if (player === 0) {
                         message(p1_name + " " + navigator.mozL10n.get("lb_win"), new Date().getTime());
                     } else {
@@ -1052,8 +1047,7 @@
             imageObj = new Image();
         var max_width = 67;
         var max_height = 71;
-        var g_exif = undefined;
-        g_exif.Orientation = undefined;
+        var g_exif = {Orientation:undefined};
 
         //create a hidden canvas object we can use to create the new re-sized image data
         canvas.id = "hiddenCanvas";
