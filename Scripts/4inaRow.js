@@ -613,7 +613,7 @@
                 }
                 if (data.name.length > 0) {
                     p2_name = data.name;
-                    $('[id^= "P2name"]').html(p2_name);
+                    $(".P2name").html(p2_name);
                 }
                 if (gCountry) {
                     document.getElementById("P1country").innerHTML = document.getElementById("l_country").getElementsByClassName(gCountry)[0].innerHTML;
@@ -1238,7 +1238,7 @@
         }
 
         $l_country.children().click(function () {
-            //document.getElementById("bt_country").removeChild(document.getElementById("bt_country").childNodes[0]);
+            gCountry = this.className;
             localStorage.setItem('s_country', this.className);
             $('#bt_country').empty();
             document.getElementById("bt_country").appendChild(this.cloneNode(true));
