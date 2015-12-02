@@ -103,7 +103,12 @@
                     <table class="no_border">
                         <tr>
                             <td id="indicator_landscape_l" class="indicator_landscape">
-                                <img class="P1icon" src="Images/player.png" alt="P1" />
+                                <div class="fl_l p_rel o_vis">
+                                    <div class="P1country flag_left"></div>
+                                    <img class="P1icon fl_l" src="Images/player.png" alt="P1">
+                                    <div class="P1 win h4 cl_l fl_l"></div>
+                                    <div class="P1 loose h4 fl_l"></div>
+                                </div>
                                 <div class="P1name name_landscape"></div>
                                 <img class="P1light" src="Images/red_on.png" alt="P1" />
                             </td>
@@ -111,26 +116,38 @@
                                 <canvas id="col0"></canvas>&nbsp;<canvas id="col1"></canvas>&nbsp;<canvas id="col2"></canvas>&nbsp;<canvas id="col3"></canvas>&nbsp;<canvas id="col4"></canvas>&nbsp;<canvas id="col5"></canvas>&nbsp;<canvas id="col6"></canvas>
                             </td>
                             <td id="indicator_landscape_r" class="indicator_landscape">
-                                <img class="P2icon" src="Images/computer.png" alt="P2"/>
+                                <div class="fl_r p_rel o_vis">
+                                    <div class="P2country flag_right"></div>
+                                    <img class="P2icon fl_r" src="Images/player.png" alt="P2">
+                                    <div class="P2 win h4 cl_r fl_r"></div>
+                                    <div class="P2 loose h4 fl_r"></div>
+                                </div>
                                 <div class="P2name name_landscape"></div>
-                                <img class="P2light" src="Images/blue_off.png" alt="P2" />
+                                <img class="P2light" src="Images/blue_off.png" alt="P2"/>
                             </td>
                         </tr>
                     </table>
 
                 </div>
-                <fieldset id="indicator_portrait" class="ui-grid-a di_b">
-                    <div class="ui-block-a tx_l">
-                        <img class="P1icon" src="Images/player.png" alt="P1" />
-                        <img class="P1light" src="Images/red_on.png" alt="P1" />
-                        <div class="P1name name_portrait"></div>
+                <div id="indicator_portrait">
+                    <div class="fl_l p_rel">
+                        <div class="P1country flag_left"></div>
+                        <img class="P1icon fl_l" src="Images/player.png" alt="P1">
+                        <div class="P1 win h4 cl_l fl_l"></div>
+                        <div class="P1 loose h4 fl_l"></div>
                     </div>
-                    <div class="ui-block-b tx_r">
-                        <img class="P2light" src="Images/blue_off.png" alt="P2" />
-                        <img class="P2icon" src="Images/computer.png" alt="P2"/>
-                        <div class="P2name name_portrait"></div>
+                    <div class="fl_r p_rel">
+                        <div class="P2country flag_right"></div>
+                        <img class="P2icon fl_r" src="Images/player.png" alt="P2">
+                        <div class="P2 win h4 cl_r fl_r"></div>
+                        <div class="P2 loose h4 fl_r"></div>
                     </div>
-                </fieldset>
+                    <img class="P1light fl_l w26" src="Images/red_on.png" alt="P1">
+                    <img class="P2light fl_r w26" src="Images/blue_off.png"  alt="P2">
+                    <div class="P1name name_portrait cl_l fl_l"></div>
+                    <div class="P2name name_portrait fl_r"></div>
+                    <div class="cl_b"></div>
+                </div>
                 <a class="back" href="#" data-l10n-id="bt_back" data-direction="reverse" data-role="button" data-icon="arrow-l" data-theme="b">Back</a>
                 <!--a href="#popupStart" data-rel="popup" data-role="button" data-transition="pop" data-icon="arrow-d" data-iconpos="right" data-theme="c"-->
                 <div data-role="popup" id="popupStart" data-history="false">
@@ -138,14 +155,14 @@
                         <div class="ui-block-a tx_l">
                             <img class="P1icon" src="Images/player.png" alt="P2"/>
                             <div class="P1name"></div>
-                            <p id="P1country"></p>
+                            <p class="P1country"></p>
                             <div id="P1online_win" class="stats win"></div>
                             <div id="P1online_loose" class="stats loose"></div>
                         </div>
                         <div class="ui-block-b tx_r">
                             <img class="P2icon" src="Images/computer.png" alt="P2"/>
                             <div class="P2name"></div>
-                            <p id="P2country"></p>
+                            <p class="P2country"></p>
                             <div id="P2online_win" class="stats win fl_r"></div><div class="cl_r"></div>
                             <div id="P2online_loose" class="stats loose fl_r"></div>
                         </div>
@@ -255,7 +272,7 @@
                     <a class="bt_img" href="#" data-role="button"><img id="inputImage" src="Images/player.png" alt="Player" class="dark_grey" data-inline="true"/></a>
                     <div id="popupSettings_col_b">
                         <label for="inputName" data-l10n-id="lb_name" data-inline="true">Your name:</label>
-                        <input id="inputName" data-clear-btn="true" name="myname" value="" type="text" size="10" maxlength="10">
+                        <input id="inputName" data-clear-btn="true" value="" type="text" size="10" maxlength="10">
                         <div data-l10n-id="lb_country">Your country:</div>
                         <a href="#popupCountry" id="select_country" data-rel="popup" data-role="button" data-transition="pop" data-icon="arrow-d" data-iconpos="right" data-theme="c">
                             <ul id="bt_country">

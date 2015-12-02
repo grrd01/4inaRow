@@ -20,6 +20,8 @@ div.name_landscape {margin-top: 0; width: 70px; white-space: nowrap; overflow: h
 img.title_small {width: 40%; margin-top: 8px; margin-bottom: 6px}
 h3.score {text-align: center; white-space: nowrap; overflow: hidden;}
 .nowrap {white-space: nowrap;}
+.p_rel {position: relative;}
+.o_vis {overflow: visible}
 .di_n {display: none;}
 .di_i {display: inline;}
 .di_b {display: block;}
@@ -31,12 +33,17 @@ h3.score {text-align: center; white-space: nowrap; overflow: hidden;}
 .tx_c {text-align: center;}
 .tx_r {text-align: right;}
 .fl_r {float: right;}
+.fl_l {float: left;}
 .cl_r {clear: right;}
+.cl_l {clear: left;}
+.cl_b {clear: both;}
 .h100 {height: 100px;}
 .w20 {width: 21%;}
+.w26 {width: 26px;}
 .w65 {width: 65%;}
 .w80 {width: 80%;}
 .w100 {width: 100%;}
+.h4 {height: 4px;}
 .dark_grey {background-color: #404040;}
 .stats {height: 20px; white-space: nowrap; font-weight: normal;}
 .win {background-color: #77D2A4;}
@@ -45,6 +52,9 @@ h3.score {text-align: center; white-space: nowrap; overflow: hidden;}
 #d_country {margin: 10px 10px 10px 20px; max-height: calc(90vh - 50px); overflow-y: scroll; overflow-x: hidden}
 #popupStart {padding: 20px; max-width: 95%;}
 form {margin: 20px;}
+.flag_left {position: absolute; top: -16px; left: -8px;}
+.flag_right {position: absolute; top: -16px; right: -16px;}
+
 
 /* Red button theme for JQuery Mobile
  * - Use data-theme="r" for red versions of the default JQuery Mobile Buttons.
