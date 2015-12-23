@@ -1949,12 +1949,10 @@
         };
 
         $(window).resize(function () {
-            if ($.mobile.activePage.attr('id') === "popupSettings" && $(window).height() < gHeight && gWidth === $(window).width() ) {
+            if ($.mobile.activePage.attr('id') === "popupSettings" && gWidth === $(window).width() ) {
                 return;
-            } else {
-                contentFormatting();
             }
-
+            contentFormatting();
         });
 
         (function ($) {
