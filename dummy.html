@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+* grrd's 4 in a Row
+* Copyright (c) 2012 Gerard Tyedmers, grrd@gmx.net
+* Licensed under the MPL License
+-->
+
+<html>
+<!--html manifest="4inaRowOnline.manifest"-->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes" >
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" >
+        <link rel="stylesheet" href="Scripts/4inaRow.css" />
+        <link rel="stylesheet" href="Scripts/jquery.mobile-1.3.2.min.css" />
+        <link rel="stylesheet" href="Scripts/flags32.css">
+        <link rel="apple-touch-icon" type="image/x-icon" href="Images/apple-touch-icon-57x57.png" >
+        <link rel="apple-touch-icon" sizes="72x72" href="Images/apple-touch-icon-72x72.png" >
+        <link rel="apple-touch-icon" sizes="114x114" href="Images/apple-touch-icon-114x114.png" >
+        <link rel="apple-touch-icon" sizes="144x144" href="Images/apple-touch-icon-144x144.png" >
+        <link rel="apple-touch-startup-image" href="Images/apple-touch-startup-image-320x480.png" >
+        <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" >
+        <link rel="prefetch" type="application/l10n" href="Locales/locales.ini" />
+        <title>grrd's 4 in a Row</title>
+    </head>
+
+    <body>
+
+        <div data-role="page" id="title" data-theme="a">
+
+            <div data-role="content">
+                <img id="img_title" src="Images/title1.png" alt="grrd's 4 in a Row" class="w100" />
+                <noscript> is a connect-4 game for one or two players with a decent AI, selectable difficulty from Kid to Pro that works well on your smartphone.</noscript>
+                <div data-role="controlgroup" data-type="horizontal" class="fl_r">
+                    <a href="#popupSettings" class="bt_small" data-role="button" data-rel="dialog" data-transition="pop"><img class="bt_small" src="Images/settings.png" alt="settings"/></a>
+                </div>
+
+            </div><!-- /content -->
+
+        </div><!-- /page -->
+
+        <!-- Start of 5th page: #Settings -->
+        <div data-role="page" id="popupSettings">
+            <div data-role="header" data-theme="a" class="tx_c">
+                <img src="Images/title1.png" alt="4 in a row" class="tit1 title_small" data-inline="true"/>
+                <img src="Images/title2eng.png" alt="4 in a row" class="tit2 title_small" data-inline="true"/>
+            </div>
+            <div class="di_n"><input type="file" id="b_image_input" accept="image/*"></div>
+            <div data-role="content" class="popup_content" data-theme="d">
+                <div id="popupSettings_portrait">
+                    <div data-l10n-id="lb_img" data-inline="true">Your picture:</div>
+                    <a class="bt_img" href="#" data-role="button"><img id="inputImage" src="Images/player.png" alt="Player" class="dark_grey" data-inline="true"/></a>
+                    <div id="popupSettings_col_b">
+                        <label for="inputName" data-l10n-id="lb_name" data-inline="true">Your name:</label>
+                        <input id="inputName" data-clear-btn="true" value="" type="text" size="10" maxlength="10">
+                        <div data-l10n-id="lb_country">Your country:</div>
+                        <div data-role="fieldcontain">
+                            <label for="b_sound" data-l10n-id="lb_sound">Play sounds</label>
+                            <select name="b_sound" id="b_sound" data-role="slider">
+                                <option value="off">Off</option>
+                                <option value="on">On</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <fieldset class="ui-grid-a di_n" id="popupSettings_landscape">
+                    <div class="ui-block-a">
+                        <div data-l10n-id="lb_img" data-inline="true">Your picture:</div>
+                        <a class="bt_img" href="#" data-role="button"><img id="inputImage_l" src="Images/player.png" alt="Player" class="dark_grey" data-inline="true"/></a>
+                    </div>
+                    <div class="ui-block-b" id="popupSettings_landscape_b">
+                    </div>
+                </fieldset>
+                <a class="bt_close" href="#" data-l10n-id="bt_ok" data-role="button" data-theme="c" data-icon="check">OK</a>
+
+            </div>
+        </div><!-- /page Settings -->
+
+
+        <script type="text/javascript" src="Scripts/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="Scripts/jquery.mobile-1.3.2.min.js"></script>
+        <script type="text/javascript" src="Scripts/l10n.js"></script>
+        <script type="text/javascript" src='Scripts/exif.js'></script>
+        <script type="text/javascript" src='Scripts/binaryajax.js'></script>
+        <!--script type="text/javascript" src="http://4inarow-grrd.rhcloud.com:80/socket.io/socket.io.js"></script-->
+    </body>
+</html>
