@@ -1358,9 +1358,22 @@
         if (url_param) {
             if (url_param !== navigator.mozL10n.language.code) {
                 navigator.mozL10n.language.code = url_param;
+                return;
             }
         }
         updateStats();
         //$("#inputName").attr("placeholder",navigator.mozL10n.get("lb_name"));
+        var items = $l_country.find("li").get(); //$("#l_country li").get();
+        items.sort(function(a,b){
+            var keyA = $(a).text();
+            var keyB = $(b).text();
+
+            if (keyA < keyB) return -1;
+            if (keyA > keyB) return 1;
+            return 0;
+        });
+        $.each(items, function(i, li){
+            $l_country.append(li);
+        });
     });
 }());
