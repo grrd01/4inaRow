@@ -44,7 +44,6 @@
     var $b_sound = $('#b_sound');
     var $l_country = $('#l_country');
     var $txt_search = $('#txt_search');
-    //var $popupStart = $("#popupStart");
     var url_param;
 
     var rating = [];
@@ -63,10 +62,10 @@
     var colWidth, colHeight;
 
     var maxValue;
-    var onlineStart, onlineWin, onlineLoose,onlineDraw, onlineLeft;
-    var easyStart, easyWin, easyLoose, easyDraw;
-    var mediumStart, mediumWin, mediumLoose, mediumDraw;
-    var hardStart, hardWin, hardLoose, hardDraw;
+    var onlineWin, onlineLoose;
+    var easyWin, easyLoose;
+    var mediumWin, mediumLoose;
+    var hardWin, hardLoose;
     var onlineOpponentWin, onlineOpponentLoose;
 
     var socket;
@@ -78,9 +77,8 @@
     var countRound = 0;
     var onExit = false;
     var fromOnline = false;
-    var inGame;
 
-    var localStorageOK = (function() {
+    var localStorageOK = (function () {
         var mod = 'modernizr';
         try {
             localStorage.setItem(mod, mod);
@@ -103,6 +101,8 @@
 
     function contentFormatting() {
         var i, j;
+        var gradient;
+
         gHeight = $(window).height();
         gWidth = $(window).width();
         if (gHeight > gWidth) {
@@ -157,17 +157,19 @@
                 break;
             }
             for (i = 0; i < field.length; i += 1) {
+                gradient=col_context[j].createLinearGradient(0,
+                    (field.length - i - 1)* 0.9 * colWidth,
+                    colWidth * 0.7,
+                    (field.length - i - 1)* 0.9 * colWidth + colWidth * 0.7);
+                gradient.addColorStop(0,"black");
+                gradient.addColorStop(1,"grey");
+
                 col_context[j].beginPath();
                 col_context[j].arc(colWidth / 2, (field.length - i - 0.5) * colWidth * 0.85, colWidth / 2 * 0.7, 0, 2 * Math.PI, false);
                 col_context[j].lineWidth = colWidth / 10;
-                col_context[j].strokeStyle = "#212121";
+                col_context[j].strokeStyle = gradient;
                 col_context[j].stroke();
-
-                col_context[j].beginPath();
-                col_context[j].arc(colWidth / 2, (field.length - i - 0.5) * colWidth * 0.85, colWidth / 2 * 0.7, 1.8 * Math.PI, 0.8 * Math.PI, false);
-                col_context[j].lineWidth = col_canvas[j].width / 10;
-                col_context[j].strokeStyle = "grey";
-                col_context[j].stroke();
+                //break;
             }
         }
 
@@ -256,23 +258,14 @@
             storageValue = parseInt(localStorage.getItem(storageItem) || 0) + 1;
             localStorage.setItem(storageItem, storageValue);
         }
-        easyStart = localStorage.getItem('easy_start') || 0;
         easyWin = localStorage.getItem('easy_win') || 0;
         easyLoose = localStorage.getItem('easy_loose') || 0;
-        easyDraw = localStorage.getItem('easy_draw') || 0;
-        mediumStart = localStorage.getItem('medium_start') || 0;
         mediumWin = localStorage.getItem('medium_win') || 0;
         mediumLoose = localStorage.getItem('medium_loose') || 0;
-        mediumDraw = localStorage.getItem('medium_draw') || 0;
-        hardStart = localStorage.getItem('hard_start') || 0;
         hardWin = localStorage.getItem('hard_win') || 0;
         hardLoose = localStorage.getItem('hard_loose') || 0;
-        hardDraw = localStorage.getItem('hard_draw') || 0;
-        onlineStart = localStorage.getItem('online_Start') || 0;
         onlineWin = localStorage.getItem('online_win') || 0;
         onlineLoose = localStorage.getItem('online_loose') || 0;
-        onlineDraw = localStorage.getItem('online_draw') || 0;
-        onlineLeft = localStorage.getItem('online_left') || 0;
 
         maxValue = Math.max(easyWin, easyLoose, mediumWin, mediumLoose, hardWin, hardLoose, onlineWin, onlineLoose, 1);
 
@@ -565,23 +558,7 @@
         }
     }
 
-    $(document).on("pageshow", "#game", function () {
-        inGame = true;
-    });
-
-    /*function displayPopupStart() {
-        if (inGame) {
-            $popupStart.popup();
-            $popupStart.popup("open");
-        } else {
-            setTimeout(function () {
-                displayPopupStart();
-            }, 500);
-        }
-    }*/
-
     function online_click() {
-        inGame = false;
         $.mobile.changePage('#popupOnline', {transition: 'pop', role: 'dialog'});
         $(".bt_online").addClass('ui-disabled');
         if (!connection) {
@@ -708,10 +685,6 @@
                     $(".P2country").attr("class", "P2country");
                     $("div.P2country").addClass("flag_right");
                 }
-                document.getElementById("P1online_win").style.width = (100 / maxValue * onlineWin) + "%";
-                document.getElementById("P1online_loose").style.width = (100 / maxValue * onlineLoose) + "%";
-                document.getElementById("P2online_win").style.width = (100 / maxValue * onlineOpponentWin) + "%";
-                document.getElementById("P2online_loose").style.width = (100 / maxValue * onlineOpponentLoose) + "%";
             } else {
                 if (data.pic !== null) {
                     $(".P1icon").attr("src", data.pic);
@@ -730,13 +703,8 @@
                     $(".P1country").attr("class", "P1country");
                     $("div.P1country").addClass("flag_left");
                 }
-                document.getElementById("P1online_win").style.width = (100 / maxValue * onlineOpponentWin) + "%";
-                document.getElementById("P1online_loose").style.width = (100 / maxValue * onlineOpponentLoose) + "%";
-                document.getElementById("P2online_win").style.width = (100 / maxValue * onlineWin) + "%";
-                document.getElementById("P2online_loose").style.width = (100 / maxValue * onlineLoose) + "%";
             }
             setStats();
-            //displayPopupStart();
         });
 
         socket.on('quit', function () {
@@ -1363,7 +1331,7 @@
     };
 
     $(window).resize(function () {
-        if ($.mobile.activePage.attr('id') === "popupSettings" && gWidth === $(window).width() ) {
+        if ($.mobile.activePage.attr('id') === "popupSettings" && gWidth === $(window).width()) {
             return;
         }
         contentFormatting();
