@@ -1,19 +1,18 @@
 {
   "name": "grrd's 4 in a Row",
   "description": "grrd’s 4 in a Row is a connect-4 game for one or two players. Who is the first to put 4 stones horizontally, vertically or diagonally in a line? grrd's 4 in a Row is free, no ads, no in-app purchases.",
-  "launch_path": "/index.html",
+  "launch_path": "/4inaRow/index.html",
   "icons": {
-    "16": "/Images/icon_16.png",
-    "32": "/Images/icon_32.png",
-    "48": "/Images/icon_48.png",
-    "60": "/Images/icon_60.png",
-    "64": "/Images/icon_64.png",
-    "90": "/Images/icon_90.png",
-    "120": "/Images/icon_120.png",
-    "128": "/Images/icon_128.png",
-    "256": "/Images/icon_256.png"
+    "16": "/4inaRow/Images/icon_16.png",
+    "32": "/4inaRow/Images/icon_32.png",
+    "48": "/4inaRow/Images/icon_48.png",
+    "60": "/4inaRow/Images/icon_60.png",
+    "64": "/4inaRow/Images/icon_64.png",
+    "90": "/4inaRow/Images/icon_90.png",
+    "120": "/4inaRow/Images/icon_120.png",
+    "128": "/4inaRow/Images/icon_128.png",
+    "256": "/4inaRow/Images/icon_256.png"
   },
-  "version": "2.4",
   "developer": {
     "name": "grrd's Games",
     "url": "http://homepage.hispeed.ch/grrds_games/"
