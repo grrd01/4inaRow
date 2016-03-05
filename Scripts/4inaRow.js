@@ -1205,6 +1205,7 @@
 
     window.onload = function () {
         var i;
+        $("#openshift_check").addClass("di_n");
         if (!localStorageOK || localStorage.getItem('s_sound') === null) {
             $b_sound.val("on");
         } else {
