@@ -7,7 +7,10 @@
 <html>
 <!--html manifest="4inaRowOnline.manifest"-->
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+        <title>grrd's 4 in a Row</title>
+        <meta name="description" content="grrd's 4 in a Row is a connect-4 game for one or two players with a decent AI, selectable difficulty from Kid to Pro that works well on your smartphone." />
+        <meta charset="utf-8">
+        <meta name="google" content="notranslate" />
         <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
         <meta name="apple-mobile-web-app-capable" content="yes" >
         <meta name="apple-mobile-web-app-status-bar-style" content="black" >
@@ -19,33 +22,8 @@
         <link rel="apple-touch-icon" sizes="114x114" href="Images/apple-touch-icon-114x114.png" >
         <link rel="apple-touch-icon" sizes="144x144" href="Images/apple-touch-icon-144x144.png" >
         <link rel="apple-touch-startup-image" href="Images/apple-touch-startup-image-320x480.png" >
-        <!-- iPhone >
-        <link rel="apple-touch-startup-image"
-            media="(device-width: 320px)"
-            href="Images/apple-touch-startup-image-320x480.png">
-        <!- - iPhone (Retina) >
-        <link rel="apple-touch-startup-image"
-            media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)"
-            href="Images/apple-touch-startup-image-640x960.png">
-        <!- - iPad (portrait) >
-        <link rel="apple-touch-startup-image"
-            media="(device-width: 768px) and (orientation: portrait)"
-            href="Images/apple-touch-startup-image-768x1004.png">
-        <!- - iPad (landscape) >
-        <link rel="apple-touch-startup-image"
-            media="(device-width: 768px) and (orientation: landscape)"
-            href="Images/apple-touch-startup-image-1024x768.png">
-        <!- - iPad (Retina, portrait) >
-        <link rel="apple-touch-startup-image"
-            media="(device-width: 768px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)"
-            href="Images/apple-touch-startup-image-768x1004.png">
-        <!- - iPad (Retina, landscape) >
-        <link rel="apple-touch-startup-image"
-            media="(device-width: 768px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)"
-            href="Images/apple-touch-startup-image-2048x1536.png"-->
         <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" >
         <link rel="prefetch" type="application/l10n" href="Locales/locales.ini" />
-        <title>grrd's 4 in a Row</title>
     </head>
 
     <body>
@@ -65,7 +43,6 @@
 
             <div data-role="content">
                 <img id="img_title" src="Images/title1.png" alt="grrd's 4 in a Row" class="w100" />
-                <noscript> is a connect-4 game for one or two players with a decent AI, selectable difficulty from Kid to Pro that works well on your smartphone.</noscript>
                 <div data-role="controlgroup" data-type="horizontal" class="fl_r">
                     <a href="#popupInfo" class="bt_small" data-role="button" data-rel="dialog" data-transition="pop"><img class="bt_small" src="Images/info.png" alt="about"/></a>
                     <a href="#popupStats" class="bt_small" data-role="button" data-rel="dialog" data-transition="pop"><img class="bt_small" src="Images/stats.png" alt="about"/></a>
@@ -74,11 +51,11 @@
                 <div class="cl_r">
                     <div id="page_portrait" class="di_i">
                         <ul data-role="listview" data-inset="true" data-filter="false">
-                            <li><a class="bt_play" href="#"><div class="li_port"><img class="img_port" src="Images/2player.png" alt="2 Player"/><div class="li_pad" data-l10n-id="bt_play"></div></div></a></li>
-                            <li><a class="bt_online" href="#"><div class="li_port"><img class="img_port" src="Images/2online.png" alt="Online"/><div class="li_pad" data-l10n-id="bt_online"></div></div></a></li>
-                            <li><a class="bt_easy" href="#"><div class="li_port"><img class="img_port" src="Images/easy.png" alt="Easy"/><div class="li_pad" data-l10n-id="bt_easy"></div></div></a></li>
-                            <li><a class="bt_med" href="#"><div class="li_port"><img class="img_port" src="Images/medium.png" alt="Medium"/><div class="li_pad" data-l10n-id="bt_med"></div></div></a></li>
-                            <li><a class="bt_hard" href="#"><div class="li_port"><img class="img_port" src="Images/hard.png" alt="Hard"/><div class="li_pad" data-l10n-id="bt_hard"></div></div></a></li>
+                            <li><a class="bt_play" href="#"><div class="li_port"><img class="img_port" src="Images/2player.svg" alt="2 Player"/><div class="li_pad" data-l10n-id="bt_play"></div></div></a></li>
+                            <li><a class="bt_online" href="#"><div class="li_port"><img class="img_port" src="Images/2online.svg" alt="Online"/><div class="li_pad" data-l10n-id="bt_online"></div></div></a></li>
+                            <li><a class="bt_easy" href="#"><div class="li_port"><img class="img_port" src="Images/easy.svg" alt="Easy"/><div class="li_pad" data-l10n-id="bt_easy"></div></div></a></li>
+                            <li><a class="bt_med" href="#"><div class="li_port"><img class="img_port" src="Images/medium.svg" alt="Medium"/><div class="li_pad" data-l10n-id="bt_med"></div></div></a></li>
+                            <li><a class="bt_hard" href="#"><div class="li_port"><img class="img_port" src="Images/hard.svg" alt="Hard"/><div class="li_pad" data-l10n-id="bt_hard"></div></div></a></li>
                         </ul>
                     </div>
                 </div>
@@ -86,11 +63,11 @@
                 <div id="page_landscape" class="di_n">
                     <div id="blank_space" class="h100"></div>
                     <div data-role="controlgroup" data-type="horizontal" class="w100">
-                        <a class="bt_play a_land" href="#" data-role="button"><img class="img_land" src="Images/2player.png" alt="2Player"/><br><div data-l10n-id="bt_play"></div></a>
-                        <a class="bt_online a_land" href="#" data-role="button"><img class="img_land" src="Images/2online.png" alt="Online"/><br><div data-l10n-id="bt_online"></div></a>
-                        <a class="bt_easy a_land" href="#" data-role="button"><img class="img_land" src="Images/easy.png" alt="Easy"/><br><div data-l10n-id="bt_easy"></div></a>
-                        <a class="bt_med a_land" href="#" data-role="button"><img class="img_land" src="Images/medium.png" alt="Medium"/><br><div data-l10n-id="bt_med"></div></a>
-                        <a class="bt_hard a_land" href="#" data-role="button"><img class="img_land" src="Images/hard.png" alt="Hard"/><br><div data-l10n-id="bt_hard"></div></a>
+                        <a class="bt_play a_land" href="#" data-role="button"><img class="img_land" src="Images/2player.svg" alt="2Player"/><br><div data-l10n-id="bt_play"></div></a>
+                        <a class="bt_online a_land" href="#" data-role="button"><img class="img_land" src="Images/2online.svg" alt="Online"/><br><div data-l10n-id="bt_online"></div></a>
+                        <a class="bt_easy a_land" href="#" data-role="button"><img class="img_land" src="Images/easy.svg" alt="Easy"/><br><div data-l10n-id="bt_easy"></div></a>
+                        <a class="bt_med a_land" href="#" data-role="button"><img class="img_land" src="Images/medium.svg" alt="Medium"/><br><div data-l10n-id="bt_med"></div></a>
+                        <a class="bt_hard a_land" href="#" data-role="button"><img class="img_land" src="Images/hard.svg" alt="Hard"/><br><div data-l10n-id="bt_hard"></div></a>
                     </div>
                 </div>
             </div><!-- /content -->
@@ -105,7 +82,7 @@
                             <td id="indicator_landscape_l" class="indicator_landscape">
                                 <div class="fl_l p_rel o_vis">
                                     <div class="P1country flag_left"></div>
-                                    <img class="P1icon fl_l" src="Images/player.png" alt="P1">
+                                    <img class="P1icon fl_l" src="Images/player.svg" alt="P1">
                                     <div class="P1 win h4 cl_l fl_l"></div>
                                     <div class="P1 loose h4 fl_l"></div>
                                 </div>
@@ -118,7 +95,7 @@
                             <td id="indicator_landscape_r" class="indicator_landscape">
                                 <div class="fl_r p_rel o_vis">
                                     <div class="P2country flag_right"></div>
-                                    <img class="P2icon fl_r" src="Images/player.png" alt="P2">
+                                    <img class="P2icon fl_r" src="Images/player.svg" alt="P2">
                                     <div class="P2 win h4 cl_r fl_r"></div>
                                     <div class="P2 loose h4 fl_r"></div>
                                 </div>
@@ -132,13 +109,13 @@
                 <div id="indicator_portrait">
                     <div class="fl_l p_rel">
                         <div class="P1country flag_left"></div>
-                        <img class="P1icon fl_l" src="Images/player.png" alt="P1">
+                        <img class="P1icon fl_l" src="Images/player.svg" alt="P1">
                         <div class="P1 win h4 cl_l fl_l"></div>
                         <div class="P1 loose h4 fl_l"></div>
                     </div>
                     <div class="fl_r p_rel">
                         <div class="P2country flag_right"></div>
-                        <img class="P2icon fl_r" src="Images/player.png" alt="P2">
+                        <img class="P2icon fl_r" src="Images/player.svg" alt="P2">
                         <div class="P2 win h4 cl_r fl_r"></div>
                         <div class="P2 loose h4 fl_r"></div>
                     </div>
@@ -209,10 +186,10 @@
             <div data-role="content" data-theme="d">
                 <span data-l10n-id="lb_instr">Who is the first to put 4 stones horizontally, vertically or diagonally in a line?</span> <br><br>
                 <div class="nowrap">
-                <img src="Images/41.png" alt="horizontal" class="w20 mr4"/>
-                <img src="Images/42.png" alt="vertical" class="w20 mr4"/>
-                <img src="Images/43.png" alt="diagonal" class="w20 mr4"/>
-                <img src="Images/44.png" alt="diagonal" class="w20"/>
+                <img src="Images/41.svg" alt="horizontal" class="w20 mr4"/>
+                <img src="Images/42.svg" alt="vertical" class="w20 mr4"/>
+                <img src="Images/43.svg" alt="diagonal" class="w20 mr4"/>
+                <img src="Images/44.svg" alt="diagonal" class="w20"/>
                 </div>
                 <br>
                 <span data-l10n-id="lb_dev">Developed by Gérard Tyedmers with <a href="http://jquerymobile.com/" target="_blank">jQuery mobile</a><span>,&nbsp;</span><a href="http://nodejs.org/" target="_blank">node.js</a> <span data-l10n-id="lb_and"> and </span> <a href="http://socket.io/" target="_blank">socket.io</a><span>. </span></span>
@@ -220,19 +197,15 @@
 
                 <table>
                     <tr>
-                        <td class="w20"><a href="https://www.openshift.com/" target="_blank"><img src="Images/openshift.png" alt="openshift.com" class="w100"/></a></td>
-                        <td class="w80 pl10"><p data-l10n-id="lb_node" id="lb_node"><a href="https://www.openshift.com/" target="_blank">openshift.com</a></p></td>
-                    </tr>
-                    <tr>
-                        <td class="w20 tx_c"><a href="http://homepage.hispeed.ch/grrds_games/Puzzle" target="_blank"><img src="Images/puzzle.png" alt="puzzle" class="w80"/></a></td>
+                        <td class="w20 tx_c"><a href="http://homepage.hispeed.ch/grrds_games/Puzzle" target="_blank"><img src="Images/puzzle.svg" alt="puzzle" class="w80"/></a></td>
                         <td class="w80 pl10"><span data-l10n-id="lb_puzzle">Try my other game: <a href="http://homepage.hispeed.ch/grrds_games/Puzzle" target="_blank">grrd's Puzzle</a></span></td>
                     </tr>
                     <tr>
-                        <td class="w20 tx_c"><a href="http://homepage.hispeed.ch/grrds_games/Dice" target="_blank"><img src="Images/dice.png" alt="puzzle" class="w65"/></a></td>
-                        <td class="w80 pl10 va_m"><span data-l10n-id="lb_and">... and </span> <a href="http://homepage.hispeed.ch/grrds_games/Dice" target="_blank">grrd's Dice</a></td>
+                        <td class="w20 tx_c"><a href="http://homepage.hispeed.ch/grrds_games/Dice" target="_blank"><img src="Images/dice.svg" alt="puzzle" class="w80"/></a></td>
+                        <td class="w80 pl10 va_m"><span data-l10n-id="lb_and">... and </span> <a href="https://grrd01.github.io/Dice/" target="_blank">grrd's Dice</a></td>
                     </tr>
                     <tr>
-                        <td class="w20 tx_c"><a href="mailto:grrd@gmx.net"><img src="Images/mail.png" alt="mail" class="w80"/></a></td>
+                        <td class="w20 tx_c"><a href="mailto:grrd@gmx.net"><img src="Images/mail.svg" alt="mail" class="w80"/></a></td>
                         <td class="w80 pl10">E-mail: <a href="mailto:grrd@gmx.net">grrd@gmx.net </a></td>
                     </tr>
                 </table>
@@ -250,7 +223,7 @@
             <div data-role="content" data-theme="d">
                 <div id="popupSettings_portrait">
                     <div data-l10n-id="lb_img" data-inline="true">Your picture:</div>
-                    <a class="bt_img" href="#" data-role="button"><img id="inputImage" src="Images/player.png" alt="Player" class="dark_grey" data-inline="true"/></a>
+                    <a class="bt_img" href="#" data-role="button"><img id="inputImage" src="Images/player.svg" alt="Player" class="dark_grey" data-inline="true"/></a>
                     <div id="popupSettings_col_b">
                         <label for="inputName" data-l10n-id="lb_name" data-inline="true">Your name:</label>
                         <input id="inputName" data-clear-btn="true" value="" type="text" size="10" maxlength="10">
@@ -507,7 +480,7 @@
                 <fieldset class="ui-grid-a di_n" id="popupSettings_landscape">
                     <div class="ui-block-a">
                         <div data-l10n-id="lb_img" data-inline="true">Your picture:</div>
-                        <a class="bt_img" href="#" data-role="button"><img id="inputImage_l" src="Images/player.png" alt="Player" class="dark_grey" data-inline="true"/></a>
+                        <a class="bt_img" href="#" data-role="button"><img id="inputImage_l" src="Images/player.svg" alt="Player" class="dark_grey" data-inline="true"/></a>
                     </div>
                     <div class="ui-block-b" id="popupSettings_landscape_b">
                     </div>
@@ -527,25 +500,25 @@
             <div data-role="content" data-theme="d">
                 <ul data-role="listview" data-inset="true" data-filter="false">
                     <li>
-                        <img class="img_stats" src="Images/easy.png" alt="Easy"/>
+                        <img class="img_stats" src="Images/easy_black.svg" alt="Easy"/>
                         <div data-l10n-id="bt_easy"></div>
                         <div id="easy_win" class="stats win"></div>
                         <div id="easy_loose" class="stats loose"></div>
                     </li>
                     <li>
-                        <img class="img_stats" src="Images/medium.png" alt="Medium"/>
+                        <img class="img_stats" src="Images/medium_black.svg" alt="Medium"/>
                         <div data-l10n-id="bt_med"></div>
                         <div id="medium_win" class="stats win"></div>
                         <div id="medium_loose" class="stats loose"></div>
                     </li>
                     <li>
-                        <img class="img_stats" src="Images/hard.png" alt="Hard"/>
+                        <img class="img_stats" src="Images/hard_black.svg" alt="Hard"/>
                         <div data-l10n-id="bt_hard"></div>
                         <div id="hard_win" class="stats win"></div>
                         <div id="hard_loose" class="stats loose"></div>
                     </li>
                     <li>
-                        <img class="img_stats" src="Images/2online.png" alt="Online"/>
+                        <img class="img_stats" src="Images/2online_black.svg" alt="Online"/>
                         <div data-l10n-id="bt_online"></div>
                         <div id="online_win" class="stats win"></div>
                         <div id="online_loose" class="stats loose"></div>
@@ -598,6 +571,6 @@
         <script type="text/javascript" src="Scripts/4inaRow.js"></script>
         <!--script type="text/javascript" src="Scripts/socket.io.js"></script-->
         <!--script type="text/javascript" src="http://grrds4inarow.nodejitsu.com:80/socket.io/socket.io.js"></script-->
-        <script type="text/javascript" src="http://4inarow-grrd.rhcloud.com:80/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="http://localhost:3250/socket.io/socket.io.js"></script>
     </body>
 </html>

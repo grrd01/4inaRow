@@ -1,0 +1,7 @@
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="67px" height="71px" viewBox="0 -5 160 170" stroke="white" stroke-width="10" fill="none">
+  <ellipse cx="75" cy="72" rx="47" ry="59" transform="rotate(-5)"/>
+  <ellipse cx="70" cy="56" rx="7" ry="11" transform="rotate(-2)" stroke="none"  fill="white"/>
+  <ellipse cx="93" cy="56" rx="7" ry="11" transform="rotate(-2)" stroke="none"  fill="white"/>
+  <path stroke-linecap="round" d="M62 87 C70 95, 96 95, 104 86"/>
+  <path stroke-linecap="round" d="M35 155 C70 110, 96 120, 130 145"/>
+</svg>
