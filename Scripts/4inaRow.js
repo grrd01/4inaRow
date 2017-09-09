@@ -10,15 +10,15 @@
     "use strict";
     //navigator.mozL10n.language.code = "ta";
     window.requestAnimFrame = (function () {
-        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-        function (callback) {
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
             window.setTimeout(callback, 1000 / 60);
         };
     }());
 
     var ii;
     var animate = false;
-    var gHeight, gWidth;
+    var gHeight;
+    var gWidth;
     var col = ["col0", "col1", "col2", "col3", "col4", "col5", "col6"];
     var col_canvas = [];
     var col_context = [];
@@ -29,7 +29,10 @@
     }
     var winRow = [];
     var winCol = [];
-    var numPossible, stoneTotal, stoneBest, stoneCount;
+    var numPossible;
+    var stoneTotal;
+    var stoneBest;
+    var stoneCount;
     var mode = null;
     var gSound = true;
     var gCountry;
@@ -39,11 +42,11 @@
     var p1_name;
     var p2_name;
     var $inputImage = $("#inputImage");
-    var $inputName = $('#inputName');
-    var $img_title = $('#img_title');
-    var $b_sound = $('#b_sound');
-    var $l_country = $('#l_country');
-    var $txt_search = $('#txt_search');
+    var $inputName = $("#inputName");
+    var $img_title = $("#img_title");
+    var $b_sound = $("#b_sound");
+    var $l_country = $("#l_country");
+    var $txt_search = $("#txt_search");
     var url_param;
 
     var rating = [];
@@ -56,21 +59,33 @@
     var P2LightImg = ["Images/blue_on.png", "Images/blue_off.png"];
     var games = 0;
     var siege = [0, 0];
-    var colNr, row, computerCol, computerRow;
-    var fourInARow, space, showFlag, possibleFlag = Boolean(false);
-    var topBis, topAkt;
-    var colWidth, colHeight;
+    var colNr;
+    var row;
+    var computerCol;
+    var computerRow;
+    var fourInARow;
+    var space;
+    var showFlag;
+    var possibleFlag = Boolean(false);
+    var topBis;
+    var topAkt;
+    var colWidth;
+    var colHeight;
 
     var maxValue;
-    var onlineWin, onlineLoose;
-    var easyWin, easyLoose;
-    var mediumWin, mediumLoose;
-    var hardWin, hardLoose;
-    var onlineOpponentWin, onlineOpponentLoose;
+    var onlineWin;
+    var onlineLoose;
+    var easyWin;
+    var easyLoose;
+    var mediumWin;
+    var mediumLoose;
+    var hardWin;
+    var hardLoose;
+    var onlineOpponentWin;
+    var onlineOpponentLoose;
 
     var socket;
     var user;
-    var connection = false;
     var lastStart;
     var lastQuit;
     var lastRound = null;
@@ -79,12 +94,12 @@
     var fromOnline = false;
 
     var localStorageOK = (function () {
-        var mod = 'modernizr';
+        var mod = "modernizr";
         try {
             localStorage.setItem(mod, mod);
             localStorage.removeItem(mod);
             return true;
-        } catch (e) {
+        } catch (ignore) {
             return false;
         }
     }());
@@ -100,7 +115,8 @@
     }
 
     function contentFormatting() {
-        var i, j;
+        var i;
+        var j;
         var gradient;
 
         gHeight = $(window).height();
@@ -157,12 +173,14 @@
                 break;
             }
             for (i = 0; i < field.length; i += 1) {
-                gradient=col_context[j].createLinearGradient(0,
-                    (field.length - i - 1)* 0.9 * colWidth,
+                gradient = col_context[j].createLinearGradient(
+                    0,
+                    (field.length - i - 1) * 0.9 * colWidth,
                     colWidth * 0.7,
-                    (field.length - i - 1)* 0.9 * colWidth + colWidth * 0.7);
-                gradient.addColorStop(0,"black");
-                gradient.addColorStop(1,"grey");
+                    (field.length - i - 1) * 0.9 * colWidth + colWidth * 0.7
+                );
+                gradient.addColorStop(0, "black");
+                gradient.addColorStop(1, "grey");
 
                 col_context[j].beginPath();
                 col_context[j].arc(colWidth / 2, (field.length - i - 0.5) * colWidth * 0.85, colWidth / 2 * 0.7, 0, 2 * Math.PI, false);
@@ -201,7 +219,8 @@
     }
 
     function clearBoard() {
-        var i, j;
+        var i;
+        var j;
         countRound = 0;
         lastRound = null;
         for (i = 0; i < field.length; i += 1) {
@@ -221,7 +240,8 @@
     }
 
     function setStats() {
-        var valWin, valLoose;
+        var valWin;
+        var valLoose;
         if (localStorageOK) {
             valWin = parseInt(localStorage.getItem(mode + "_win") || 0);
             valLoose = parseInt(localStorage.getItem(mode + "_loose") || 0);
@@ -231,25 +251,26 @@
         }
         if (mode === "online") {
             maxValue = Math.max(valWin + valLoose, onlineOpponentWin + onlineOpponentLoose, 1);
-            $('.P' + (1 + parseInt(user.role)) + '.win').width((100 / maxValue * valWin) + "%");
-            $('.P' + (1 + parseInt(user.role)) + '.loose').width((100 / maxValue * valLoose) + "%");
-            $('.P' + (2 - parseInt(user.role)) + '.win').width((100 / maxValue * onlineOpponentWin) + "%");
-            $('.P' + (2 - parseInt(user.role)) + '.loose').width((100 / maxValue * onlineOpponentLoose) + "%");
+            $(".P" + (1 + parseInt(user.role)) + ".win").width((100 / maxValue * valWin) + "%");
+            $(".P" + (1 + parseInt(user.role)) + ".loose").width((100 / maxValue * valLoose) + "%");
+            $(".P" + (2 - parseInt(user.role)) + ".win").width((100 / maxValue * onlineOpponentWin) + "%");
+            $(".P" + (2 - parseInt(user.role)) + ".loose").width((100 / maxValue * onlineOpponentLoose) + "%");
         } else {
             if (mode === "2player") {
                 valWin = siege[0];
                 valLoose = siege[1];
             }
             maxValue = Math.max(valWin + valLoose, 1);
-            $('.P1.win').width((100 / maxValue * valWin) + "%");
-            $('.P1.loose').width((100 / maxValue * valLoose) + "%");
-            $('.P2.win').width((100 / maxValue * valLoose) + "%");
-            $('.P2.loose').width((100 / maxValue * valWin) + "%");
+            $(".P1.win").width((100 / maxValue * valWin) + "%");
+            $(".P1.loose").width((100 / maxValue * valLoose) + "%");
+            $(".P2.win").width((100 / maxValue * valLoose) + "%");
+            $(".P2.loose").width((100 / maxValue * valWin) + "%");
         }
     }
 
     function updateStats(statEvent) {
-        var storageItem, storageValue;
+        var storageItem;
+        var storageValue;
         if (!localStorageOK) {
             return;
         }
@@ -258,14 +279,14 @@
             storageValue = parseInt(localStorage.getItem(storageItem) || 0) + 1;
             localStorage.setItem(storageItem, storageValue);
         }
-        easyWin = localStorage.getItem('easy_win') || 0;
-        easyLoose = localStorage.getItem('easy_loose') || 0;
-        mediumWin = localStorage.getItem('medium_win') || 0;
-        mediumLoose = localStorage.getItem('medium_loose') || 0;
-        hardWin = localStorage.getItem('hard_win') || 0;
-        hardLoose = localStorage.getItem('hard_loose') || 0;
-        onlineWin = localStorage.getItem('online_win') || 0;
-        onlineLoose = localStorage.getItem('online_loose') || 0;
+        easyWin = localStorage.getItem("easy_win") || 0;
+        easyLoose = localStorage.getItem("easy_loose") || 0;
+        mediumWin = localStorage.getItem("medium_win") || 0;
+        mediumLoose = localStorage.getItem("medium_loose") || 0;
+        hardWin = localStorage.getItem("hard_win") || 0;
+        hardLoose = localStorage.getItem("hard_loose") || 0;
+        onlineWin = localStorage.getItem("online_win") || 0;
+        onlineLoose = localStorage.getItem("online_loose") || 0;
 
         maxValue = Math.max(easyWin, easyLoose, mediumWin, mediumLoose, hardWin, hardLoose, onlineWin, onlineLoose, 1);
 
@@ -292,23 +313,23 @@
         if (!localStorageOK) {
             return;
         }
-        localStorage.removeItem('easy_start');
-        localStorage.removeItem('easy_win');
-        localStorage.removeItem('easy_loose');
-        localStorage.removeItem('easy_draw');
-        localStorage.removeItem('medium_start');
-        localStorage.removeItem('medium_win');
-        localStorage.removeItem('medium_loose');
-        localStorage.removeItem('medium_draw');
-        localStorage.removeItem('hard_start');
-        localStorage.removeItem('hard_win');
-        localStorage.removeItem('hard_loose');
-        localStorage.removeItem('hard_draw');
-        localStorage.removeItem('online_Start');
-        localStorage.removeItem('online_win');
-        localStorage.removeItem('online_loose');
-        localStorage.removeItem('online_draw');
-        localStorage.removeItem('online_left');
+        localStorage.removeItem("easy_start");
+        localStorage.removeItem("easy_win");
+        localStorage.removeItem("easy_loose");
+        localStorage.removeItem("easy_draw");
+        localStorage.removeItem("medium_start");
+        localStorage.removeItem("medium_win");
+        localStorage.removeItem("medium_loose");
+        localStorage.removeItem("medium_draw");
+        localStorage.removeItem("hard_start");
+        localStorage.removeItem("hard_win");
+        localStorage.removeItem("hard_loose");
+        localStorage.removeItem("hard_draw");
+        localStorage.removeItem("online_Start");
+        localStorage.removeItem("online_win");
+        localStorage.removeItem("online_loose");
+        localStorage.removeItem("online_draw");
+        localStorage.removeItem("online_left");
 
         updateStats();
     }
@@ -316,9 +337,9 @@
     function playerClick() {
         mode = "2player";
         if (gOwnImage) {
-            $(".P1icon").attr("src", $inputImage.attr('src'));
+            $(".P1icon").attr("src", $inputImage.attr("src"));
         } else {
-            $(".P1icon").attr("src", "Images/player.png");
+            $(".P1icon").attr("src", "Images/player.svg");
         }
         if (gOwnName) {
             p1_name = $inputName.val();
@@ -337,37 +358,37 @@
         p2_name = navigator.mozL10n.get("lb_player2");
         $(".P1name").html(p1_name);
         $(".P2name").html(p2_name);
-        $(".P2icon").attr("src", "Images/player.png");
+        $(".P2icon").attr("src", "Images/player.svg");
         $(".P2country").attr("class", "P2country");
         $("p.P2country").html(" ");
         $("div.P2country").addClass("flag_right");
         setLights();
         setStats();
         onExit = false;
-        $.mobile.changePage('#game', {transition: 'slide'});
+        $.mobile.changePage("#game", {transition: "slide"});
     }
 
     function message(messageTxt, wait) {
         if (onExit) {
             return;
         }
-        if (wait + 2000 > new Date().getTime() && animate) {
+        if (wait + 2000 > Date.now() && animate) {
             window.requestAnimFrame(function () {
                 message(messageTxt, wait);
             });
         } else {
             games = games + 1;
-            $('#printMessage').html(messageTxt);
+            $("#printMessage").html(messageTxt);
             if (games === 1) {
-                $('#printGames').html(games + " " + navigator.mozL10n.get("lb_game"));
+                $("#printGames").html(games + " " + navigator.mozL10n.get("lb_game"));
             } else {
-                $('#printGames').html(games + " " + navigator.mozL10n.get("lb_games"));
+                $("#printGames").html(games + " " + navigator.mozL10n.get("lb_games"));
             }
-            $('#printScore1a').html(p1_name);
-            $('#printScore2a').html(p2_name);
-            $('#printScore1b').html(siege[0]);
-            $('#printScore2b').html(siege[1]);
-            $.mobile.changePage('#popupDialog', {transition: 'pop', role: 'dialog'});
+            $("#printScore1a").html(p1_name);
+            $("#printScore2a").html(p2_name);
+            $("#printScore1b").html(siege[0]);
+            $("#printScore2b").html(siege[1]);
+            $.mobile.changePage("#popupDialog", {transition: "pop", role: "dialog"});
             clearBoard();
             if (games % 2 !== 0) {
                 player = 1;
@@ -384,9 +405,9 @@
         if (onExit) {
             return;
         }
-        if (showCount < 6 && zWait + 250 < new Date().getTime() && animate) {
+        if (showCount < 6 && zWait + 250 < Date.now() && animate) {
             showCount += 1;
-            zWait = new Date().getTime();
+            zWait = Date.now();
             for (i = 0; i < 4; i += 1) {
                 if (showCount % 2 !== 0) {
                     drawCircle((field.length - myWinRow[i] - 0.5) * colWidth * 0.85, myWinCol[i], zColor[player], "white");
@@ -408,7 +429,7 @@
         animate = true;
         var zWinRow = winRow.slice();
         var zWinCol = winCol.slice();
-        showAnimate(zWinRow, zWinCol, 0, new Date().getTime());
+        showAnimate(zWinRow, zWinCol, 0, Date.now());
     }
 
     function checkDet(row, colNr, rowFactor, colFactor, player, showFlag) {
@@ -457,7 +478,9 @@
     }
 
     function playAnimate(lastTime, topAkt, colNr) {
-        var date, time, timeDiff;
+        var date;
+        var time;
+        var timeDiff;
         var linearDistEachFrame;
         if (animate) {
             // update
@@ -480,7 +503,7 @@
                 });
             } else {
                 if (gSound) {
-                    document.getElementById('click_sound').play();
+                    document.getElementById("click_sound").play();
                 }
                 animate = false;
                 check(player, true);
@@ -505,17 +528,17 @@
                     }
                     setStats();
                     if (gSound) {
-                        document.getElementById('ding_sound').play();
+                        document.getElementById("ding_sound").play();
                     }
                     if (player === 0) {
-                        message(p1_name + " " + navigator.mozL10n.get("lb_win"), new Date().getTime());
+                        message(p1_name + " " + navigator.mozL10n.get("lb_win"), Date.now());
                     } else {
-                        message(p2_name + " " + navigator.mozL10n.get("lb_win"), new Date().getTime());
+                        message(p2_name + " " + navigator.mozL10n.get("lb_win"), Date.now());
                     }
                 } else {
                     if (!space) {
                         updateStats("draw");
-                        message(navigator.mozL10n.get("lb_draw"), new Date().getTime());
+                        message(navigator.mozL10n.get("lb_draw"), Date.now());
                     } else {
                         player = 1 - player;
                         setLights();
@@ -529,7 +552,8 @@
     }
 
     function play(colNr) {
-        var date, time;
+        var date;
+        var time;
         if (fromOnline) {
             fromOnline = false;
             if (mode === "online") {
@@ -559,32 +583,28 @@
     }
 
     function online_click() {
-        $.mobile.changePage('#popupOnline', {transition: 'pop', role: 'dialog'});
-        $(".bt_online").addClass('ui-disabled');
-        if (!connection) {
-            //socket = io.connect('http://localhost:3250');
-            //socket = io.connect('http://grrds4inarow.nodejitsu.com:80');
-            socket = io.connect('http://4inarow-grrd.rhcloud.com:8000');
-            connection = true;
-        } else {
-            socket.socket.reconnect();
-        }
+        $.mobile.changePage("#popupOnline", {transition: "pop", role: "dialog"});
+        $(".bt_online").addClass("ui-disabled");
+        socket = io.connect("http://localhost:3250", {"forceNew": true});
+        socket.heartbeatTimeout = 20000;
+        //socket = io("http://localhost:3250");
+        //socket = io.connect("http://4inarow-grrd.rhcloud.com:8000");
 
-        socket.on('connect', function () {
+        socket.on("connect", function () {
             //$.mobile.showPageLoadingMsg("a", navigator.mozL10n.get("lb_wait"), false);
         });
 
-        socket.on('startgame', function (data) {
+        socket.on("startgame", function (data) {
             user = data;
             onlineOpponentWin = 0;
             onlineOpponentLoose = 0;
             if (user.id !== lastStart) {
                 if (gOwnImage) {
-                    gSendImage = $inputImage.attr('src');
+                    gSendImage = $inputImage.attr("src");
                 } else {
                     gSendImage = null;
                 }
-                socket.emit('usersend', {
+                socket.emit("usersend", {
                     to: user.opponent,
                     name: $inputName.val(),
                     pic: gSendImage,
@@ -595,7 +615,7 @@
                 lastStart = user.id;
                 onExit = false;
                 if (mode !== null) {
-                    $.mobile.changePage('#title', {transition: 'slide', reverse: true});
+                    $.mobile.changePage("#title", {transition: "slide", reverse: true});
                 }
                 animate = false;
                 clearBoard();
@@ -607,9 +627,9 @@
                 setStats();
                 if (user.role === "0") {
                     if (gOwnImage) {
-                        $(".P1icon").attr("src", $inputImage.attr('src'));
+                        $(".P1icon").attr("src", $inputImage.attr("src"));
                     } else {
-                        $(".P1icon").attr("src", "Images/player.png");
+                        $(".P1icon").attr("src", "Images/player.svg");
                     }
                     if (gOwnName) {
                         p1_name = $inputName.val();
@@ -625,15 +645,15 @@
                         $(".P1country").attr("class", "P1country");
                         $("div.P1country").addClass("flag_left");
                     }
-                    $(".P2icon").attr("src", "Images/online.png");
+                    $(".P2icon").attr("src", "Images/online.svg");
                     p2_name = navigator.mozL10n.get("bt_online");
                 } else {
-                    $(".P1icon").attr("src", "Images/online.png");
+                    $(".P1icon").attr("src", "Images/online.svg");
                     p1_name = navigator.mozL10n.get("bt_online");
                     if (gOwnImage) {
-                        $(".P2icon").attr("src", $inputImage.attr('src'));
+                        $(".P2icon").attr("src", $inputImage.attr("src"));
                     } else {
-                        $(".P2icon").attr("src", "Images/player.png");
+                        $(".P2icon").attr("src", "Images/player.svg");
                     }
                     if (gOwnName) {
                         p2_name = $inputName.val();
@@ -652,11 +672,11 @@
                 }
                 $(".P1name").html(p1_name);
                 $(".P2name").html(p2_name);
-                $.mobile.changePage('#game', {transition: 'slide'});
+                $.mobile.changePage("#game", {transition: "slide"});
             }
         });
 
-        socket.on('playget', function (data) {
+        socket.on("playget", function (data) {
             if (countRound === data.round && lastRound !== data.round) {
                 lastRound = data.round;
                 fromOnline = true;
@@ -664,7 +684,7 @@
             }
         });
 
-        socket.on('userget', function (data) {
+        socket.on("userget", function (data) {
             onlineOpponentWin = parseInt(data.win);
             onlineOpponentLoose = parseInt(data.loose);
             maxValue = Math.max(onlineWin, onlineLoose, onlineOpponentWin, onlineOpponentLoose, 1);
@@ -707,20 +727,20 @@
             setStats();
         });
 
-        socket.on('quit', function () {
+        socket.on("quit", function () {
             if (user.id !== lastQuit) {
                 lastQuit = user.id;
                 onExit = true;
-                $.mobile.changePage('#popupLeft', {transition: 'pop', role: 'dialog'});
+                $.mobile.changePage("#popupLeft", {transition: "pop", role: "dialog"});
             }
         });
     }
 
     function p_computer() {
         if (gOwnImage) {
-            $(".P1icon").attr("src", $inputImage.attr('src'));
+            $(".P1icon").attr("src", $inputImage.attr("src"));
         } else {
-            $(".P1icon").attr("src", "Images/player.png");
+            $(".P1icon").attr("src", "Images/player.svg");
         }
         if (gOwnName) {
             p1_name = $inputName.val();
@@ -739,14 +759,14 @@
         p2_name = navigator.mozL10n.get("lb_computer");
         $(".P1name").html(p1_name);
         $(".P2name").html(p2_name);
-        $(".P2icon").attr("src", "Images/computer.png");
+        $(".P2icon").attr("src", "Images/computer.svg");
         $("p.P2country").html(" ");
         $(".P2country").attr("class", "P2country");
         $("div.P2country").addClass("flag_right");
         setStats();
         setLights();
         onExit = false;
-        $.mobile.changePage('#game', {transition: 'slide'});
+        $.mobile.changePage("#game", {transition: "slide"});
     }
 
     function easy_click() {
@@ -768,11 +788,11 @@
         //window.location = "#title";
         if (mode === "online") {
             socket.disconnect();
-            $('.bt_online').removeClass('ui-disabled');
+            $(".bt_online").removeClass("ui-disabled");
         }
         onExit = true;
         contentFormatting();
-        $.mobile.changePage('#title', {transition: 'slide', reverse: true});
+        $.mobile.changePage("#title", {transition: "slide", reverse: true});
         animate = false;
         clearBoard();
         games = 0;
@@ -784,17 +804,17 @@
     function closePop() {
         gSound = $b_sound.val() === "on";
         if (localStorageOK) {
-            localStorage.setItem('s_sound', $b_sound.val());
+            localStorage.setItem("s_sound", $b_sound.val());
         }
         contentFormatting();
-        $.mobile.changePage('#title', {transition: 'pop', reverse: true});
+        $.mobile.changePage("#title", {transition: "pop", reverse: true});
     }
 
     function playCheck(colNr) {
         if (mode === "online") {
             if ((player === 1 && user.role === "0") || (player === 0 && user.role === "1")) {
             } else {
-                socket.emit('playsend', {to: user.opponent, col: colNr, round: countRound});
+                socket.emit("playsend", {to: user.opponent, col: colNr, round: countRound});
                 play(colNr);
             }
         } else {
@@ -803,7 +823,8 @@
     }
 
     function ratingDet(player, computerRow, computerCol) {
-        var a, b;
+        var a;
+        var b;
         numPossible = 0;
         stoneTotal = 0;
         stoneBest = 0;
@@ -1078,8 +1099,8 @@
     }
 
     function playAgain() {
-        //ios7-bug: $('#popupDialog').dialog('close');
-        $.mobile.changePage('#game', {transition: 'pop', reverse: true});
+        //ios7-bug: $("#popupDialog").dialog("close");
+        $.mobile.changePage("#game", {transition: "pop", reverse: true});
         if (mode !== "2player" && mode !== "online" && player === 1) {
             ai();
         }
@@ -1098,10 +1119,10 @@
     }
 
     function resize_image(file) {
-        var fileLoader = new FileReader(),
-            canvas = document.createElement('canvas'),
-            context = null,
-            imageObj = new Image();
+        var fileLoader = new FileReader();
+        var canvas = document.createElement("canvas");
+        var context = null;
+        var imageObj = new Image();
         var max_width = 67;
         var max_height = 71;
         var g_exif = {Orientation: undefined};
@@ -1114,14 +1135,14 @@
         document.body.appendChild(canvas);
 
         //get the context to use
-        context = canvas.getContext('2d');
+        context = canvas.getContext("2d");
 
         // check for an image then
         //trigger the file loader to get the data from the image
-        if (file.target.files[0].type.match('image.*')) {
+        if (file.target.files[0].type.match("image.*")) {
             fileLoader.readAsDataURL(file.target.files[0]);
         } else {
-            alert('File is not an image');
+            alert("File is not an image");
         }
 
         // setup the file loader onload function
@@ -1130,7 +1151,7 @@
         // triggers the images onload function
         fileLoader.onload = function () {
             var data = this.result;
-            g_exif = EXIF.readFromBinaryFile(new BinaryFile(atob(data.split(',')[1])));
+            g_exif = EXIF.readFromBinaryFile(new BinaryFile(atob(data.split(",")[1])));
             imageObj.src = data;
             //$inputImage.attr("src", data);
         };
@@ -1142,7 +1163,7 @@
             var myLeft = 0;
             // Check for empty images
             if (this.width === 0 || this.height === 0) {
-                alert('Image is empty');
+                alert("Image is empty");
             } else {
                 if (g_exif.Orientation === 5 || g_exif.Orientation === 6) {
                     context.rotate(90 * Math.PI / 180);
@@ -1163,10 +1184,10 @@
                 }
                 context.clearRect(0, 0, max_width, max_height);
                 context.drawImage(imageObj, 0, 0, this.width, this.height, myTop, myLeft, max_width, max_height);
-                $inputImage.attr('src', canvas.toDataURL("image/jpeg"));
-                $("#inputImage_l").attr('src', canvas.toDataURL("image/jpeg"));
+                $inputImage.attr("src", canvas.toDataURL("image/jpeg"));
+                $("#inputImage_l").attr("src", canvas.toDataURL("image/jpeg"));
                 if (localStorageOK) {
-                    localStorage.setItem('s_image', canvas.toDataURL("image/jpeg"));
+                    localStorage.setItem("s_image", canvas.toDataURL("image/jpeg"));
                 }
                 gOwnImage = true;
             }
@@ -1176,12 +1197,12 @@
     function inputNameChange(inpName) {
         if (inpName.replace(/\s+/g, "") !== "") {
             if (localStorageOK) {
-                localStorage.setItem('s_name', inpName);
+                localStorage.setItem("s_name", inpName);
             }
             gOwnName = true;
         } else {
             if (localStorageOK) {
-                localStorage.removeItem('s_name');
+                localStorage.removeItem("s_name");
             }
             gOwnName = false;
         }
@@ -1189,7 +1210,7 @@
 
     function countrySearch(search) {
         var listItems = $l_country.find("li");
-        listItems.each(function (idx, li) {
+        listItems.each(function (ignore, li) {
             var country = $(li);
             if (country[0].innerHTML.toLowerCase().indexOf(search) > -1 || search.length === 0) {
                 country.show();
@@ -1200,42 +1221,42 @@
     }
 
     function image_click() {
-        $('#b_image_input').click();
+        $("#b_image_input").click();
     }
 
     window.onload = function () {
         var i;
         $("#openshift_check").addClass("di_n");
-        if (!localStorageOK || localStorage.getItem('s_sound') === null) {
+        if (!localStorageOK || localStorage.getItem("s_sound") === null) {
             $b_sound.val("on");
         } else {
-            $b_sound.val(localStorage.getItem('s_sound'));
+            $b_sound.val(localStorage.getItem("s_sound"));
         }
         gSound = $b_sound.val() === "on";
-        if (localStorageOK && localStorage.getItem('s_image') !== null) {
-            $inputImage.attr('src', localStorage.getItem('s_image'));
-            $("#inputImage_l").attr('src', localStorage.getItem('s_image'));
+        if (localStorageOK && localStorage.getItem("s_image") !== null) {
+            $inputImage.attr("src", localStorage.getItem("s_image"));
+            $("#inputImage_l").attr("src", localStorage.getItem("s_image"));
             gOwnImage = true;
         }
-        if (localStorageOK && localStorage.getItem('s_name') !== null) {
-            $inputName.val(localStorage.getItem('s_name'));
-            if (localStorage.getItem('s_name').replace(/\s+/g, "") !== "") {
+        if (localStorageOK && localStorage.getItem("s_name") !== null) {
+            $inputName.val(localStorage.getItem("s_name"));
+            if (localStorage.getItem("s_name").replace(/\s+/g, "") !== "") {
                 gOwnName = true;
             }
         }
-        if (localStorageOK && localStorage.getItem('s_country') !== null) {
-            $('#bt_country').empty();
-            gCountry = localStorage.getItem('s_country');
+        if (localStorageOK && localStorage.getItem("s_country") !== null) {
+            $("#bt_country").empty();
+            gCountry = localStorage.getItem("s_country");
             var countryLi = document.getElementsByClassName(gCountry);
             document.getElementById("bt_country").appendChild(countryLi[0].cloneNode(true));
         }
 
-        url_param = url_query('theme');
+        url_param = url_query("theme");
         if (url_param) {
-            if (url_param === 'mi') {
+            if (url_param === "mi") {
                 $img_title.attr("src", "Images/title1_mi.png");
-                $('.tit1').attr("src", "Images/title1_mi.png");
-                $('.tit2').attr("src", "Images/title2_mi.png");
+                $(".tit1").attr("src", "Images/title1_mi.png");
+                $(".tit2").attr("src", "Images/title2_mi.png");
             }
         }
 
@@ -1260,23 +1281,23 @@
             e.preventDefault();
         });
 
-        $('.back').click(function (e) {
+        $(".back").click(function (e) {
             back();
             e.preventDefault();
         });
-        $('.again').click(function (e) {
+        $(".again").click(function (e) {
             playAgain();
             e.preventDefault();
         });
-        $('.bt_img').click(function (e) {
+        $(".bt_img").click(function (e) {
             image_click();
             e.preventDefault();
         });
-        $('.bt_close').click(function (e) {
+        $(".bt_close").click(function (e) {
             closePop();
             e.preventDefault();
         });
-        $('#bt_reset').click(function (e) {
+        $("#bt_reset").click(function (e) {
             resetStats();
             e.preventDefault();
         });
@@ -1303,16 +1324,16 @@
 
         $l_country.children().click(function () {
             gCountry = this.className;
-            localStorage.setItem('s_country', this.className);
-            $('#bt_country').empty();
+            localStorage.setItem("s_country", this.className);
+            $("#bt_country").empty();
             document.getElementById("bt_country").appendChild(this.cloneNode(true));
-            $('#popupCountry').popup('close');
-            $txt_search.val('');
-            countrySearch('');
+            $("#popupCountry").popup("close");
+            $txt_search.val("");
+            countrySearch("");
         });
 
         jQuery.preLoadImages(["Images/red_on.png", "Images/red_off.png", "Images/blue_on.png", "Images/blue_off.png", "Images/title2eng.png"]);
-        document.getElementById('b_image_input').addEventListener('change', resize_image, false);
+        document.getElementById("b_image_input").addEventListener("change", resize_image, false);
         $("#popupSettings_col_b").find("label").attr("style", "display:inline;");
 
         contentFormatting();
@@ -1320,8 +1341,8 @@
         $img_title.delay(1500);
         $img_title.fadeOut(1000);
         $img_title.queue(function () {
-            url_param = url_query('theme');
-            if (url_param && url_param === 'mi') {
+            url_param = url_query("theme");
+            if (url_param && url_param === "mi") {
                 $img_title.attr("src", "Images/title2_mi.png");
             } else {
                 $img_title.attr("src", "Images/title2eng.png");
@@ -1332,7 +1353,7 @@
     };
 
     $(window).resize(function () {
-        if ($.mobile.activePage.attr('id') === "popupSettings" && gWidth === $(window).width()) {
+        if ($.mobile.activePage.attr("id") === "popupSettings" && gWidth === $(window).width()) {
             return;
         }
         contentFormatting();
@@ -1346,7 +1367,7 @@
         $.preLoadImages = function (imgs) {
             var imgs_len = imgs.length - 1;
             for (i = imgs_len; i >= 0; i -= 1) {
-                cacheImage = document.createElement('img');
+                cacheImage = document.createElement("img");
                 cacheImage.src = imgs[i];
                 cache.push(cacheImage);
             }
@@ -1355,7 +1376,7 @@
 
     navigator.mozL10n.ready(function () {
         // Example usage - http://homepage.hispeed.ch/grrds_games/4inaRow/?lang=ru
-        url_param = url_query('lang');
+        url_param = url_query("lang");
         if (url_param) {
             if (url_param !== navigator.mozL10n.language.code) {
                 navigator.mozL10n.language.code = url_param;
@@ -1365,15 +1386,19 @@
         updateStats();
         //$("#inputName").attr("placeholder",navigator.mozL10n.get("lb_name"));
         var items = $l_country.find("li").get(); //$("#l_country li").get();
-        items.sort(function(a,b){
+        items.sort(function (a, b) {
             var keyA = $(a).text();
             var keyB = $(b).text();
 
-            if (keyA < keyB) return -1;
-            if (keyA > keyB) return 1;
+            if (keyA < keyB) {
+                return -1;
+            }
+            if (keyA > keyB) {
+                return 1;
+            }
             return 0;
         });
-        $.each(items, function(i, li){
+        $.each(items, function (ignore, li) {
             $l_country.append(li);
         });
     });
