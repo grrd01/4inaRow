@@ -40,7 +40,7 @@
     var app = require("http").createServer(handler);
     var io = require("socket.io").listen(app);
     var Moniker = require("moniker");
-    app.listen(3250);
+    app.listen(49152);
 
     var users = [];
 

@@ -585,9 +585,9 @@
     function online_click() {
         $.mobile.changePage("#popupOnline", {transition: "pop", role: "dialog"});
         $(".bt_online").addClass("ui-disabled");
-        socket = io.connect("http://localhost:3250", {"forceNew": true});
+        //socket = io.connect("http://localhost:49152", {"forceNew": true});
+        socket = io.connect("http://grrd.a2hosted.com:49152", {"forceNew": true});
         socket.heartbeatTimeout = 20000;
-        //socket = io("http://localhost:3250");
         //socket = io.connect("http://4inarow-grrd.rhcloud.com:8000");
 
         socket.on("connect", function () {
