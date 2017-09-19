@@ -21,6 +21,14 @@
     "use strict";
 
     var fs = require("fs");
+    var options = {
+        // key: fs.readFileSync('ssl/9d144_c0743_0f74a9bdb5828809fd0f68ff5aa1417f.key'),
+        // cert: fs.readFileSync('ssl/grrd_a2hosted_com_9d144_c0743_1536306467_68a1ff505d39b287163527f98aa35721.crt')
+        // key: fs.readFileSync('../../ssl/keys/9d144_c0743_0f74a9bdb5828809fd0f68ff5aa1417f.key'),
+        // cert: fs.readFileSync('../../ssl/certs/grrd_a2hosted_com_9d144_c0743_1536306467_68a1ff505d39b287163527f98aa35721.crt')
+        key: fs.readFileSync('../../ssl/keys/a7b30_d97b7_f4321c7312ae6b16773902c2bf323a6a.key'),
+        cert: fs.readFileSync('../../ssl/certs/grrd_a2hosted_com_a7b30_d97b7_1512542940_b86bad886d1eb1b213af099c97f1c655.crt')
+    };
 
     function handler(ignore, res) {
         fs.readFile(
@@ -37,7 +45,7 @@
         );
     }
 
-    var app = require("http").createServer(handler);
+    var app = require("https").createServer(options, handler);
     var io = require("socket.io").listen(app);
     var Moniker = require("moniker");
     app.listen(49152);
