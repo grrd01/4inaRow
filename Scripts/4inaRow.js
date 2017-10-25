@@ -1250,13 +1250,6 @@
         }
 
         url_param = url_query("theme");
-        if (url_param) {
-            if (url_param === "mi") {
-                $img_title.attr("src", "Images/title1_mi.png");
-                $(".tit1").attr("src", "Images/title1_mi.png");
-                $(".tit2").attr("src", "Images/title2_mi.png");
-            }
-        }
 
         $(".bt_play").click(function (e) {
             playerClick();
