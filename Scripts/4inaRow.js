@@ -104,6 +104,21 @@
         }
     }());
 
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+            navigator.serviceWorker.register("sw.js").then(function (registration) {
+                console.log("ServiceWorker registration successful with scope: ", registration.scope);
+            }, function (err) {
+                console.log("ServiceWorker registration failed: ", err);
+            });
+        });
+    }
+
+    if (typeof io === "undefined") {
+        // offline :(
+        $(".bt_online").addClass("ui-disabled");
+    }
+
     function drawCircle(topAkt, colNr, color, bColor) {
         col_context[colNr].beginPath();
         col_context[colNr].arc(colWidth / 2, topAkt, colWidth / 2 * 0.85, 0, 2 * Math.PI, false);

@@ -24,6 +24,7 @@
         <link rel="apple-touch-startup-image" href="Images/apple-touch-startup-image-320x480.png" >
         <link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico" >
         <link rel="prefetch" type="application/l10n" href="Locales/locales.ini" />
+        <link rel="manifest" href="appmanifest.json">
     </head>
 
     <body>
@@ -51,11 +52,11 @@
                 <div class="cl_r">
                     <div id="page_portrait" class="di_i">
                         <ul data-role="listview" data-inset="true" data-filter="false">
-                            <li><a class="bt_play" href="#"><div class="li_port"><img class="img_port" src="Images/2player.svg" alt="2 Player"/><div class="li_pad" data-l10n-id="bt_play"></div></div></a></li>
-                            <li><a class="bt_online" href="#"><div class="li_port"><img class="img_port" src="Images/2online.svg" alt="Online"/><div class="li_pad" data-l10n-id="bt_online"></div></div></a></li>
-                            <li><a class="bt_easy" href="#"><div class="li_port"><img class="img_port" src="Images/easy.svg" alt="Easy"/><div class="li_pad" data-l10n-id="bt_easy"></div></div></a></li>
-                            <li><a class="bt_med" href="#"><div class="li_port"><img class="img_port" src="Images/medium.svg" alt="Medium"/><div class="li_pad" data-l10n-id="bt_med"></div></div></a></li>
-                            <li><a class="bt_hard" href="#"><div class="li_port"><img class="img_port" src="Images/hard.svg" alt="Hard"/><div class="li_pad" data-l10n-id="bt_hard"></div></div></a></li>
+                            <li><a class="bt_play" href="#"><div class="li_port"><img class="img_port" src="Images/2player.svg" alt="2 Player"/><div class="li_pad" data-l10n-id="bt_play">2 Players</div></div></a></li>
+                            <li><a class="bt_online" href="#"><div class="li_port"><img class="img_port" src="Images/2online.svg" alt="Online"/><div class="li_pad" data-l10n-id="bt_online">Online</div></div></a></li>
+                            <li><a class="bt_easy" href="#"><div class="li_port"><img class="img_port" src="Images/easy.svg" alt="Easy"/><div class="li_pad" data-l10n-id="bt_easy">Easy</div></div></a></li>
+                            <li><a class="bt_med" href="#"><div class="li_port"><img class="img_port" src="Images/medium.svg" alt="Medium"/><div class="li_pad" data-l10n-id="bt_med">Medium</div></div></a></li>
+                            <li><a class="bt_hard" href="#"><div class="li_port"><img class="img_port" src="Images/hard.svg" alt="Hard"/><div class="li_pad" data-l10n-id="bt_hard">Hard</div></div></a></li>
                         </ul>
                     </div>
                 </div>
@@ -63,11 +64,11 @@
                 <div id="page_landscape" class="di_n">
                     <div id="blank_space" class="h100"></div>
                     <div data-role="controlgroup" data-type="horizontal" class="w100">
-                        <a class="bt_play a_land" href="#" data-role="button"><img class="img_land" src="Images/2player.svg" alt="2Player"/><br><div data-l10n-id="bt_play"></div></a>
-                        <a class="bt_online a_land" href="#" data-role="button"><img class="img_land" src="Images/2online.svg" alt="Online"/><br><div data-l10n-id="bt_online"></div></a>
-                        <a class="bt_easy a_land" href="#" data-role="button"><img class="img_land" src="Images/easy.svg" alt="Easy"/><br><div data-l10n-id="bt_easy"></div></a>
-                        <a class="bt_med a_land" href="#" data-role="button"><img class="img_land" src="Images/medium.svg" alt="Medium"/><br><div data-l10n-id="bt_med"></div></a>
-                        <a class="bt_hard a_land" href="#" data-role="button"><img class="img_land" src="Images/hard.svg" alt="Hard"/><br><div data-l10n-id="bt_hard"></div></a>
+                        <a class="bt_play a_land" href="#" data-role="button"><img class="img_land" src="Images/2player.svg" alt="2Player"/><br><div data-l10n-id="bt_play">2 Players</div></a>
+                        <a class="bt_online a_land" href="#" data-role="button"><img class="img_land" src="Images/2online.svg" alt="Online"/><br><div data-l10n-id="bt_online">Online</div></a>
+                        <a class="bt_easy a_land" href="#" data-role="button"><img class="img_land" src="Images/easy.svg" alt="Easy"/><br><div data-l10n-id="bt_easy">Easy</div></a>
+                        <a class="bt_med a_land" href="#" data-role="button"><img class="img_land" src="Images/medium.svg" alt="Medium"/><br><div data-l10n-id="bt_med">Medium</div></a>
+                        <a class="bt_hard a_land" href="#" data-role="button"><img class="img_land" src="Images/hard.svg" alt="Hard"/><br><div data-l10n-id="bt_hard">Hard</div></a>
                     </div>
                 </div>
             </div><!-- /content -->
@@ -192,17 +193,17 @@
                 <img src="Images/44.svg" alt="diagonal" class="w20"/>
                 </div>
                 <br>
-                <span data-l10n-id="lb_dev">Developed by Gérard Tyedmers with <a href="http://jquerymobile.com/" target="_blank">jQuery mobile</a><span>,&nbsp;</span><a href="http://nodejs.org/" target="_blank">node.js</a> <span data-l10n-id="lb_and"> and </span> <a href="http://socket.io/" target="_blank">socket.io</a><span>. </span></span>
+                <span data-l10n-id="lb_dev">Developed by Gérard Tyedmers with <a href="http://jquerymobile.com/" target="_blank" rel="noopener">jQuery mobile</a><span>,&nbsp;</span><a href="http://nodejs.org/" target="_blank" rel="noopener">node.js</a> <span data-l10n-id="lb_and"> and </span> <a href="http://socket.io/" target="_blank" rel="noopener">socket.io</a><span>. </span></span>
                 <br><br>
 
                 <table>
                     <tr>
-                        <td class="w20 tx_c"><a href="https://grrd01.github.io/Puzzle" target="_blank"><img src="Images/puzzle.svg" alt="Puzzle" class="w80"/></a></td>
-                        <td class="w80 pl10"><span data-l10n-id="lb_puzzle">Try my other game: <a href="https://grrd01.github.io/Puzzle" target="_blank">grrd's Puzzle</a></span></td>
+                        <td class="w20 tx_c"><a href="https://grrd01.github.io/Puzzle" target="_blank" rel="noopener"><img src="Images/puzzle.svg" alt="Puzzle" class="w80"/></a></td>
+                        <td class="w80 pl10"><span data-l10n-id="lb_puzzle">Try my other game: <a href="https://grrd01.github.io/Puzzle" target="_blank" rel="noopener">grrd's Puzzle</a></span></td>
                     </tr>
                     <tr>
-                        <td class="w20 tx_c"><a href="https://grrd01.github.io/Dice/" target="_blank"><img src="Images/dice.svg" alt="Dice" class="w80"/></a></td>
-                        <td class="w80 pl10 va_m"><span data-l10n-id="lb_and">... and </span> <a href="https://grrd01.github.io/Dice/" target="_blank">grrd's Dice</a></td>
+                        <td class="w20 tx_c"><a href="https://grrd01.github.io/Dice/" target="_blank" rel="noopener"><img src="Images/dice.svg" alt="Dice" class="w80"/></a></td>
+                        <td class="w80 pl10 va_m"><span data-l10n-id="lb_and">... and </span> <a href="https://grrd01.github.io/Dice/" target="_blank" rel="noopener">grrd's Dice</a></td>
                     </tr>
                     <tr>
                         <td class="w20 tx_c"><a href="mailto:grrd@gmx.net"><img src="Images/mail.svg" alt="mail" class="w80"/></a></td>
@@ -501,25 +502,25 @@
                 <ul data-role="listview" data-inset="true" data-filter="false">
                     <li>
                         <img class="img_stats" src="Images/easy_black.svg" alt="Easy"/>
-                        <div data-l10n-id="bt_easy"></div>
+                        <div data-l10n-id="bt_easy">Easy</div>
                         <div id="easy_win" class="stats win"></div>
                         <div id="easy_loose" class="stats loose"></div>
                     </li>
                     <li>
                         <img class="img_stats" src="Images/medium_black.svg" alt="Medium"/>
-                        <div data-l10n-id="bt_med"></div>
+                        <div data-l10n-id="bt_med">Medium</div>
                         <div id="medium_win" class="stats win"></div>
                         <div id="medium_loose" class="stats loose"></div>
                     </li>
                     <li>
                         <img class="img_stats" src="Images/hard_black.svg" alt="Hard"/>
-                        <div data-l10n-id="bt_hard"></div>
+                        <div data-l10n-id="bt_hard">Hard</div>
                         <div id="hard_win" class="stats win"></div>
                         <div id="hard_loose" class="stats loose"></div>
                     </li>
                     <li>
                         <img class="img_stats" src="Images/2online_black.svg" alt="Online"/>
-                        <div data-l10n-id="bt_online"></div>
+                        <div data-l10n-id="bt_online">Online</div>
                         <div id="online_win" class="stats win"></div>
                         <div id="online_loose" class="stats loose"></div>
                     </li>
