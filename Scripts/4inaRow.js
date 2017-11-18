@@ -114,7 +114,7 @@
         });
     }
 
-    if (typeof io === "undefined") {
+    if (!navigator.onLine) {
         // offline :(
         $(".bt_online").addClass("ui-disabled");
     }
