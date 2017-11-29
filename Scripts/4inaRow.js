@@ -8,7 +8,7 @@
 
 (function () {
     "use strict";
-    //navigator.mozL10n.language.code = "ta";
+    //document.webL10n.language.code = "ta";
     window.requestAnimFrame = (function () {
         return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
             window.setTimeout(callback, 1000 / 60);
@@ -305,14 +305,14 @@
 
         maxValue = Math.max(easyWin, easyLoose, mediumWin, mediumLoose, hardWin, hardLoose, onlineWin, onlineLoose, 1);
 
-        document.getElementById("easy_win").innerHTML = navigator.mozL10n.get("lb_won") + " " + easyWin;
-        document.getElementById("easy_loose").innerHTML = navigator.mozL10n.get("lb_lost") + " " + easyLoose;
-        document.getElementById("medium_win").innerHTML = navigator.mozL10n.get("lb_won") + " " + mediumWin;
-        document.getElementById("medium_loose").innerHTML = navigator.mozL10n.get("lb_lost") + " " + mediumLoose;
-        document.getElementById("hard_win").innerHTML = navigator.mozL10n.get("lb_won") + " " + hardWin;
-        document.getElementById("hard_loose").innerHTML = navigator.mozL10n.get("lb_lost") + " " + hardLoose;
-        document.getElementById("online_win").innerHTML = navigator.mozL10n.get("lb_won") + " " + onlineWin;
-        document.getElementById("online_loose").innerHTML = navigator.mozL10n.get("lb_lost") + " " + onlineLoose;
+        document.getElementById("easy_win").innerHTML = document.webL10n.get("lb_won") + " " + easyWin;
+        document.getElementById("easy_loose").innerHTML = document.webL10n.get("lb_lost") + " " + easyLoose;
+        document.getElementById("medium_win").innerHTML = document.webL10n.get("lb_won") + " " + mediumWin;
+        document.getElementById("medium_loose").innerHTML = document.webL10n.get("lb_lost") + " " + mediumLoose;
+        document.getElementById("hard_win").innerHTML = document.webL10n.get("lb_won") + " " + hardWin;
+        document.getElementById("hard_loose").innerHTML = document.webL10n.get("lb_lost") + " " + hardLoose;
+        document.getElementById("online_win").innerHTML = document.webL10n.get("lb_won") + " " + onlineWin;
+        document.getElementById("online_loose").innerHTML = document.webL10n.get("lb_lost") + " " + onlineLoose;
 
         document.getElementById("easy_win").style.width = (100 / maxValue * easyWin) + "%";
         document.getElementById("easy_loose").style.width = (100 / maxValue * easyLoose) + "%";
@@ -359,7 +359,7 @@
         if (gOwnName) {
             p1_name = $inputName.val();
         } else {
-            p1_name = navigator.mozL10n.get("lb_player1");
+            p1_name = document.webL10n.get("lb_player1");
         }
         if (gCountry) {
             $("p.P1country").html(document.getElementById("l_country").getElementsByClassName(gCountry)[0].innerHTML);
@@ -370,7 +370,7 @@
             $(".P1country").attr("class", "P1country");
             $("div.P1country").addClass("flag_left");
         }
-        p2_name = navigator.mozL10n.get("lb_player2");
+        p2_name = document.webL10n.get("lb_player2");
         $(".P1name").html(p1_name);
         $(".P2name").html(p2_name);
         $(".P2icon").attr("src", "Images/player.svg");
@@ -395,9 +395,9 @@
             games = games + 1;
             $("#printMessage").html(messageTxt);
             if (games === 1) {
-                $("#printGames").html(games + " " + navigator.mozL10n.get("lb_game"));
+                $("#printGames").html(games + " " + document.webL10n.get("lb_game"));
             } else {
-                $("#printGames").html(games + " " + navigator.mozL10n.get("lb_games"));
+                $("#printGames").html(games + " " + document.webL10n.get("lb_games"));
             }
             $("#printScore1a").html(p1_name);
             $("#printScore2a").html(p2_name);
@@ -546,14 +546,14 @@
                         document.getElementById("ding_sound").play();
                     }
                     if (player === 0) {
-                        message(p1_name + " " + navigator.mozL10n.get("lb_win"), Date.now());
+                        message(p1_name + " " + document.webL10n.get("lb_win"), Date.now());
                     } else {
-                        message(p2_name + " " + navigator.mozL10n.get("lb_win"), Date.now());
+                        message(p2_name + " " + document.webL10n.get("lb_win"), Date.now());
                     }
                 } else {
                     if (!space) {
                         updateStats("draw");
-                        message(navigator.mozL10n.get("lb_draw"), Date.now());
+                        message(document.webL10n.get("lb_draw"), Date.now());
                     } else {
                         player = 1 - player;
                         setLights();
@@ -605,7 +605,7 @@
         socket.heartbeatTimeout = 20000;
 
         socket.on("connect", function () {
-            //$.mobile.showPageLoadingMsg("a", navigator.mozL10n.get("lb_wait"), false);
+            //$.mobile.showPageLoadingMsg("a", document.webL10n.get("lb_wait"), false);
         });
 
         socket.on("startgame", function (data) {
@@ -648,7 +648,7 @@
                     if (gOwnName) {
                         p1_name = $inputName.val();
                     } else {
-                        p1_name = navigator.mozL10n.get("lb_player1");
+                        p1_name = document.webL10n.get("lb_player1");
                     }
                     if (gCountry) {
                         $("p.P1country").html(document.getElementById("l_country").getElementsByClassName(gCountry)[0].innerHTML);
@@ -660,10 +660,10 @@
                         $("div.P1country").addClass("flag_left");
                     }
                     $(".P2icon").attr("src", "Images/online.svg");
-                    p2_name = navigator.mozL10n.get("bt_online");
+                    p2_name = document.webL10n.get("bt_online");
                 } else {
                     $(".P1icon").attr("src", "Images/online.svg");
-                    p1_name = navigator.mozL10n.get("bt_online");
+                    p1_name = document.webL10n.get("bt_online");
                     if (gOwnImage) {
                         $(".P2icon").attr("src", $inputImage.attr("src"));
                     } else {
@@ -672,7 +672,7 @@
                     if (gOwnName) {
                         p2_name = $inputName.val();
                     } else {
-                        p2_name = navigator.mozL10n.get("lb_player1");
+                        p2_name = document.webL10n.get("lb_player1");
                     }
                     if (gCountry) {
                         $("p.P2country").html(document.getElementById("l_country").getElementsByClassName(gCountry)[0].innerHTML);
@@ -759,7 +759,7 @@
         if (gOwnName) {
             p1_name = $inputName.val();
         } else {
-            p1_name = navigator.mozL10n.get("lb_player");
+            p1_name = document.webL10n.get("lb_player");
         }
         if (gCountry) {
             $("p.P1country").html(document.getElementById("l_country").getElementsByClassName(gCountry)[0].innerHTML);
@@ -770,7 +770,7 @@
             $(".P1country").attr("class", "P1country");
             $("div.P1country").addClass("flag_left");
         }
-        p2_name = navigator.mozL10n.get("lb_computer");
+        p2_name = document.webL10n.get("lb_computer");
         $(".P1name").html(p1_name);
         $(".P2name").html(p2_name);
         $(".P2icon").attr("src", "Images/computer.svg");
@@ -1380,17 +1380,17 @@
         };
     }(jQuery));
 
-    navigator.mozL10n.ready(function () {
-        // Example usage - http://homepage.hispeed.ch/grrds_games/4inaRow/?lang=ru
+    document.webL10n.ready(function () {
+        // Example usage - https://grrd01.github.io/4inaRow/?lang=ru
         url_param = url_query("lang");
         if (url_param) {
-            if (url_param !== navigator.mozL10n.language.code) {
-                navigator.mozL10n.language.code = url_param;
+            if (url_param !== document.webL10n.getLanguage()) {
+                document.webL10n.setLanguage(url_param);
                 return;
             }
         }
         updateStats();
-        //$("#inputName").attr("placeholder",navigator.mozL10n.get("lb_name"));
+        //$("#inputName").attr("placeholder",document.webL10n.get("lb_name"));
         var items = $l_country.find("li").get(); //$("#l_country li").get();
         items.sort(function (a, b) {
             var keyA = $(a).text();
