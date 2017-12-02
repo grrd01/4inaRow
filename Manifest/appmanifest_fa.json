@@ -2,8 +2,8 @@
   "name": "grrd's 4 in a Row",
   "short_name": "4 in a Row",
   "version": "6.0",
-  "description": "__MSG_appDesc__",
-  "default_locale": "en",
+  "description": "grrd's 4 در یک ردیف یک بازی connect-4 برای یک یا دو بازیکن است. اولین کسی که 4 ستون را به صورت افقی، عمودی یا مورب در یک خط قرار می دهد چه کسی است؟",
+  "default_locale": "fa",
   "icons": [
     {
       "src": "Images/icon_16.png",
@@ -69,6 +69,6 @@
   "background_color": "#434343",
   "theme_color": "#434343",
   "display": "standalone",
-  "start_url": "index.html",
+  "start_url": "../index.html",
   "author": "Gerard Tyedmers"
 }

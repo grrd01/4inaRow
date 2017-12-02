@@ -1,5 +1,5 @@
 var CACHE_NAME = 'grrds-4inarow-cache';
-var CACHE_VERSION = 'v1.1';
+var CACHE_VERSION = 'v1.2';
 var CACHE = CACHE_NAME + '-' + CACHE_VERSION;
 
 var urlsToCache = [
@@ -19,6 +19,7 @@ var urlsToCache = [
     'Images/easy_black.svg',
     'Images/hard.svg',
     'Images/hard_black.svg',
+    'Images/info.png',
     'Images/mail.svg',
     'Images/medium.svg',
     'Images/medium_black.svg',

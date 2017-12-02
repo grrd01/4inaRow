@@ -8,13 +8,14 @@
 
 (function () {
     "use strict";
-    //document.webL10n.language.code = "ta";
+    //document.webL10n.setLanguage("ta");
     window.requestAnimFrame = (function () {
         return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
             window.setTimeout(callback, 1000 / 60);
         };
     }());
 
+    var langReady = false;
     var ii;
     var animate = false;
     var gHeight;
@@ -1383,29 +1384,38 @@
     document.webL10n.ready(function () {
         // Example usage - https://grrd01.github.io/4inaRow/?lang=ru
         url_param = url_query("lang");
-        if (url_param) {
-            if (url_param !== document.webL10n.getLanguage()) {
-                document.webL10n.setLanguage(url_param);
-                return;
-            }
+        langReady = true;
+        if (url_param && url_param !== document.webL10n.getLanguage()) {
+            document.webL10n.setLanguage(url_param);
+            $("html").attr("lang", url_param);
+            langReady = false;
+            return;
         }
-        updateStats();
-        //$("#inputName").attr("placeholder",document.webL10n.get("lb_name"));
-        var items = $l_country.find("li").get(); //$("#l_country li").get();
-        items.sort(function (a, b) {
-            var keyA = $(a).text();
-            var keyB = $(b).text();
+    });
+    document.addEventListener('localized', function () {
+        if (langReady) {
+            $("html").attr("lang", document.webL10n.getLanguage().substr(0, 2));
+            $('meta[name=description]').attr("content", document.webL10n.get("lb_desc"));
+            $('link[rel=manifest]').attr("href", "Manifest/appmanifest_" + document.webL10n.getLanguage().substr(0, 2) +".json");
+            updateStats();
+            //$("#inputName").attr("placeholder",document.webL10n.get("lb_name"));
+            var items = $l_country.find("li").get(); //$("#l_country li").get();
+            items.sort(function (a, b) {
+                var keyA = $(a).text();
+                var keyB = $(b).text();
 
-            if (keyA < keyB) {
-                return -1;
-            }
-            if (keyA > keyB) {
-                return 1;
-            }
-            return 0;
-        });
-        $.each(items, function (ignore, li) {
-            $l_country.append(li);
-        });
+                if (keyA < keyB) {
+                    return -1;
+                }
+                if (keyA > keyB) {
+                    return 1;
+                }
+                return 0;
+            });
+            $.each(items, function (ignore, li) {
+                $l_country.append(li);
+            });
+        }
+        langReady = true;
     });
 }());
