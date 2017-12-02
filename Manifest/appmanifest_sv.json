@@ -1,0 +1,74 @@
+{
+  "name": "grrd's 4 in a Row",
+  "short_name": "4 in a Row",
+  "version": "6.0",
+  "description": "grrd's 4 in a row är ett 4 i rad spel för en eller två spelare. Vem är den första att sätta 4 stenar horisontellt, vertikalt eller diagonalt i rad?",
+  "default_locale": "sv",
+  "icons": [
+    {
+      "src": "Images/icon_16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "Images/icon_32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "Images/icon_48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "Images/icon_60.png",
+      "type": "image/png",
+      "sizes": "60x60"
+    },
+    {
+      "src": "Images/icon_64.png",
+      "type": "image/png",
+      "sizes": "64x64"
+    },
+    {
+      "src": "Images/icon_90.png",
+      "type": "image/png",
+      "sizes": "90x90"
+    },
+    {
+      "src": "Images/icon_96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "Images/icon_120.png",
+      "type": "image/png",
+      "sizes": "120x120"
+    },
+    {
+      "src": "Images/icon_128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "Images/icon_192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "Images/icon_256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "Images/icon_512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#434343",
+  "theme_color": "#434343",
+  "display": "standalone",
+  "start_url": "../index.html",
+  "author": "Gerard Tyedmers"
+}
