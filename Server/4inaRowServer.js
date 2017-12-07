@@ -26,8 +26,8 @@
         // cert: fs.readFileSync('ssl/grrd_a2hosted_com_9d144_c0743_1536306467_68a1ff505d39b287163527f98aa35721.crt')
         // key: fs.readFileSync('../../ssl/keys/9d144_c0743_0f74a9bdb5828809fd0f68ff5aa1417f.key'),
         // cert: fs.readFileSync('../../ssl/certs/grrd_a2hosted_com_9d144_c0743_1536306467_68a1ff505d39b287163527f98aa35721.crt')
-        key: fs.readFileSync('../../ssl/keys/a7b30_d97b7_f4321c7312ae6b16773902c2bf323a6a.key'),
-        cert: fs.readFileSync('../../ssl/certs/grrd_a2hosted_com_a7b30_d97b7_1512542940_b86bad886d1eb1b213af099c97f1c655.crt')
+        key: fs.readFileSync('../../ssl/keys/c5f71_b9529_8048d08042a56df59424ac8597df4007.key'),
+        cert: fs.readFileSync('../../ssl/certs/grrd_a2hosted_com_c5f71_b9529_1517811185_9a6df2587ad98e52c62c300c5fbc6dd3.crt')
     };
 
     function handler(ignore, res) {
