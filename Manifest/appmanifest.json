@@ -2,7 +2,7 @@
   "name": "grrd's 4 in a Row",
   "short_name": "4 in a Row",
   "version": "6.0",
-  "description": "__MSG_appDesc__",
+  "description": "grrd's 4 in a Row is a connect-4 game for one or two players with a decent AI, selectable difficulty from Kid to Pro that works well on your smartphone.",
   "default_locale": "en",
   "icons": [
     {
