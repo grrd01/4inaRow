@@ -4,7 +4,7 @@
 * Licensed under the MPL License
 */
 
-/*jslint browser:true, for:true, devel: true, this: true */ /*global  $, window, io, jQuery, EXIF, FileReader, BinaryFile, atob */
+/*jslint browser:true, for:true, devel: true, this: true */ /*global  $, window, io, jQuery, EXIF, FileReader  */
 
 (function () {
     "use strict";
@@ -1166,9 +1166,11 @@
         // triggers the images onload function
         fileLoader.onload = function () {
             var data = this.result;
-            g_exif = EXIF.readFromBinaryFile(new BinaryFile(atob(data.split(",")[1])));
-            imageObj.src = data;
-            //$inputImage.attr("src", data);
+            EXIF.getData(file.target.files[0], function () {
+                g_exif.Orientation = EXIF.getTag(this, "Orientation");
+                imageObj.src = data;
+            });
+
         };
 
         // set up the images onload function which clears the hidden canvas context,
@@ -1389,14 +1391,14 @@
             document.webL10n.setLanguage(url_param);
             $("html").attr("lang", url_param);
             langReady = false;
-            return;
         }
     });
-    document.addEventListener('localized', function () {
+
+    document.addEventListener("localized", function () {
         if (langReady) {
             $("html").attr("lang", document.webL10n.getLanguage().substr(0, 2));
-            $('meta[name=description]').attr("content", document.webL10n.get("lb_desc"));
-            $('link[rel=manifest]').attr("href", "Manifest/appmanifest_" + document.webL10n.getLanguage().substr(0, 2) +".json");
+            $("meta[name=description]").attr("content", document.webL10n.get("lb_desc"));
+            $("link[rel=manifest]").attr("href", "Manifest/appmanifest_" + document.webL10n.getLanguage().substr(0, 2) + ".json");
             updateStats();
             //$("#inputName").attr("placeholder",document.webL10n.get("lb_name"));
             var items = $l_country.find("li").get(); //$("#l_country li").get();
