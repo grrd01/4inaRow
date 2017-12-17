@@ -6,62 +6,62 @@
   "default_locale": "ta",
   "icons": [
     {
-      "src": "Images/icon_16.png",
+      "src": "../Images/icon_16.png",
       "type": "image/png",
       "sizes": "16x16"
     },
     {
-      "src": "Images/icon_32.png",
+      "src": "../Images/icon_32.png",
       "type": "image/png",
       "sizes": "32x32"
     },
     {
-      "src": "Images/icon_48.png",
+      "src": "../Images/icon_48.png",
       "type": "image/png",
       "sizes": "48x48"
     },
     {
-      "src": "Images/icon_60.png",
+      "src": "../Images/icon_60.png",
       "type": "image/png",
       "sizes": "60x60"
     },
     {
-      "src": "Images/icon_64.png",
+      "src": "../Images/icon_64.png",
       "type": "image/png",
       "sizes": "64x64"
     },
     {
-      "src": "Images/icon_90.png",
+      "src": "../Images/icon_90.png",
       "type": "image/png",
       "sizes": "90x90"
     },
     {
-      "src": "Images/icon_96.png",
+      "src": "../Images/icon_96.png",
       "type": "image/png",
       "sizes": "96x96"
     },
     {
-      "src": "Images/icon_120.png",
+      "src": "../Images/icon_120.png",
       "type": "image/png",
       "sizes": "120x120"
     },
     {
-      "src": "Images/icon_128.png",
+      "src": "../Images/icon_128.png",
       "type": "image/png",
       "sizes": "128x128"
     },
     {
-      "src": "Images/icon_192.png",
+      "src": "../Images/icon_192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "Images/icon_256.png",
+      "src": "../Images/icon_256.png",
       "type": "image/png",
       "sizes": "256x256"
     },
     {
-      "src": "Images/icon_512.png",
+      "src": "../Images/icon_512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
