@@ -66,6 +66,24 @@
       "sizes": "512x512"
     }
   ],
+  "screenshots": [
+    {
+      "src": "../Images/Screenshots/4inarow1_ru.png",
+      "type": "image/png",
+      "sizes": "1280x800"
+    },
+    {
+      "src": "../Images/Screenshots/4inarow2_ru.png",
+      "type": "image/png",
+      "sizes": "1280x800"
+    },
+    {
+      "src": "../Images/Screenshots/4inarow3_ru.png",
+      "type": "image/png",
+      "sizes": "1280x800"
+    }
+  ],
+  "categories": ["games", "logic games", "casual games", "family games"],
   "background_color": "#434343",
   "theme_color": "#434343",
   "display": "standalone",
