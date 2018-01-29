@@ -1399,6 +1399,7 @@
             $("html").attr("lang", document.webL10n.getLanguage().substr(0, 2));
             $("meta[name=description]").attr("content", document.webL10n.get("lb_desc"));
             $("link[rel=manifest]").attr("href", "Manifest/appmanifest_" + document.webL10n.getLanguage().substr(0, 2) + ".json");
+            $("link[rel=canonical]").attr("href", "https://grrd01.github.io/4inaRow/?lang=" + document.webL10n.getLanguage().substr(0, 2));
             updateStats();
             //$("#inputName").attr("placeholder",document.webL10n.get("lb_name"));
             var items = $l_country.find("li").get(); //$("#l_country li").get();
