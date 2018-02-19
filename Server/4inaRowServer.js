@@ -21,13 +21,43 @@
     "use strict";
 
     var fs = require("fs");
+
+    function getNewestFile(dir, regexp) {
+        var path = require("path");
+        var newest = null;
+        var files = fs.readdirSync(dir);
+        var i;
+        var f_time;
+        var newest_time;
+
+        for (i = 0; i < files.length; i += 1) {
+            if (regexp.test(files[i])) {
+                if (newest === null) {
+                    newest = files[i];
+                    newest_time = fs.statSync(path.join(dir, newest)).mtime.getTime();
+                } else {
+                    f_time = fs.statSync(path.join(dir, files[i])).mtime.getTime();
+                    if (f_time > newest_time) {
+                        newest = files[i];
+                        newest_time = f_time;
+                    }
+                }
+            }
+        }
+
+        if (newest !== null) {
+            return (path.join(dir, newest));
+        }
+        return null;
+    }
+
     var options = {
         // key: fs.readFileSync('ssl/9d144_c0743_0f74a9bdb5828809fd0f68ff5aa1417f.key'),
         // cert: fs.readFileSync('ssl/grrd_a2hosted_com_9d144_c0743_1536306467_68a1ff505d39b287163527f98aa35721.crt')
         // key: fs.readFileSync('../../ssl/keys/9d144_c0743_0f74a9bdb5828809fd0f68ff5aa1417f.key'),
         // cert: fs.readFileSync('../../ssl/certs/grrd_a2hosted_com_9d144_c0743_1536306467_68a1ff505d39b287163527f98aa35721.crt')
-        key: fs.readFileSync('../../ssl/keys/c5f71_b9529_8048d08042a56df59424ac8597df4007.key'),
-        cert: fs.readFileSync('../../ssl/certs/grrd_a2hosted_com_c5f71_b9529_1517811185_9a6df2587ad98e52c62c300c5fbc6dd3.crt')
+        key: fs.readFileSync(getNewestFile("../../ssl/keys", new RegExp(".*.key$"))),
+        cert: fs.readFileSync(getNewestFile("../../ssl/certs", new RegExp(".*.crt$")))
     };
 
     function handler(ignore, res) {
@@ -115,4 +145,5 @@
 
 
     });
+
 }());
