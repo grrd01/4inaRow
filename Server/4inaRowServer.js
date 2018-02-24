@@ -56,8 +56,8 @@
         // cert: fs.readFileSync('ssl/grrd_a2hosted_com_9d144_c0743_1536306467_68a1ff505d39b287163527f98aa35721.crt')
         // key: fs.readFileSync('../../ssl/keys/9d144_c0743_0f74a9bdb5828809fd0f68ff5aa1417f.key'),
         // cert: fs.readFileSync('../../ssl/certs/grrd_a2hosted_com_9d144_c0743_1536306467_68a1ff505d39b287163527f98aa35721.crt')
-        key: fs.readFileSync(getNewestFile("../../ssl/keys", new RegExp(".*.key$"))),
-        cert: fs.readFileSync(getNewestFile("../../ssl/certs", new RegExp(".*.crt$")))
+        key: fs.readFileSync(getNewestFile("/home/grrdahos/ssl/keys", new RegExp(".*.key$"))),
+        cert: fs.readFileSync(getNewestFile("/home/grrdahos/ssl/certs", new RegExp(".*.crt$")))
     };
 
     function handler(ignore, res) {

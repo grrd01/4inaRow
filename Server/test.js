@@ -32,8 +32,8 @@ function getNewestFile(dir, regexp) {
     return null;
 }
 
-var key = getNewestFile("../../ssl/keys", new RegExp(".*.key$"));
-var cert = getNewestFile("../../ssl/certs", new RegExp(".*.crt$"));
+var key = getNewestFile("/home/grrdahos/ssl/keys", new RegExp(".*.key$"));
+var cert = getNewestFile("/home/grrdahos/ssl/certs", new RegExp(".*.crt$"));
 console.log("**********************************************");
 console.log("the newest key-file is:");
 console.log(key);
