@@ -7,7 +7,7 @@
 /*jslint devel: true, browser: true */ /*global  self  */
 
 var CACHE_NAME = "grrds-4inarow-cache";
-var CACHE_VERSION = "v1.4";
+var CACHE_VERSION = "v1.5";
 var CACHE = CACHE_NAME + "-" + CACHE_VERSION;
 
 var urlsToCache = [
@@ -38,6 +38,7 @@ var urlsToCache = [
     "Images/red_on.png",
     "Images/settings.svg",
     "Images/stats.svg",
+    "Images/tictactoe.svg",
     "Images/title1.png",
     "Images/title2eng.png",
     "Scripts/4inaRow.css",
