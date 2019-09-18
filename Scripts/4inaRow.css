@@ -52,10 +52,7 @@ h3.score {text-align: center; white-space: nowrap; overflow: hidden;}
 form {margin: 20px;}
 .flag_left {position: absolute; top: -16px; left: -8px;}
 .flag_right {position: absolute; top: -16px; right: -16px;}
-.ui-page {
-    -webkit-backface-visibility: hidden;
-    height: 100%;
-}
+
 
 /* Red button theme for JQuery Mobile
  * - Use data-theme="r" for red versions of the default JQuery Mobile Buttons.
