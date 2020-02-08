@@ -1,18 +1,18 @@
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="280px" height="280px" viewBox="0 0 280 280" stroke="#333333" stroke-width="11" fill="none" >
-  <circle cx="34" cy="34" r="27" fill="#333333"/>
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="280px" height="280px" viewBox="0 0 280 280" stroke="#fff" stroke-width="11" fill="none" >
+  <circle cx="34" cy="34" r="27" fill="#fff"/>
   <circle cx="104" cy="34" r="27" />
   <circle cx="174" cy="34" r="27" />
   <circle cx="244" cy="34" r="27" />
   <circle cx="34" cy="104" r="27" />
-  <circle cx="104" cy="104" r="27" fill="#333333"/>
+  <circle cx="104" cy="104" r="27" fill="#fff"/>
   <circle cx="174" cy="104" r="27" />
   <circle cx="244" cy="104" r="27" />
   <circle cx="34" cy="174" r="27" />
   <circle cx="104" cy="174" r="27" />
-  <circle cx="174" cy="174" r="27" fill="#333333"/>
+  <circle cx="174" cy="174" r="27" fill="#fff"/>
   <circle cx="244" cy="174" r="27" />
   <circle cx="34" cy="244" r="27" />
   <circle cx="104" cy="244" r="27" />
   <circle cx="174" cy="244" r="27" />
-  <circle cx="244" cy="244" r="27" fill="#333333"/>
+  <circle cx="244" cy="244" r="27" fill="#fff"/>
 </svg>

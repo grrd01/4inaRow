@@ -3,18 +3,22 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        uglify: {
+        terser: {
             one: {
                 options: {
-                    banner: "/*\n* grrd's 4 in a Row\n* Copyright (c) 2012 Gerard Tyedmers, grrd@gmx.net\n* Licensed under the MPL License\n*/\n",
+                    compress: true,
                     mangle: true,
-                    compress: true
+                    output: {
+                        comments: 'some'
+                    }
                 },
                 files: {
                     '../../2_Build/4inaRow/Scripts/4inaRow.js': ['Scripts/4inaRow.js']
                 }
-            },
-            two: {
+            }
+        },
+        uglify: {
+            one: {
                 options: {
                     banner: "/*\n* grrd's 4 in a Row\n* Copyright (c) 2012 Gerard Tyedmers, grrd@gmx.net\n* Licensed under the MPL License\n*/\n",
                     mangle: true,
@@ -24,7 +28,7 @@ module.exports = function(grunt) {
                     '../../2_Build/4inaRow/sw.js': ['sw.js']
                 }
             },
-            three: {
+            two: {
                 options: {
                     banner: "/*\n* Copyright (c) 2011-2013 Fabien Cazenave, Mozilla.\n*/\n",
                     mangle: true,
@@ -34,7 +38,7 @@ module.exports = function(grunt) {
                     '../../2_Build/4inaRow/Scripts/l10n.js': ['Scripts/l10n.js']
                 }
             },
-            four: {
+            three: {
                 options: {
                     banner: "/*\n* Javascript EXIF Reader 0.1.4\n* Copyright (c) 2008 Jacob Seidelin, cupboy@gmail.com, http://blog.nihilogic.dk/\n* Licensed under the MIT License (MIT) [https://github.com/exif-js/exif-js/blob/master/LICENSE.md]\n*/\n",
                     mangle: true,
@@ -44,7 +48,7 @@ module.exports = function(grunt) {
                     '../../2_Build/4inaRow/Scripts/exif.js': ['Scripts/exif.js']
                 }
             },
-            five: {
+            four: {
                 options: {
                     banner: "/*\n* Socket.IO.js build:0.9.16, development. \n* Copyright(c) 2011 LearnBoost <dev@learnboost.com>\n* MIT Licensed \n*/\n",
                     mangle: true,
@@ -65,29 +69,30 @@ module.exports = function(grunt) {
             dist: {
                 files: [
                     {'../../2_Build/4inaRow/Images/2online.svg': 'Images/2online.svg'},
-                    {'../../2_Build/4inaRow/Images/2online_black.svg': 'Images/2online_black.svg'},
                     {'../../2_Build/4inaRow/Images/2player.svg': 'Images/2player.svg'},
                     {'../../2_Build/4inaRow/Images/41.svg': 'Images/41.svg'},
                     {'../../2_Build/4inaRow/Images/42.svg': 'Images/42.svg'},
                     {'../../2_Build/4inaRow/Images/43.svg': 'Images/43.svg'},
                     {'../../2_Build/4inaRow/Images/44.svg': 'Images/44.svg'},
+                    {'../../2_Build/4inaRow/Images/back.svg': 'Images/back.svg'},
                     {'../../2_Build/4inaRow/Images/computer.svg': 'Images/computer.svg'},
                     {'../../2_Build/4inaRow/Images/dice.svg': 'Images/dice.svg'},
+                    {'../../2_Build/4inaRow/Images/down.svg': 'Images/down.svg'},
                     {'../../2_Build/4inaRow/Images/easy.svg': 'Images/easy.svg'},
-                    {'../../2_Build/4inaRow/Images/easy_black.svg': 'Images/easy_black.svg'},
                     {'../../2_Build/4inaRow/Images/hard.svg': 'Images/hard.svg'},
-                    {'../../2_Build/4inaRow/Images/hard_black.svg': 'Images/hard_black.svg'},
                     {'../../2_Build/4inaRow/Images/info.svg': 'Images/info.svg'},
                     {'../../2_Build/4inaRow/Images/mail.svg': 'Images/mail.svg'},
                     {'../../2_Build/4inaRow/Images/medium.svg': 'Images/medium.svg'},
-                    {'../../2_Build/4inaRow/Images/medium_black.svg': 'Images/medium_black.svg'},
+                    {'../../2_Build/4inaRow/Images/ok.svg': 'Images/ok.svg'},
                     {'../../2_Build/4inaRow/Images/online.svg': 'Images/online.svg'},
                     {'../../2_Build/4inaRow/Images/player.svg': 'Images/player.svg'},
                     {'../../2_Build/4inaRow/Images/puzzle.svg': 'Images/puzzle.svg'},
                     {'../../2_Build/4inaRow/Images/puzzle_min.svg': 'Images/puzzle_min.svg'},
+                    {'../../2_Build/4inaRow/Images/search.svg': 'Images/search.svg'},
                     {'../../2_Build/4inaRow/Images/settings.svg': 'Images/settings.svg'},
                     {'../../2_Build/4inaRow/Images/stats.svg': 'Images/stats.svg'},
-                    {'../../2_Build/4inaRow/Images/tictactoe.svg': 'Images/tictactoe.svg'}
+                    {'../../2_Build/4inaRow/Images/tictactoe.svg': 'Images/tictactoe.svg'},
+                    {'../../2_Build/4inaRow/Images/x.svg': 'Images/x.svg'}
                 ]
             }
         },
@@ -122,6 +127,10 @@ module.exports = function(grunt) {
                 },
                 files: {
                     '../../2_Build/4inaRow/Scripts/4inaRow.css': ['Scripts/4inaRow.css']
+                }
+            },dist2: {
+                files: {
+                    '../../2_Build/4inaRow/Scripts/flags32.css': ['Scripts/flags32.css']
                 }
             }
         },
@@ -178,6 +187,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('default', [
+        'terser',
         'uglify',
         'svgmin',
         'imagemin',

@@ -7,30 +7,29 @@
 /*jslint devel: true, browser: true */ /*global  self  */
 
 var CACHE_NAME = "grrds-4inarow-cache";
-var CACHE_VERSION = "v1.5";
+var CACHE_VERSION = "v2.0_beta";
 var CACHE = CACHE_NAME + "-" + CACHE_VERSION;
 
 var urlsToCache = [
     "index.html",
     "Images/2online.svg",
-    "Images/2online_black.svg",
     "Images/2player.svg",
     "Images/41.svg",
     "Images/42.svg",
     "Images/43.svg",
     "Images/44.svg",
+    "Images/back.svg",
     "Images/blue_off.png",
     "Images/blue_on.png",
     "Images/computer.svg",
     "Images/dice.svg",
+    "Images/down.svg",
     "Images/easy.svg",
-    "Images/easy_black.svg",
     "Images/hard.svg",
-    "Images/hard_black.svg",
     "Images/info.svg",
     "Images/mail.svg",
     "Images/medium.svg",
-    "Images/medium_black.svg",
+    "Images/ok.svg",
     "Images/online.svg",
     "Images/player.svg",
     "Images/puzzle.svg",
@@ -45,17 +44,8 @@ var urlsToCache = [
     "Scripts/4inaRow.js",
     "Scripts/exif.js",
     "Scripts/flags32.css",
-    "Scripts/jquery.mobile-1.3.2.min.css",
-    "Scripts/jquery.mobile-1.3.2.min.js",
-    "Scripts/jquery-1.12.3.min.js",
     "Scripts/l10n.js",
-    "Scripts/images/ajax-loader.gif",
-    "Scripts/images/ajax-loader.png",
     "Scripts/images/flags32.png",
-    "Scripts/images/icons-18-black.png",
-    "Scripts/images/icons-18-white.png",
-    "Scripts/images/icons-36-black.png",
-    "Scripts/images/icons-36-white.png",
     "Locales/bn/4inaow.properties",
     "Locales/cs/4inaow.properties",
     "Locales/de/4inaow.properties",
