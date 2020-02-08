@@ -7,7 +7,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-/*jslint browser:true, for:true, devel: true, this: true, long: true */ /*global  $, window, io, jQuery, EXIF, FileReader  */
+/*jslint browser:true, for:true, devel: true, this: true, long: true */ /*global  window, io, EXIF, FileReader  */
 
 (function () {
     "use strict";
