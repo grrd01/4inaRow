@@ -37,7 +37,7 @@ body {
 #game {
     transform: translateX(100vw);
     opacity: 0;
-    margin: 10px;
+    padding: 10px;
 }
 
 .swipe-in {
@@ -142,6 +142,12 @@ body {
     animation-name: fade-in-out;
     animation-iteration-count: infinite;
     animation-duration: 10s;
+}
+.button-img {
+    max-height: 25vh;
+}
+.list-button {
+    max-height: calc(50vh - 20px);
 }
 @keyframes fade-out-in {
     0% {
@@ -492,6 +498,7 @@ input[type=text]:focus {
 }
 .indicator_l, .indicator_r {
     flex: 1 auto;
+    max-width: calc(50vw - 10px);
 }
 
 @media (orientation: landscape) {
@@ -502,13 +509,6 @@ input[type=text]:focus {
     #printMessage {
         display:inline;
     }
-    #page_landscape {display:inline;}
-    #page_portrait {display:none;}
-    #indicator_landscape_l {display:inline;}
-    #indicator_landscape_r {display:inline;}
-    #indicator_portrait {display:none;}
-    #popupDialog_landscape {display:block;}
-    #popupDialog_portrait {display:none;}
     .list-button {
         display: inline-block;
         width: calc(25vw - 6.5px);
@@ -577,13 +577,6 @@ input[type=text]:focus {
     #printMessage {
         display: block;
     }
-    #page_landscape {display:none;}
-    #page_portrait {display:inline;}
-    #indicator_landscape_l {display:none;}
-    #indicator_landscape_r {display:none;}
-    #indicator_portrait {display:block;}
-    #popupDialog_landscape {display:none;}
-    #popupDialog_portrait {display:block;}
 
     .li_port {height: calc((100vh - 100vw / 3 - 130px) / 7);}
     .li_pad {padding-top: calc((100vh - 100vw / 3 - 270px) / 14);}

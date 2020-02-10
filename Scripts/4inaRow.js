@@ -679,6 +679,10 @@
         });
 
         socket.on("playget", function (data) {
+            if (data.round === 0 && countRound > 6) {
+                // Online-Gegner beginnt neues Spiel, während popupDialog noch offen ist 
+                newGame();
+            }
             if (countRound === data.round && lastRound !== data.round) {
                 lastRound = data.round;
                 fromOnline = true;
@@ -1080,8 +1084,8 @@
         }
         play(colNr);
     }
-
-    function playAgain() {
+    
+    function newGame() {
         clearBoard();
         if (games % 2 !== 0) {
             player = 1;
@@ -1089,6 +1093,13 @@
             player = 0;
         }
         setLights();
+    }
+
+    function playAgain() {
+        if (countRound > 1) {
+            // falls das Spielfeld nicht schon durch Online-Gegner geleert wurde
+            newGame();
+        }
         fHidePopup($("popupDialog"));
         if (mode !== "2player" && mode !== "online" && player === 1) {
             ai();
