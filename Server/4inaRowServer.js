@@ -51,13 +51,16 @@
         return null;
     }
 
+    var cert = getNewestFile("/home/grrdahos/ssl/certs", new RegExp("^autodiscover_grrd_a2hosted_com_.*.crt$"));
+    var key = getNewestFile("/home/grrdahos/ssl/keys", new RegExp("^" + cert.substring(56, 67) + ".*.key$"));
+
     var options = {
-        // key: fs.readFileSync('ssl/9d144_c0743_0f74a9bdb5828809fd0f68ff5aa1417f.key'),
-        // cert: fs.readFileSync('ssl/grrd_a2hosted_com_9d144_c0743_1536306467_68a1ff505d39b287163527f98aa35721.crt')
-        // key: fs.readFileSync('../../ssl/keys/9d144_c0743_0f74a9bdb5828809fd0f68ff5aa1417f.key'),
-        // cert: fs.readFileSync('../../ssl/certs/grrd_a2hosted_com_9d144_c0743_1536306467_68a1ff505d39b287163527f98aa35721.crt')
-        key: fs.readFileSync(getNewestFile("/home/grrdahos/ssl/keys", new RegExp(".*.key$"))),
-        cert: fs.readFileSync(getNewestFile("/home/grrdahos/ssl/certs", new RegExp(".*.crt$")))
+        // key: fs.readFileSync(getNewestFile("/home/grrdahos/ssl/keys", new RegExp(".*.key$"))),
+        // cert: fs.readFileSync(getNewestFile("/home/grrdahos/ssl/certs", new RegExp(".*.crt$")))
+        //key: fs.readFileSync('/home/grrdahos/ssl/keys/ccb66_a7ac7_6ddcf89d8981573b079f89c8b8daf887.key'),
+        //cert: fs.readFileSync('/home/grrdahos/ssl/certs/autodiscover_grrd_a2hosted_com_ccb66_a7ac7_1595537626_eb95d98d4f2242d4da63ed4627e27fe5.crt')
+        key: fs.readFileSync(key),
+        cert: fs.readFileSync(cert)
     };
 
     function handler(ignore, res) {
