@@ -49,14 +49,17 @@ body {
 @keyframes swipe-in {
     0% {
         transform: translateX(100vw);
+        visibility: hidden;
         opacity: 0;
     }
     1% {
         transform: translateX(100vw);
+        visibility: visible;
         opacity: 1;
     }
     100% {
         transform: translateX(0);
+        visibility: visible;
         opacity: 1;
     }
 }
@@ -70,14 +73,17 @@ body {
 @keyframes swipe-out {
     0% {
         transform: translateX(0);
+        visibility: visible;
         opacity: 1;
     }
     99% {
         transform: translateX(-100vw);
+        visibility: visible;
         opacity: 1;
     }
     100% {
         transform: translateX(-100vw);
+        visibility: hidden;
         opacity: 0;
     }
 }
@@ -90,14 +96,17 @@ body {
 @keyframes swipe-in-left {
     0% {
         transform: translateX(0);
+        visibility: visible;
         opacity: 1;
     }
     99% {
         transform: translateX(100vw);
+        visibility: visible;
         opacity: 1;
     }
     100% {
         transform: translateX(100vw);
+        visibility: hidden;
         opacity: 0;
     }
 }
@@ -111,14 +120,17 @@ body {
 @keyframes swipe-out-right {
     0% {
         transform: translateX(-100vw);
+        visibility: hidden;
         opacity: 0;
     }
     1% {
         transform: translateX(-100vw);
+        visibility: visible;
         opacity: 1;
     }
     100% {
         transform: translateX(0);
+        visibility: visible;
         opacity: 1;
     }
 }

@@ -1,8 +1,7 @@
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 100 100" stroke="#fff" stroke-width="16">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 100 100" stroke="#fff" stroke-width="16">
   <use xlink:href="#down" transform="translate(7,2)" opacity="0.3" stroke="#000"/>
   <g id="down">
     <line x1="44" y1="70" x2="94" y2="20"/>
     <line x1="5" y1="20" x2="55" y2="70" />
   </g>
 </svg>
-  
