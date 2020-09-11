@@ -83,6 +83,7 @@ module.exports = function(grunt) {
                     {'../../2_Build/4inaRow/Images/info.svg': 'Images/info.svg'},
                     {'../../2_Build/4inaRow/Images/mail.svg': 'Images/mail.svg'},
                     {'../../2_Build/4inaRow/Images/medium.svg': 'Images/medium.svg'},
+                    {'../../2_Build/4inaRow/Images/memo.svg': 'Images/memo.svg'},
                     {'../../2_Build/4inaRow/Images/ok.svg': 'Images/ok.svg'},
                     {'../../2_Build/4inaRow/Images/online.svg': 'Images/online.svg'},
                     {'../../2_Build/4inaRow/Images/player.svg': 'Images/player.svg'},

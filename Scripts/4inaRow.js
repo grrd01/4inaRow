@@ -1118,6 +1118,23 @@
         }
     }
 
+    // returns a promise that resolves to true  if the browser automatically
+    // rotates images based on exif data and false otherwise
+    function fBrowserAutoRotates () {
+        return new Promise((resolve, reject) => {
+            // load an image with exif rotation and see if the browser rotates it
+            const image = new Image();
+            image.onload = () => {
+                resolve(image.naturalWidth === 1);
+            };
+            image.onerror = reject;
+            // this jpeg is 2x1 with orientation=6 so it should rotate to 1x2
+            image.src = "data:image/jpeg;base64,/9j/4QBiRXhpZgAATU0AKgAAAAgABQESAAMAAAABAAYAAAEaAAUAAAABAAAASgEbAAUAAAABAAAAUgEoAAMAAAABAAIAAAITAAMAAAABAAEAAAAAAAAAAABIAAAAAQAAAEgAAAAB/9sAQwAEAwMEAwMEBAMEBQQEBQYKBwYGBgYNCQoICg8NEBAPDQ8OERMYFBESFxIODxUcFRcZGRsbGxAUHR8dGh8YGhsa/9sAQwEEBQUGBQYMBwcMGhEPERoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoa/8IAEQgAAQACAwERAAIRAQMRAf/EABQAAQAAAAAAAAAAAAAAAAAAAAf/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAF/P//EABQQAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQEAAQUCf//EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQMBAT8Bf//EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQIBAT8Bf//EABQQAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQEABj8Cf//EABQQAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQEAAT8hf//aAAwDAQACAAMAAAAQH//EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQMBAT8Qf//EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQIBAT8Qf//EABQQAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQEAAT8Qf//Z";
+        });
+    }
+
+    const bAutorotate = fBrowserAutoRotates();
+
     function resize_image(file) {
         var fileLoader = new FileReader();
         var canvas = document.createElement("canvas");
@@ -1167,22 +1184,24 @@
             if (this.width === 0 || this.height === 0) {
                 alert("Image is empty");
             } else {
-                if (g_exif.Orientation === 5 || g_exif.Orientation === 6) {
-                    context.rotate(90 * Math.PI / 180);
-                    myLeft = -1 * max_width;
-                    max_width = 71;
-                    max_height = 67;
-                }
-                if (g_exif.Orientation === 3 || g_exif.Orientation === 4) {
-                    context.rotate(180 * Math.PI / 180);
-                    myLeft = -1 * max_width - 4;
-                    myTop = -1 * max_height + 4;
-                }
-                if (g_exif.Orientation === 7 || g_exif.Orientation === 8) {
-                    context.rotate(270 * Math.PI / 180);
-                    myTop = -1 * max_height;
-                    max_width = 71;
-                    max_height = 67;
+                if (!bAutorotate) {
+                    if (g_exif.Orientation === 5 || g_exif.Orientation === 6) {
+                        context.rotate(90 * Math.PI / 180);
+                        myLeft = -1 * max_width;
+                        max_width = 71;
+                        max_height = 67;
+                    }
+                    if (g_exif.Orientation === 3 || g_exif.Orientation === 4) {
+                        context.rotate(180 * Math.PI / 180);
+                        myLeft = -1 * max_width - 4;
+                        myTop = -1 * max_height + 4;
+                    }
+                    if (g_exif.Orientation === 7 || g_exif.Orientation === 8) {
+                        context.rotate(270 * Math.PI / 180);
+                        myTop = -1 * max_height;
+                        max_width = 71;
+                        max_height = 67;
+                    }
                 }
                 context.clearRect(0, 0, max_width, max_height);
                 context.drawImage(imageObj, 0, 0, this.width, this.height, myTop, myLeft, max_width, max_height);
