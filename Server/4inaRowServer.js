@@ -51,14 +51,22 @@
         return null;
     }
 
-    var cert = getNewestFile("/home/grrdahos/ssl/certs", new RegExp("^autodiscover_grrd_a2hosted_com_.*.crt$"));
-    var key = getNewestFile("/home/grrdahos/ssl/keys", new RegExp("^" + cert.substring(56, 67) + ".*.key$"));
+    //var cert = getNewestFile("/home/grrdahos/ssl/certs", new RegExp("^autodiscover_grrd_a2hosted_com_.*.crt$"));
+    //var key = getNewestFile("/home/grrdahos/ssl/keys", new RegExp("^" + cert.substring(56, 67) + ".*.key$"));
+
+    var cert = getNewestFile("/home/grrdahos/ssl/certs", new RegExp("^mail_grrd_a2hosted_com_.*.crt$"));
+    var key = getNewestFile("/home/grrdahos/ssl/keys", new RegExp("^" + cert.substring(48, 59) + ".*.key$"));
 
     var options = {
         // key: fs.readFileSync(getNewestFile("/home/grrdahos/ssl/keys", new RegExp(".*.key$"))),
         // cert: fs.readFileSync(getNewestFile("/home/grrdahos/ssl/certs", new RegExp(".*.crt$")))
+
         //key: fs.readFileSync('/home/grrdahos/ssl/keys/ccb66_a7ac7_6ddcf89d8981573b079f89c8b8daf887.key'),
         //cert: fs.readFileSync('/home/grrdahos/ssl/certs/autodiscover_grrd_a2hosted_com_ccb66_a7ac7_1595537626_eb95d98d4f2242d4da63ed4627e27fe5.crt')
+
+        //key: fs.readFileSync('/home/grrdahos/ssl/keys/a7afe_0a07b_357de3eb01043d7b248bf3c4da4bf1c4.key'),
+        //cert: fs.readFileSync('/home/grrdahos/ssl/certs/mail_grrd_a2hosted_com_a7afe_0a07b_1606084124_98e2622cbd2de7af5e3614fa8105f1c8.crt')
+
         key: fs.readFileSync(key),
         cert: fs.readFileSync(cert)
     };
