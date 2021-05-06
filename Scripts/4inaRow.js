@@ -18,98 +18,99 @@
             };
     }());
 
-    var $ = function (id) {
+    let $ = function (id) {
         return document.getElementById(id);
     };
 
-    var langReady = false;
-    var ii;
-    var animate = false;
-    var gHeight;
-    var gWidth;
-    var col = ["col0", "col1", "col2", "col3", "col4", "col5", "col6"];
-    var col_canvas = [];
-    var col_context = [];
-    var field = [];
+    let langReady = false;
+    let ii;
+    let animate = false;
+    let gHeight;
+    let gWidth;
+    const col = ["col0", "col1", "col2", "col3", "col4", "col5", "col6"];
+    let col_canvas = [];
+    let col_context = [];
+    let field = [];
     for (ii = 0; ii < 6; ii += 1) {
         field[ii] = [];
         field[ii][6] = undefined;
     }
-    var winRow = [];
-    var winCol = [];
-    var numPossible;
-    var stoneTotal;
-    var stoneBest;
-    var stoneCount;
-    var mode = null;
-    var gSound = true;
-    var gCountry;
-    var gOwnImage = false;
-    var gOwnName = false;
-    var gSendImage;
-    var p1_name;
-    var p2_name;
-    var $game = $("game");
-    var $title = $("title");
-    var $popupInfo = $("popupInfo");
-    var $popupStats = $("popupStats");
-    var $popupSettings = $("popupSettings");
-    var $inputImage = $("inputImage");
-    var $inputName = $("inputName");
-    var $b_sound = $("b_sound");
-    var $l_country = $("l_country");
-    var $txt_search = $("txt_search");
-    var $bt_country = $("bt_country");
-    var $P1country = $("P1country");
-    var $P2country = $("P2country");
-    var url_param;
+    let winRow = [];
+    let winCol = [];
+    let numPossible;
+    let stoneTotal;
+    let stoneBest;
+    let stoneCount;
+    let mode = null;
+    let gSound = true;
+    let gCountry;
+    let gOwnImage = false;
+    let gOwnName = false;
+    let gSendImage;
+    let p1_name;
+    let p2_name;
+    const $game = $("game");
+    const $title = $("title");
+    const $popupInfo = $("popupInfo");
+    const $popupStats = $("popupStats");
+    const $popupSettings = $("popupSettings");
+    const $popupCountry = $("popupCountry");
+    const $spCountry = $("sp_country");
+    const $inputImage = $("inputImage");
+    const $inputName = $("inputName");
+    const $b_sound = $("b_sound");
+    const $l_country = $("l_country");
+    const $txt_search = $("txt_search");
+    const $P1country = $("P1country");
+    const $P2country = $("P2country");
+    let url_param;
 
-    var rating = [];
-    var bestRating = [];
-    var color = ["#ff0080", "#6969EE"];
-    var bColor = ["#D6016B", "#5A5ACE"];
-    var zColor = ["#FD6BB4", "#9393EF"];
-    var player = 0;
-    var P1LightImg = ["Images/red_on.png", "Images/red_off.png"];
-    var P2LightImg = ["Images/blue_on.png", "Images/blue_off.png"];
-    var games = 0;
-    var siege = [0, 0];
-    var colNr;
-    var row;
-    var computerCol;
-    var computerRow;
-    var fourInARow;
-    var space;
-    var showFlag;
-    var possibleFlag = Boolean(false);
-    var topBis;
-    var topAkt;
-    var colWidth;
-    var colHeight;
+    let rating = [];
+    let bestRating = [];
+    const color = ["#ff0080", "#6969EE"];
+    const bColor = ["#D6016B", "#5A5ACE"];
+    const zColor = ["#FD6BB4", "#9393EF"];
+    let player = 0;
+    const P1LightImg = ["Images/red_on.png", "Images/red_off.png"];
+    const P2LightImg = ["Images/blue_on.png", "Images/blue_off.png"];
+    let games = 0;
+    let siege = [0, 0];
+    let colNr;
+    let row;
+    let computerCol;
+    let computerRow;
+    let fourInARow;
+    let space;
+    let showFlag;
+    let possibleFlag = Boolean(false);
+    let topBis;
+    let topAkt;
+    let colWidth;
+    let colHeight;
 
-    var maxValue;
-    var onlineWin;
-    var onlineLoose;
-    var easyWin;
-    var easyLoose;
-    var mediumWin;
-    var mediumLoose;
-    var hardWin;
-    var hardLoose;
-    var onlineOpponentWin;
-    var onlineOpponentLoose;
+    let maxValue;
+    let onlineWin;
+    let onlineLoose;
+    let easyWin;
+    let easyLoose;
+    let mediumWin;
+    let mediumLoose;
+    let hardWin;
+    let hardLoose;
+    let onlineOpponentWin;
+    let onlineOpponentLoose;
 
-    var socket;
-    var user;
-    var lastStart;
-    var lastQuit;
-    var lastRound = null;
-    var countRound = 0;
-    var onExit = false;
-    var fromOnline = false;
+    let socket;
+    let user;
+    let lastStart;
+    let lastQuit;
+    let lastRound = null;
+    let countRound = 0;
+    let onExit = false;
+    let fromOnline = false;
 
-    var localStorageOK = (function () {
-        var mod = "modernizr";
+    let localStorageOK = (function () {
+        const mod = "modernizr";
         try {
             localStorage.setItem(mod, mod);
             localStorage.removeItem(mod);
@@ -120,11 +121,35 @@
     }());
 
     function fShowPopup(e) {
+        if (e  === $popupInfo || e === $popupStats || e === $popupSettings) {
+            document.getElementsByTagName("FIELDSET")[0].disabled = true;
+        }
+        if (e  === $popupCountry) {
+            $popupSettings.getElementsByTagName("FIELDSET")[0].disabled = true;
+        }
+        if (e  === $("popupDialog") || e  === $("popupLeft")) {
+            Array.from($game.getElementsByTagName("canvas")).forEach((canvas) => {
+                canvas.tabIndex = -1;
+            });
+            $game.getElementsByTagName("FIELDSET")[0].disabled = true;
+        }
         e.classList.remove("popup-init");
         e.classList.remove("popup-hide");
         e.classList.add("popup-show");
     }
     function fHidePopup(e) {
+        if (e  === $popupInfo || e === $popupStats || e === $popupSettings) {
+            document.getElementsByTagName("FIELDSET")[0].disabled = false;
+        }
+        if (e  === $popupCountry) {
+            $popupSettings.getElementsByTagName("FIELDSET")[0].disabled = false;
+        }
+        if (e  === $("popupDialog") || e  === $("popupLeft")) {
+            Array.from($game.getElementsByTagName("canvas")).forEach((canvas) => {
+                canvas.tabIndex = 0;
+            });
+            $game.getElementsByTagName("FIELDSET")[0].disabled = false;
+        }
         e.classList.remove("popup-show");
         e.classList.add("popup-hide");
         setTimeout(function(){
@@ -144,7 +169,7 @@
 
     if (!navigator.onLine || typeof io === "undefined") {
         // offline :(
-        $("bt_online").classList.add("ui-disabled");
+        $("bt_online").disabled = true;
     }
 
     function drawCircle(topAkt, colNr, color, bColor) {
@@ -158,9 +183,9 @@
     }
 
     function contentFormatting() {
-        var i;
-        var j;
-        var gradient;
+        let i;
+        let j;
+        let gradient;
 
         gHeight = document.documentElement.clientHeight;
         gWidth = document.documentElement.clientWidth;
@@ -229,8 +254,8 @@
     }
 
     function clearBoard() {
-        var i;
-        var j;
+        let i;
+        let j;
         countRound = 0;
         lastRound = null;
         for (i = 0; i < field.length; i += 1) {
@@ -250,8 +275,8 @@
     }
 
     function setStats() {
-        var valWin;
-        var valLoose;
+        let valWin;
+        let valLoose;
         if (localStorageOK) {
             valWin = parseInt(localStorage.getItem(mode + "_win") || 0);
             valLoose = parseInt(localStorage.getItem(mode + "_loose") || 0);
@@ -279,8 +304,8 @@
     }
 
     function updateStats(statEvent) {
-        var storageItem;
-        var storageValue;
+        let storageItem;
+        let storageValue;
         if (!localStorageOK) {
             return;
         }
@@ -404,7 +429,7 @@
     }
 
     function showAnimate(myWinRow, myWinCol, showCount, zWait) {
-        var i;
+        let i;
         if (onExit) {
             return;
         }
@@ -430,13 +455,13 @@
 
     function show4() {
         animate = true;
-        var zWinRow = winRow.slice();
-        var zWinCol = winCol.slice();
+        let zWinRow = winRow.slice();
+        let zWinCol = winCol.slice();
         showAnimate(zWinRow, zWinCol, 0, Date.now());
     }
 
     function checkDet(row, colNr, rowFactor, colFactor, player, showFlag) {
-        var i;
+        let i;
         if (row + 3 * rowFactor < field.length && colNr + 3 * colFactor < field[row].length && (row + 3 * rowFactor) >= 0 && (colNr + 3 * colFactor) >= 0) {
             for (i = 0; i < 4; i += 1) {
                 if (field[row + i * rowFactor][colNr + i * colFactor] === player) {
@@ -481,10 +506,10 @@
     }
 
     function playAnimate(lastTime, topAkt, colNr) {
-        var date;
-        var time;
-        var timeDiff;
-        var linearDistEachFrame;
+        let date;
+        let time;
+        let timeDiff;
+        let linearDistEachFrame;
         if (animate) {
             // update
             date = new Date();
@@ -555,8 +580,8 @@
     }
 
     function play(colNr) {
-        var date;
-        var time;
+        let date;
+        let time;
         if (fromOnline) {
             fromOnline = false;
             if (mode === "online") {
@@ -587,7 +612,7 @@
 
     function online_click() {
         fShowPopup($("popupOnline"));
-        $("bt_online").classList.add("ui-disabled");
+        $("bt_online").disabled = true;
         // socket = io.connect("https://localhost:49152", {"forceNew": true});
         socket = io.connect("https://grrd.a2hosted.com:49152", {"forceNew": true});
         socket.heartbeatTimeout = 20000;
@@ -617,7 +642,7 @@
                 lastStart = user.id;
                 onExit = false;
                 if (mode !== null) {
-                    // todo: was ist das? macht das sinn?
+                    // ausstieg aus aktuellem Single-Player-Game
                     $title.classList.remove("swipe-out");
                     $game.classList.remove("swipe-in");
                     $title.classList.add("swipe-out-right");
@@ -680,7 +705,7 @@
 
         socket.on("playget", function (data) {
             if (data.round === 0 && countRound > 6) {
-                // Online-Gegner beginnt neues Spiel, während popupDialog noch offen ist 
+                // Online-Gegner beginnt neues Spiel, während popupDialog noch offen ist
                 newGame();
             }
             if (countRound === data.round && lastRound !== data.round) {
@@ -723,7 +748,7 @@
         });
 
         socket.on("quit", function () {
-            if (user.id !== lastQuit) {
+            if (user.id !== lastQuit && mode === "online") {
                 lastQuit = user.id;
                 onExit = true;
                 fShowPopup($("popupLeft"));
@@ -778,7 +803,7 @@
     function back() {
         if (mode === "online") {
             socket.disconnect();
-            $("bt_online").classList.remove("ui-disabled");
+            $("bt_online").disabled = false;
         }
         onExit = true;
         contentFormatting();
@@ -797,6 +822,33 @@
         fHidePopup($("popupLeft"));
     }
 
+    function highlight(colNr) {
+        let my_row = 0;
+        let my_topBis = 0;
+        while (my_row < field.length && my_topBis === 0) {
+            if (field[my_row][colNr] === undefined) {
+                my_topBis = (field.length - my_row - 0.5) * colWidth * 0.85;
+                col_context[colNr].fillStyle = "rgba(255,255,255,0.1)";
+                col_context[colNr].beginPath();
+                col_context[colNr].fillRect(0, 0, colWidth, my_topBis + colWidth / 2 * 0.85);
+                col_context[colNr].stroke();
+            }
+            my_row = my_row + 1;
+        }
+    }
+
+    function lowlight(colNr) {
+        let my_row = 0;
+        let my_topBis = 0;
+        while (my_row < field.length && my_topBis === 0) {
+            if (field[my_row][colNr] === undefined) {
+                my_topBis = (field.length - my_row - 0.5) * colWidth * 0.85;
+                col_context[colNr].clearRect(0, 0, colWidth, my_topBis + colWidth / 2 * 0.85);
+            }
+            my_row = my_row + 1;
+        }
+    }
+
     function playCheck(colNr) {
         if (mode === "online") {
             if ((player === 1 && user.role === "0") || (player === 0 && user.role === "1")) {
@@ -810,8 +862,8 @@
     }
 
     function ratingDet(player, computerRow, computerCol) {
-        var a;
-        var b;
+        let a;
+        let b;
         numPossible = 0;
         stoneTotal = 0;
         stoneBest = 0;
@@ -935,7 +987,7 @@
     }
 
     function ai() {
-        var a;
+        let a;
         rating = [];
         showFlag = false;
         // **************************************************************
@@ -1084,7 +1136,7 @@
         }
         play(colNr);
     }
-    
+
     function newGame() {
         clearBoard();
         if (games % 2 !== 0) {
@@ -1108,9 +1160,9 @@
 
     function url_query(query) {
         query = query.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-        var expr = "[\\?&]" + query + "=([^&#]*)";
-        var regex = new RegExp(expr);
-        var results = regex.exec(window.location.href);
+        let expr = "[\\?&]" + query + "=([^&#]*)";
+        let regex = new RegExp(expr);
+        let results = regex.exec(window.location.href);
         if (results !== null) {
             return results[1];
         } else {
@@ -1136,13 +1188,13 @@
     const bAutorotate = fBrowserAutoRotates();
 
     function resize_image(file) {
-        var fileLoader = new FileReader();
-        var canvas = document.createElement("canvas");
-        var context = null;
-        var imageObj = new Image();
-        var max_width = 67;
-        var max_height = 71;
-        var g_exif = {Orientation: undefined};
+        let fileLoader = new FileReader();
+        let canvas = document.createElement("canvas");
+        let context = null;
+        let imageObj = new Image();
+        let max_width = 67;
+        let max_height = 71;
+        let g_exif = {Orientation: undefined};
 
         //create a hidden canvas object we can use to create the new re-sized image data
         canvas.id = "hiddenCanvas";
@@ -1167,7 +1219,7 @@
         // image object which, once the image has loaded,
         // triggers the images onload function
         fileLoader.onload = function () {
-            var data = this.result;
+            let data = this.result;
             EXIF.getData(file.target.files[0], function () {
                 g_exif.Orientation = EXIF.getTag(this, "Orientation");
                 imageObj.src = data;
@@ -1178,8 +1230,8 @@
         // set up the images onload function which clears the hidden canvas context,
         // draws the new image then gets the blob data from it
         imageObj.onload = function () {
-            var myTop = 0;
-            var myLeft = 0;
+            let myTop = 0;
+            let myLeft = 0;
             // Check for empty images
             if (this.width === 0 || this.height === 0) {
                 alert("Image is empty");
@@ -1229,18 +1281,208 @@
     }
 
     function countrySearch(search) {
-        Array.from($l_country.getElementsByTagName("LI"))
-            .forEach(function(li){
-                if (li.innerHTML.toLowerCase().indexOf(search) > -1 || search.length === 0) {
-                    li.style.display = "block";
+        Array.from($l_country.getElementsByTagName("A"))
+            .forEach(function(a){
+                if (a.innerHTML.toLowerCase().indexOf(search) > -1 || search.length === 0) {
+                    a.style.display = "block";
                 } else {
-                    li.style.display = "none";
+                    a.style.display = "none";
                 }
             });
     }
 
+    document.onkeydown = function (e) {
+        // mit Pfeiltasten navigieren
+        const cEl = document.activeElement;
+
+        let lElements;
+        let nIndexEl;
+
+        if ($popupInfo.classList.contains("popup-show")) {
+            // im Info-Popup
+            lElements = Array.prototype.slice.call($popupInfo.getElementsByTagName("BUTTON"), 0);
+            nIndexEl = lElements.indexOf(cEl);
+            switch (e.key) {
+                case "ArrowUp":
+                case "ArrowLeft":
+                    if (nIndexEl > 0) {
+                        lElements[lElements.indexOf(cEl) - 1].focus();
+                    }
+                    break;
+                case "ArrowDown":
+                case "ArrowRight":
+                    if (nIndexEl < lElements.length - 1) {
+                        lElements[lElements.indexOf(cEl) + 1].focus();
+                    }
+                    break;
+                case "Escape":
+                    fHidePopup($popupInfo);
+                    break;
+            }
+        } else if ($popupStats.classList.contains("popup-show")) {
+            // im Statistik-Popup
+            lElements = Array.prototype.slice.call($popupStats.getElementsByTagName("BUTTON"), 0);
+            nIndexEl = lElements.indexOf(cEl);
+            switch (e.key) {
+                case "ArrowUp":
+                case "ArrowLeft":
+                    if (nIndexEl > 0) {
+                        lElements[lElements.indexOf(cEl) - 1].focus();
+                    }
+                    break;
+                case "ArrowDown":
+                case "ArrowRight":
+                    if (nIndexEl < lElements.length - 1) {
+                        lElements[lElements.indexOf(cEl) + 1].focus();
+                    }
+                    break;
+                case "Escape":
+                    fHidePopup($popupStats);
+                    break;
+            }
+        } else if ($popupCountry.classList.contains("popup-show")) {
+            // im Country-Popup
+            lElements = Array.prototype.slice.call($popupCountry.querySelectorAll("INPUT,A:not([style*='display: none;'])"), 0);
+            nIndexEl = lElements.indexOf(cEl);
+            switch (e.key) {
+                case "ArrowUp":
+                case "ArrowLeft":
+                    if (nIndexEl > 0) {
+                        lElements[lElements.indexOf(cEl) - 1].focus();
+                        e.preventDefault();
+                    }
+                    break;
+                case "ArrowDown":
+                case "ArrowRight":
+                    if (nIndexEl < lElements.length - 1) {
+                        lElements[lElements.indexOf(cEl) + 1].focus();
+                        e.preventDefault();
+                    }
+                    break;
+                case "Space":
+                case " ":
+                case "Enter":
+                    if (nIndexEl >= 1) {
+                        cEl.click();
+                    }
+                    break;
+                case "Escape":
+                    fHidePopup($popupCountry);
+                    break;
+            }
+        } else if ($popupSettings.classList.contains("popup-show")) {
+            // im Settings-Popup
+            lElements = Array.prototype.slice.call($popupSettings.querySelectorAll("BUTTON,INPUT:not(#b_image_input)"), 0);
+            nIndexEl = lElements.indexOf(cEl);
+            switch (e.key) {
+                case "ArrowUp":
+                case "ArrowLeft":
+                    if (nIndexEl > 0) {
+                        lElements[lElements.indexOf(cEl) - 1].focus();
+                    }
+                    break;
+                case "ArrowDown":
+                case "ArrowRight":
+                    if (nIndexEl < lElements.length - 1) {
+                        lElements[lElements.indexOf(cEl) + 1].focus();
+                    }
+                    break;
+                case "Escape":
+                    fHidePopup($popupSettings);
+                    break;
+            }
+        } else if ($("popupDialog").classList.contains("popup-show")) {
+            // im Dialog-Popup (Play again?)
+            lElements = Array.prototype.slice.call($("popupDialog").getElementsByTagName("BUTTON"), 0);
+            nIndexEl = lElements.indexOf(cEl);
+            switch (e.key) {
+                case "ArrowUp":
+                case "ArrowLeft":
+                    if (nIndexEl > 0) {
+                        lElements[lElements.indexOf(cEl) - 1].focus();
+                    }
+                    break;
+                case "ArrowDown":
+                case "ArrowRight":
+                    if (nIndexEl < lElements.length - 1) {
+                        lElements[lElements.indexOf(cEl) + 1].focus();
+                    }
+                    break;
+                case "Escape":
+                    back();
+                    break;
+            }
+        } else if ($("popupLeft").classList.contains("popup-show")) {
+            // im Popup Online-left Game
+            lElements = Array.prototype.slice.call($("popupLeft").getElementsByTagName("BUTTON"), 0);
+            nIndexEl = lElements.indexOf(cEl);
+            switch (e.key) {
+                case "ArrowUp":
+                case "ArrowLeft":
+                    if (nIndexEl > 0) {
+                        lElements[lElements.indexOf(cEl) - 1].focus();
+                    }
+                    break;
+                case "ArrowDown":
+                case "ArrowRight":
+                    if (nIndexEl < lElements.length - 1) {
+                        lElements[lElements.indexOf(cEl) + 1].focus();
+                    }
+                    break;
+                case "Escape":
+                    back();
+                    break;
+            }
+        } else if ($game.classList.contains("swipe-in")) {
+            // im Game
+            lElements = Array.prototype.slice.call($game.getElementsByTagName("CANVAS"), 0);
+            nIndexEl = lElements.indexOf(cEl);
+            switch (e.key) {
+                case "ArrowLeft":
+                    if (nIndexEl > 0) {
+                        lElements[lElements.indexOf(cEl) - 1].focus();
+                    }
+                    break;
+                case "ArrowRight":
+                    if (nIndexEl < lElements.length - 1) {
+                        lElements[lElements.indexOf(cEl) + 1].focus();
+                    }
+                    break;
+                case "Space":
+                case " ":
+                case "Enter":
+                case "ArrowDown":
+                    if (nIndexEl >= 0) {
+                        playCheck(nIndexEl);
+                    }
+                    break;
+                case "Escape":
+                    back();
+                    break;
+            }
+        } else {
+            // auf Titel-Screen
+            lElements = Array.prototype.slice.call($title.querySelectorAll("BUTTON:not([disabled])"), 0);
+            nIndexEl = lElements.indexOf(cEl);
+            switch (e.key) {
+                case "ArrowUp":
+                case "ArrowLeft":
+                    if (nIndexEl > 0) {
+                        lElements[lElements.indexOf(cEl) - 1].focus();
+                    }
+                    break;
+                case "ArrowDown":
+                case "ArrowRight":
+                    if (nIndexEl < lElements.length - 1) {
+                        lElements[lElements.indexOf(cEl) + 1].focus();
+                    }
+                    break;
+            }
+        }
+    };
+
     window.onload = function () {
-        var i;
+        let i;
         if (!localStorageOK || localStorage.getItem("s_sound") === null) {
             $b_sound.checked = true;
         } else {
@@ -1258,12 +1500,10 @@
             }
         }
         if (localStorageOK && localStorage.getItem("s_country") !== null) {
-            while ($bt_country.firstChild) {
-                $bt_country.removeChild($bt_country.firstChild);
-            }
             gCountry = localStorage.getItem("s_country");
-            var countryLi = document.getElementsByClassName(gCountry);
-            $bt_country.appendChild(countryLi[0].cloneNode(true));
+            let countryLi = document.getElementsByClassName(gCountry)[0];
+            $spCountry.innerHTML = countryLi.innerHTML;
+            $spCountry.classList = countryLi.classList;
         }
 
         $("iInfo").addEventListener("click", function () {
@@ -1291,8 +1531,8 @@
         $("iOnlineClose").addEventListener("click", function () {
             fHidePopup($("popupOnline"));
         });
-        $("bt_country_popup").addEventListener("click", function () {
-            fShowPopup($("popupCountry"));
+        $("bt_country").addEventListener("click", function () {
+            fShowPopup($popupCountry);
         });
 
         $("bt_play").addEventListener("click", function () {
@@ -1342,6 +1582,18 @@
                 col_canvas[i].addEventListener("click", function () {
                     playCheck(i);
                 });
+                col_canvas[i].addEventListener("mouseover", function () {
+                    highlight(i);
+                });
+                col_canvas[i].addEventListener("mouseout", function () {
+                    lowlight(i);
+                });
+                col_canvas[i].addEventListener("focus", function () {
+                    highlight(i);
+                });
+                col_canvas[i].addEventListener("blur", function () {
+                    lowlight(i);
+                });
             }(i));
         }
 
@@ -1350,15 +1602,14 @@
                 gCountry = this.className;
                 localStorage.setItem("s_country", this.className);
 
-                while ($bt_country.firstChild) {
-                    $bt_country.removeChild($bt_country.firstChild);
-                }
-                $bt_country.appendChild(this.cloneNode(true));
+                $spCountry.innerHTML = this.innerHTML;
+                $spCountry.classList = this.classList;
 
-                fHidePopup($("popupCountry"));
+                fHidePopup($popupCountry);
                 $txt_search.value = "";
                 countrySearch("");
             });
+            element.tabIndex = 0;
         });
 
         document.getElementById("b_image_input").addEventListener("change", resize_image, false);

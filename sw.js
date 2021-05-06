@@ -6,11 +6,11 @@
 
 /*jslint devel: true, browser: true */ /*global  self  */
 
-var CACHE_NAME = "grrds-4inarow-cache";
-var CACHE_VERSION = "v2.3";
-var CACHE = CACHE_NAME + "-" + CACHE_VERSION;
+const CACHE_NAME = "grrds-4inarow-cache";
+const CACHE_VERSION = "v2.4";
+const CACHE = CACHE_NAME + "-" + CACHE_VERSION;
 
-var urlsToCache = [
+const urlsToCache = [
     "index.html",
     "Images/2online.svg",
     "Images/2player.svg",
@@ -93,7 +93,7 @@ self.addEventListener("fetch", function (event) {
                     return response;
                 }
 
-                var fetchRequest = event.request.clone();
+                let fetchRequest = event.request.clone();
 
                 return fetch(fetchRequest).then(
                     function (response) {
@@ -102,7 +102,7 @@ self.addEventListener("fetch", function (event) {
                             return response;
                         }
 
-                        var responseToCache = response.clone();
+                        let responseToCache = response.clone();
 
                         caches.open(CACHE)
                             .then(function (cache) {
