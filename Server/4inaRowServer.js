@@ -51,11 +51,11 @@
         return null;
     }
 
-    //var cert = getNewestFile("/home/grrdahos/ssl/certs", new RegExp("^autodiscover_grrd_a2hosted_com_.*.crt$"));
-    //var key = getNewestFile("/home/grrdahos/ssl/keys", new RegExp("^" + cert.substring(56, 67) + ".*.key$"));
+    var cert = getNewestFile("/home/grrdahos/ssl/certs", new RegExp("^autodiscover_grrd_a2hosted_com_.*.crt$"));
+    var key = getNewestFile("/home/grrdahos/ssl/keys", new RegExp("^" + cert.substring(56, 67) + ".*.key$"));
 
-    var cert = getNewestFile("/home/grrdahos/ssl/certs", new RegExp("^www_grrd_a2hosted_com_.*.crt$"));
-    var key = getNewestFile("/home/grrdahos/ssl/keys", new RegExp("^" + cert.substring(47, 59) + ".*.key$"));
+    //var cert = getNewestFile("/home/grrdahos/ssl/certs", new RegExp("^www_grrd_a2hosted_com_.*.crt$"));
+    //var key = getNewestFile("/home/grrdahos/ssl/keys", new RegExp("^" + cert.substring(47, 59) + ".*.key$"));
 
     var options = {
         // key: fs.readFileSync(getNewestFile("/home/grrdahos/ssl/keys", new RegExp(".*.key$"))),

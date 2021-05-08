@@ -15,20 +15,22 @@ module.exports = function(grunt) {
                 files: {
                     '../../2_Build/4inaRow/Scripts/4inaRow.js': ['Scripts/4inaRow.js']
                 }
-            }
-        },
-        uglify: {
-            one: {
+            },
+            two: {
                 options: {
-                    banner: "/*\n* grrd's 4 in a Row\n* Copyright (c) 2012 Gerard Tyedmers, grrd@gmx.net\n* Licensed under the MPL License\n*/\n",
+                    compress: true,
                     mangle: true,
-                    compress: true
+                    output: {
+                        comments: 'some'
+                    }
                 },
                 files: {
                     '../../2_Build/4inaRow/sw.js': ['sw.js']
                 }
             },
-            two: {
+        },
+        uglify: {
+            one: {
                 options: {
                     banner: "/*\n* Copyright (c) 2011-2013 Fabien Cazenave, Mozilla.\n*/\n",
                     mangle: true,
@@ -38,7 +40,7 @@ module.exports = function(grunt) {
                     '../../2_Build/4inaRow/Scripts/l10n.js': ['Scripts/l10n.js']
                 }
             },
-            three: {
+            two: {
                 options: {
                     banner: "/*\n* Javascript EXIF Reader 0.1.4\n* Copyright (c) 2008 Jacob Seidelin, cupboy@gmail.com, http://blog.nihilogic.dk/\n* Licensed under the MIT License (MIT) [https://github.com/exif-js/exif-js/blob/master/LICENSE.md]\n*/\n",
                     mangle: true,
@@ -48,7 +50,7 @@ module.exports = function(grunt) {
                     '../../2_Build/4inaRow/Scripts/exif.js': ['Scripts/exif.js']
                 }
             },
-            four: {
+            three: {
                 options: {
                     banner: "/*\n* Socket.IO.js build:0.9.16, development. \n* Copyright(c) 2011 LearnBoost <dev@learnboost.com>\n* MIT Licensed \n*/\n",
                     mangle: true,
