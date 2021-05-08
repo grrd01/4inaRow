@@ -55,6 +55,7 @@
     const $popupStats = $("popupStats");
     const $popupSettings = $("popupSettings");
     const $popupCountry = $("popupCountry");
+    const $popupOnline = $("popupOnline");
     const $spCountry = $("sp_country");
     const $inputImage = $("inputImage");
     const $inputName = $("inputName");
@@ -121,7 +122,7 @@
     }());
 
     function fShowPopup(e) {
-        if (e  === $popupInfo || e === $popupStats || e === $popupSettings) {
+        if (e  === $popupInfo || e === $popupStats || e === $popupSettings || e === $popupOnline) {
             document.getElementsByTagName("FIELDSET")[0].disabled = true;
         }
         if (e  === $popupCountry) {
@@ -136,9 +137,11 @@
         e.classList.remove("popup-init");
         e.classList.remove("popup-hide");
         e.classList.add("popup-show");
+        // Fix for Firefox OnKeydown
+        document.activeElement.blur();
     }
     function fHidePopup(e) {
-        if (e  === $popupInfo || e === $popupStats || e === $popupSettings) {
+        if (e  === $popupInfo || e === $popupStats || e === $popupSettings || e === $popupOnline) {
             document.getElementsByTagName("FIELDSET")[0].disabled = false;
         }
         if (e  === $popupCountry) {
@@ -155,6 +158,8 @@
         setTimeout(function(){
             e.scrollTop = 0;
         }, 1050);
+        // Fix for Firefox OnKeydown
+        document.activeElement.blur();
     }
 
     if ("serviceWorker" in navigator) {
@@ -611,7 +616,7 @@
     }
 
     function online_click() {
-        fShowPopup($("popupOnline"));
+        fShowPopup($popupOnline);
         $("bt_online").disabled = true;
         // socket = io.connect("https://localhost:49152", {"forceNew": true});
         socket = io.connect("https://grrd.a2hosted.com:49152", {"forceNew": true});
@@ -699,7 +704,7 @@
                 $game.classList.remove("swipe-in-left");
                 $title.classList.add("swipe-out");
                 $game.classList.add("swipe-in");
-                fHidePopup($("popupOnline"));
+                fHidePopup($popupOnline);
             }
         });
 
@@ -1294,7 +1299,6 @@
     document.onkeydown = function (e) {
         // mit Pfeiltasten navigieren
         const cEl = document.activeElement;
-
         let lElements;
         let nIndexEl;
 
@@ -1391,7 +1395,28 @@
                     fHidePopup($popupSettings);
                     break;
             }
-        } else if ($("popupDialog").classList.contains("popup-show")) {
+        } else if ($popupOnline.classList.contains("popup-show")) {
+            // im Popup Online-Wait
+            lElements = Array.prototype.slice.call($popupOnline.getElementsByTagName("BUTTON"), 0);
+            nIndexEl = lElements.indexOf(cEl);
+            switch (e.key) {
+                case "ArrowUp":
+                case "ArrowLeft":
+                    if (nIndexEl > 0) {
+                        lElements[lElements.indexOf(cEl) - 1].focus();
+                    }
+                    break;
+                case "ArrowDown":
+                case "ArrowRight":
+                    if (nIndexEl < lElements.length - 1) {
+                        lElements[lElements.indexOf(cEl) + 1].focus();
+                    }
+                    break;
+                case "Escape":
+                    fHidePopup($popupOnline);
+                    break;
+            }
+        }else if ($("popupDialog").classList.contains("popup-show")) {
             // im Dialog-Popup (Play again?)
             lElements = Array.prototype.slice.call($("popupDialog").getElementsByTagName("BUTTON"), 0);
             nIndexEl = lElements.indexOf(cEl);
@@ -1529,7 +1554,7 @@
             fHidePopup($popupSettings);
         });
         $("iOnlineClose").addEventListener("click", function () {
-            fHidePopup($("popupOnline"));
+            fHidePopup($popupOnline);
         });
         $("bt_country").addEventListener("click", function () {
             fShowPopup($popupCountry);

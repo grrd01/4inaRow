@@ -313,6 +313,13 @@ button:focus {
     margin-left: 15px;
     width: fit-content;
 }
+#bt_img {
+    height: 80px;
+}
+#inputImage {
+    height: 71px;
+    width: 67px;
+}
 
 .select-button:first-child {
     border-top-right-radius: inherit;
