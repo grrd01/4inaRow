@@ -850,12 +850,12 @@ form {margin: 15px 10px 10px 10px;}
 .tgl-skewed:checked + .tgl-btn:active:after {
     left: 10%;
 }
-.tgl-skewed:checked:focus + .tgl-btn {
+.tgl-skewed:checked:hover + .tgl-btn, .tgl-skewed:checked:focus + .tgl-btn {
     background-image: linear-gradient(#b3b3ff, #7c7cff),
     linear-gradient(#ffffff, #7c7cff 12px, #000080 100%);
 }
 
-.tgl-skewed:not(:checked):focus + .tgl-btn {
+.tgl-skewed:not(:checked):hover + .tgl-btn, .tgl-skewed:not(:checked):focus + .tgl-btn {
     background: linear-gradient(#bbb, #666),
     linear-gradient(#ddd, #666 10px, #333 100%);
 }
