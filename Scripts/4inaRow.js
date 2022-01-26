@@ -56,6 +56,8 @@
     const $popupSettings = $("popupSettings");
     const $popupCountry = $("popupCountry");
     const $popupOnline = $("popupOnline");
+    const $popupDialog = $("popupDialog");
+    const $popupLeft = $("popupLeft");
     const $spCountry = $("sp_country");
     const $inputImage = $("inputImage");
     const $inputName = $("inputName");
@@ -128,7 +130,7 @@
         if (e  === $popupCountry) {
             $popupSettings.getElementsByTagName("FIELDSET")[0].disabled = true;
         }
-        if (e  === $("popupDialog") || e  === $("popupLeft")) {
+        if (e  === $popupDialog || e  === $popupLeft) {
             Array.from($game.getElementsByTagName("canvas")).forEach((canvas) => {
                 canvas.tabIndex = -1;
             });
@@ -147,7 +149,7 @@
         if (e  === $popupCountry) {
             $popupSettings.getElementsByTagName("FIELDSET")[0].disabled = false;
         }
-        if (e  === $("popupDialog") || e  === $("popupLeft")) {
+        if (e  === $popupDialog || e  === $popupLeft) {
             Array.from($game.getElementsByTagName("canvas")).forEach((canvas) => {
                 canvas.tabIndex = 0;
             });
@@ -428,7 +430,7 @@
             $("printScore2a").innerHTML = p2_name;
             $("printScore1b").innerHTML = siege[0];
             $("printScore2b").innerHTML = siege[1];
-            fShowPopup($("popupDialog"));
+            fShowPopup($popupDialog);
             animate = false;
         }
     }
@@ -756,7 +758,7 @@
             if (user.id !== lastQuit && mode === "online") {
                 lastQuit = user.id;
                 onExit = true;
-                fShowPopup($("popupLeft"));
+                fShowPopup($popupLeft);
             }
         });
     }
@@ -823,8 +825,8 @@
         $title.classList.add("swipe-out-right");
         $game.classList.add("swipe-in-left");
 
-        fHidePopup($("popupDialog"));
-        fHidePopup($("popupLeft"));
+        fHidePopup($popupDialog);
+        fHidePopup($popupLeft);
     }
 
     function highlight(colNr) {
@@ -1157,7 +1159,7 @@
             // falls das Spielfeld nicht schon durch Online-Gegner geleert wurde
             newGame();
         }
-        fHidePopup($("popupDialog"));
+        fHidePopup($popupDialog);
         if (mode !== "2player" && mode !== "online" && player === 1) {
             ai();
         }
@@ -1437,9 +1439,9 @@
                     back();
                     break;
             }
-        } else if ($("popupLeft").classList.contains("popup-show")) {
+        } else if ($popupLeft.classList.contains("popup-show")) {
             // im Popup Online-left Game
-            lElements = Array.prototype.slice.call($("popupLeft").getElementsByTagName("BUTTON"), 0);
+            lElements = Array.prototype.slice.call($popupLeft.getElementsByTagName("BUTTON"), 0);
             nIndexEl = lElements.indexOf(cEl);
             switch (e.key) {
                 case "ArrowUp":
@@ -1537,13 +1539,24 @@
         $("iInfoClose").addEventListener("click", function () {
             fHidePopup($popupInfo);
         });
+        $popupInfo.addEventListener("click", function (e) {
+            if (e.target === $popupInfo) {
+                fHidePopup($popupInfo);
+            }
+        });
         $("iStats").addEventListener("click", function () {
             fShowPopup($popupStats);
         });
         $("iStatsClose").addEventListener("click", function () {
             fHidePopup($popupStats);
         });
+        $popupStats.addEventListener("click", function (e) {
+            if (e.target === $popupStats) {
+                fHidePopup($popupStats);
+            }
+        });
         $("iSettings").addEventListener("click", function () {
+            $b_sound.checked = gSound;
             fShowPopup($popupSettings);
         });
         $("iSettingsClose").addEventListener("click", function () {
@@ -1553,11 +1566,36 @@
             }
             fHidePopup($popupSettings);
         });
+        $popupSettings.addEventListener("click", function (e) {
+            if (e.target === $popupSettings) {
+                fHidePopup($popupSettings);
+            }
+        });
         $("iOnlineClose").addEventListener("click", function () {
             fHidePopup($popupOnline);
         });
+        $popupOnline.addEventListener("click", function (e) {
+            if (e.target === $popupOnline) {
+                fHidePopup($popupOnline);
+            }
+        });
         $("bt_country").addEventListener("click", function () {
             fShowPopup($popupCountry);
+        });
+        $popupCountry.addEventListener("click", function (e) {
+            if (e.target === $popupCountry) {
+                fHidePopup($popupCountry);
+            }
+        });
+        $popupDialog.addEventListener("click", function (e) {
+            if (e.target === $popupDialog) {
+                back();
+            }
+        });
+        $popupLeft.addEventListener("click", function (e) {
+            if (e.target === $popupLeft) {
+                back();
+            }
         });
 
         $("bt_play").addEventListener("click", function () {

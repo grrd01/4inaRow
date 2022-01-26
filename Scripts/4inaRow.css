@@ -606,7 +606,7 @@ input[type=text]:focus {
     .list-button:active > .button-img {
         margin-top: 22px;
     }
-    .list-button:active > div {
+    .list-button:active > span {
         margin-bottom: 18px;
     }
     .game {
@@ -662,7 +662,7 @@ input[type=text]:focus {
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
     }
-    .list-button > div {
+    .list-button > span {
         display: inline;
         pointer-events: none;
     }
@@ -675,7 +675,7 @@ input[type=text]:focus {
         margin-top: 22px;
         margin-bottom: 18px;
     }
-    .list-button:active > div {
+    .list-button:active > span {
         padding-top: 4px;
     }
     #P1name {
