@@ -820,11 +820,12 @@
         player = 0;
         siege = [0, 0];
         mode = null;
-        $title.classList.remove("swipe-out");
-        $game.classList.remove("swipe-in");
-        $title.classList.add("swipe-out-right");
-        $game.classList.add("swipe-in-left");
-
+        setTimeout(function () {
+            $title.classList.remove("swipe-out");
+            $game.classList.remove("swipe-in");
+            $title.classList.add("swipe-out-right");
+            $game.classList.add("swipe-in-left");
+        }, document.getElementsByClassName("popup-show").length * 600);
         fHidePopup($popupDialog);
         fHidePopup($popupLeft);
     }
