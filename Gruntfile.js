@@ -90,7 +90,7 @@ module.exports = function(grunt) {
                     {'../../2_Build/4inaRow/Images/online.svg': 'Images/online.svg'},
                     {'../../2_Build/4inaRow/Images/player.svg': 'Images/player.svg'},
                     {'../../2_Build/4inaRow/Images/puzzle.svg': 'Images/puzzle.svg'},
-                    {'../../2_Build/4inaRow/Images/puzzle_min.svg': 'Images/puzzle_min.svg'},
+                    {'../../2_Build/4inaRow/Images/reversi.svg': 'Images/reversi.svg'},
                     {'../../2_Build/4inaRow/Images/search.svg': 'Images/search.svg'},
                     {'../../2_Build/4inaRow/Images/settings.svg': 'Images/settings.svg'},
                     {'../../2_Build/4inaRow/Images/stats.svg': 'Images/stats.svg'},

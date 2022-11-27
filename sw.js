@@ -10,7 +10,7 @@
 /*jslint devel: true, browser: true */ /*global  self  */
 
 const CACHE_NAME = "grrds-4inarow-cache";
-const CACHE_VERSION = "v2.5";
+const CACHE_VERSION = "v2.6";
 const CACHE = CACHE_NAME + "-" + CACHE_VERSION;
 
 const urlsToCache = [
@@ -39,6 +39,8 @@ const urlsToCache = [
     "Images/puzzle.svg",
     "Images/red_off.png",
     "Images/red_on.png",
+    "Images/reversi.svg",
+    "Images/search.svg",
     "Images/settings.svg",
     "Images/stats.svg",
     "Images/tictactoe.svg",
