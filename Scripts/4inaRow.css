@@ -38,6 +38,9 @@ fieldset {
 
 .content {
     margin: 5px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 10px);
 }
 
 #game {
@@ -141,6 +144,14 @@ fieldset {
     }
 }
 
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 #img_title {
     display: inline-block;
     max-height: 50vh;
@@ -165,7 +176,9 @@ fieldset {
     max-height: 25vh;
 }
 .list-button {
-    max-height: calc(50vh - 20px);
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
 }
 @keyframes fade-out-in {
     0% {
@@ -341,8 +354,9 @@ nav, .mini-buttonlist, .select {
     background-color: #111;
 }
 .mini-buttonlist {
+    display: flex;
     height: 42px;
-    margin-bottom: 10px;
+    margin: 5px 5px 5px auto;
 }
 
 .select {
@@ -576,11 +590,9 @@ input[type=text]:focus {
         display:inline;
     }
     .list-button {
-        display: inline-block;
-        flex-grow: 1;
-        text-align: center;
         padding: 1px 0 1px 0;
         margin-left: 1px;
+        flex-direction: column;
     }
     .list-button:first-child {
         border-top-left-radius: 10px;
@@ -639,6 +651,7 @@ input[type=text]:focus {
     }
     nav {
         flex-direction: column;
+        flex-grow: 1;
     }
     #printMessage {
         display: block;
@@ -648,10 +661,7 @@ input[type=text]:focus {
     .li_pad {padding-top: calc((100vh - 100vw / 3 - 270px) / 14);}
 
     .list-button {
-        height: calc(20vh - ((28vw + 80px) / 5));
         padding: 1px 0 1px 0;
-        display: flex;
-        align-items: center;
     }
     .list-button:first-child {
         border-top-left-radius: 10px;
