@@ -20,6 +20,6 @@
     "grunt-contrib-copy": "^1.0.0"
   },
   "dependencies": {
-    "npm": "^9.6.5"
+    "npm": "^9.8.0"
   }
 }
