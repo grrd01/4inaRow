@@ -20,7 +20,7 @@
         "start": "./4inaRowServer.js"
     },
     "dependencies": {
-        "socket.io": "1.7.4",
+        "socket.io": "2.5.0",
         "moniker": "0.1.2"
     }
 }
