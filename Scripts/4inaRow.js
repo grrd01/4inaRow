@@ -620,8 +620,8 @@
     function online_click() {
         fShowPopup($popupOnline);
         $("bt_online").disabled = true;
-        // socket = io.connect("https://localhost:49152", {"forceNew": true});
-        socket = io.connect("https://grrd.a2hosted.com:49152", {"forceNew": true});
+        // socket = io.connect("https://localhost:5000", {"forceNew": true});
+        socket = io.connect("https://grrd.duckdns.org:5000", {"forceNew": true});
         socket.heartbeatTimeout = 20000;
 
         socket.on("connect", function () {
