@@ -10,7 +10,7 @@
 /*jslint devel: true, browser: true */ /*global  self  */
 
 const CACHE_NAME = "grrds-4inarow-cache";
-const CACHE_VERSION = "v2.8";
+const CACHE_VERSION = "v2.9";
 const CACHE = CACHE_NAME + "-" + CACHE_VERSION;
 
 const urlsToCache = [
