@@ -176,7 +176,8 @@ module.exports = function(grunt) {
                     {expand: true, flatten: true, src: ['Scripts/jquery*.*'], dest: 'dist/Scripts/'},
                     {expand: true, flatten: true, src: ['Sounds/*'], dest: 'dist/Sounds/'},
                     {expand: true, flatten: true, src: ['**.txt'], dest: 'dist/'},
-                    {expand: true, flatten: true, src: ['**.md'], dest: 'dist/'}
+                    {expand: true, flatten: true, src: ['**.md'], dest: 'dist/'},
+                    {expand: true, flatten: true, src: ['CNAME'], dest: 'dist/'}
                 ]
             }
         }
