@@ -55,7 +55,12 @@
         );
     }
 
+    // HTTPS server (for production server)
     var app = require("https").createServer(options, handler);
+
+    // HTTP server (for local development)
+    // var app = require("http").createServer(handler);
+
     var io = require("socket.io").listen(app);
     var Moniker = require("moniker");
     app.listen(5000);
