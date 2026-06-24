@@ -1,6 +1,6 @@
 {
     "name": "grrds4inarow",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "description": "grrd's 4 in a Row - Online version",
     "author": {
         "name": "Gerard Tyedmers",
@@ -13,14 +13,14 @@
         "url": "https://github.com/grrd01/4inaRow.git"
     },
     "engines": {
-        "node": "6.11.0",
-        "npm": "3.10.10"
+        "node": ">=10.2.0",
+        "npm": ">=6"
     },
     "scripts": {
         "start": "./4inaRowServer.js"
     },
     "dependencies": {
-        "socket.io": "2.5.0",
+        "socket.io": "4.8.3",
         "moniker": "0.1.2"
     }
 }

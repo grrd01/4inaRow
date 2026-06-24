@@ -61,7 +61,11 @@
     // HTTP server (for local development)
     // var app = require("http").createServer(handler);
 
-    var io = require("socket.io").listen(app);
+    var io = require("socket.io")(app, {
+        cors: {
+            origin: "*"
+        }
+    });
     var Moniker = require("moniker");
     app.listen(5000);
 
@@ -72,7 +76,7 @@
         for (i = 0; i < users.length; i += 1) {
             if (i === users.length - 1) {
                 // kein freier Gegner
-                io.to(users[i].id).emit("connect", users[i]);
+                io.to(users[i].id).emit("waiting");
             } else {
                 // Gegner vorhanden
                 if (users[i].opponent === null) {

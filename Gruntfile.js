@@ -64,8 +64,8 @@ module.exports = function(grunt) {
         svgmin: {
             options: {
                 plugins: [
-                    {removeUnknownsAndDefaults: false},
-                    {removeViewBox: false}
+                    {name: 'removeUnknownsAndDefaults', active: false},
+                    {name: 'removeViewBox', active: false}
                 ]
             },
             dist: {
@@ -102,23 +102,29 @@ module.exports = function(grunt) {
         imagemin: {
             dist: {
                 options: {
-                    optimizationLevel: 5
+                    use: [
+                        require('imagemin-jpegtran')(),
+                        require('imagemin-optipng')({optimizationLevel: 5})
+                    ]
                 },
                 files: [{
                     expand: true,
                     cwd: 'Images',
-                    src: ['*.{png,jpg,gif}'],
+                    src: ['*.{png,jpg,jpeg}'],
                     dest: 'dist/Images/'
                 }]
             },
             dist2: {
                 options: {
-                    optimizationLevel: 5
+                    use: [
+                        require('imagemin-jpegtran')(),
+                        require('imagemin-optipng')({optimizationLevel: 5})
+                    ]
                 },
                 files: [{
                     expand: true,
                     cwd: 'Scripts/images',
-                    src: ['*.{png,jpg,gif}'],
+                    src: ['*.{png,jpg,jpeg}'],
                     dest: 'dist/Scripts/images/'
                 }]
             }
@@ -168,6 +174,12 @@ module.exports = function(grunt) {
             }
         },
         copy: {
+            images: {
+                files: [
+                    {expand: true, cwd: 'Images', src: ['*.{png,jpg,jpeg,gif}'], dest: 'dist/Images/'},
+                    {expand: true, cwd: 'Scripts/images', src: ['*.{png,jpg,jpeg,gif}'], dest: 'dist/Scripts/images/'}
+                ]
+            },
             main: {
                 files: [
                     {expand: true, src: ['Locales/**'], dest: 'dist/'},
@@ -190,15 +202,28 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-replace');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
+    grunt.registerTask('imagemin-safe', function () {
+        var hasJpegtran = grunt.file.exists('node_modules/jpegtran-bin/vendor/jpegtran.exe') || grunt.file.exists('node_modules/jpegtran-bin/vendor/jpegtran');
+        var hasOptipng = grunt.file.exists('node_modules/optipng-bin/vendor/optipng.exe') || grunt.file.exists('node_modules/optipng-bin/vendor/optipng');
+
+        if (hasJpegtran && hasOptipng) {
+            grunt.task.run(['imagemin:dist', 'imagemin:dist2']);
+            return;
+        }
+
+        grunt.log.writeln('Skipping imagemin (jpegtran/optipng binaries not available). Copying images without optimization.');
+        grunt.task.run(['copy:images']);
+    });
+
     grunt.registerTask('default', [
         'terser',
         'uglify',
         'svgmin',
-        'imagemin',
+        'imagemin-safe',
         'cssmin',
         'htmlmin',
         'replace',
-        'copy'
+        'copy:main'
     ]);
 
 

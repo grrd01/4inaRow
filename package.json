@@ -1,6 +1,6 @@
 {
   "name": "grrds-4inaRow",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "grrd's 4 in a Row is a connect-4 game for one or two players with a decent AI, selectable difficulty from Kid to Pro that works well on your smartphone.",
   "license": "MPL-2.0",
   "repository": {
@@ -8,9 +8,9 @@
     "url": "git://github.com/grrd01/4inaRow.git"
   },
   "devDependencies": {
-    "grunt": "^1.5.3",
+    "grunt": "^1.6.1",
     "load-grunt-tasks": "^5.1.0",
-    "grunt-svgmin": "^6.0.1",
+    "grunt-svgmin": "^7.0.0",
     "grunt-contrib-imagemin": "^4.0.0",
     "grunt-contrib-cssmin": "^4.0.0",
     "grunt-contrib-htmlmin": "^3.1.0",
